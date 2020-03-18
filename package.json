@@ -1,0 +1,16 @@
+{
+  "name": "zhishi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tang xue <tangxue1118@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.2.0"
+  }
+}
