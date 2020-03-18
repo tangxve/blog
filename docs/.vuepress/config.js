@@ -9,9 +9,18 @@ module.exports = {
 		nav: [
 			{text: 'Home', link: '/'},
 			{text: 'MacOS', link: '/macOS/'},
-			{text: 'External', link: 'https://google.com'},
+			{text: 'Google', link: 'https://google.com'},
+			{text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'},
 		],
 		sidebar: [
+			{
+				title: '笔记',
+				path: '/notes/',
+				// collapsable: false,
+				children: [
+					'/notes/WeChat/'
+				]
+			},
 			{
 				title: 'MacOS',
 				path: '/macOS/',
@@ -25,7 +34,7 @@ module.exports = {
 			{
 				title: '知食',
 				path: '/zhishi/',
-				// collapsable: true,
+				// collapsable: false,
 			}
 		],
 		lastUpdated: "上次更新"
