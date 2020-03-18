@@ -4306,6 +4306,11 @@ media-typer@0.3.0:
   resolved "https://registry.npm.taobao.org/media-typer/download/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
+medium-zoom@^1.0.4:
+  version "1.0.5"
+  resolved "https://registry.npm.taobao.org/medium-zoom/download/medium-zoom-1.0.5.tgz#81413dda20ccdd857141ff420cfab788dd32e20e"
+  integrity sha1-gUE92iDM3YVxQf9CDPq3iN0y4g4=
+
 mem@^4.0.0:
   version "4.3.0"
   resolved "https://registry.npm.taobao.org/mem/download/mem-4.3.0.tgz#461af497bc4ae09608cdb2e60eefb69bff744178"
@@ -6898,12 +6903,19 @@ vuepress-html-webpack-plugin@^3.2.0:
     toposort "^1.0.0"
     util.promisify "1.0.0"
 
-vuepress-plugin-container@^2.0.2:
+vuepress-plugin-container@^2.0.2, vuepress-plugin-container@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npm.taobao.org/vuepress-plugin-container/download/vuepress-plugin-container-2.1.2.tgz#688c1e5a9709a1b8658605bcaee580b3abb19d16"
   integrity sha1-aIweWpcJobhlhgW8ruWAs6uxnRY=
   dependencies:
     markdown-it-container "^2.0.0"
+
+vuepress-plugin-medium-zoom@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.npm.taobao.org/vuepress-plugin-medium-zoom/download/vuepress-plugin-medium-zoom-1.1.8.tgz#bb1ea5cdd50efd218b385b5f5fe46c3e1d2d4ec1"
+  integrity sha1-ux6lzdUO/SGLOFtfX+RsPh0tTsE=
+  dependencies:
+    medium-zoom "^1.0.4"
 
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"

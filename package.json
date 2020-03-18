@@ -11,6 +11,10 @@
   "author": "tang xue <tangxue1118@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^1.2.0"
+    "vuepress": "^1.2.0",
+    "vuepress-plugin-container": "^2.1.2"
+  },
+  "dependencies": {
+    "vuepress-plugin-medium-zoom": "^1.1.8"
   }
 }
