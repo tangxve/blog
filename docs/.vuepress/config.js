@@ -5,6 +5,7 @@ module.exports = {
   dest: './dist',
   head: [],
   theme: '',
+  port: 9000,
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -37,15 +38,14 @@ module.exports = {
         // collapsable: false,
       }
     ],
-    plugins: [
-      'vuepress-plugin-container', {
-        type: 'tip',
-        defaultTitle: {
-          '/': 'TIP',
-          '/zh/': '提示',
-        },
-      },
-    ],
-    lastUpdated: '上次更新'
-  }
+    lastUpdated: '上次更新',
+  },
+  plugins: [
+    ['@vuepress/plugin-medium-zoom']
+    // ['@vuepress/back-to-top'],
+    // ['@vuepress/nprogress'],
+    // ['@vuepress/medium-zoom', {
+    //   selector: '.theme-reco-content :not(a) > img'
+    // }]
+  ]
 }
