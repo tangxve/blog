@@ -41,11 +41,17 @@ module.exports = {
     lastUpdated: '上次更新',
   },
   plugins: [
-    ['@vuepress/plugin-medium-zoom']
-    // ['@vuepress/back-to-top'],
-    // ['@vuepress/nprogress'],
-    // ['@vuepress/medium-zoom', {
-    //   selector: '.theme-reco-content :not(a) > img'
-    // }]
+    '@vuepress/back-to-top',
+    [
+      'vuepress-plugin-zooming',
+      {
+        selector: '.page img',
+        delay: 1000,
+        options: {
+          bgColor: 'black',
+          zIndex: 10000,
+        },
+      },
+    ],
   ]
 }

@@ -46,9 +46,7 @@
 
 公众号域名配置：
 
- ![公众号域名配置](./img/wechat-1.png)
-
-<img src="./img/wechat-1.png" alt="home.png" class="medium-zoom-image">
+<img src="./img/wechat-1.png" width="500">
 
 #### 1-2. 绑定开发者
 
