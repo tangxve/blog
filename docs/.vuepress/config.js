@@ -17,7 +17,9 @@ module.exports = {
       {
         title: '笔记',
         path: '/notes/',
-        // collapsable: false,
+        collapsable: false,
+        sidebarDepth: 4,
+        // displayAllHeaders: true,
         children: [
           '/notes/WeChat/'
         ]
