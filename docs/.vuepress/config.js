@@ -11,7 +11,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'MacOS', link: '/macOS/' },
+      { text: 'MacOS', link: '/mac/' },
       { text: 'Google', link: 'https://google.com' },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
     ],
@@ -28,13 +28,14 @@ module.exports = {
       },
       {
         title: 'MacOS',
-        path: '/macOS/',
-        // collapsable: true,
-      },
-      {
-        title: 'Mac 终端 常用命令',
-        path: '/terminal/',
-        // collapsable: true,
+        path: '/mac/',
+        collapsable: false,
+        children: [
+          '/mac/chrome/',
+          '/mac/homebrew/',
+          '/mac/nvm/',
+          '/mac/sh/',
+        ]
       },
       {
         title: '知食',
