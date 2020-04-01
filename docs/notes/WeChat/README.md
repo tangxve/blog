@@ -46,7 +46,7 @@
 
 ###  绑定开发者 todo
 
-登录微信公众平台：管理 > 用户管理 > “公众号设置”的“功能设置”里填写“JS接口安全域名”
+todo 找不到在哪里绑定了 #83
 
 ### 绑定服务端 IP
 
@@ -61,6 +61,8 @@
 ### 其他
 
 服务端可能需要到的公众号开发者信息：`AppID、AppSecret` 这写东西都可以在：`开发 > 基本设置 > 公众号开发信息` 里面查看并设置
+
+
 
 ## 微信 JS-SDK
 
@@ -91,54 +93,145 @@ index.html
 > 所以使用pushState来实现web app的页面会导致签名失败，此问题会在Android6.2中修复）。
 
 
-wxConfigMixin.js
+#### 设置 微信 js-sdk 鉴权
 
 ```js
+  wx.config({
+    // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    debug: true,
+    // 必填，公众号的唯一标识
+    appId, 
+    // 必填，生成签名的时间戳
+    timestamp,
+    // 必填，生成签名的随机串
+    nonceStr,
+    // 必填，签名
+    signature,
+    // 必填，需要使用的JS接口列表
+    jsApiList: [],
+  })
+```
+::: tip 提示
+前/后端都要注意参数的大小写
+:::
+
+#### 通过 ready 接口处理成功验证
+
+
+> config 信息验证后会执行 ready 方法，所有接口调用都必须在 config 接口获得结果之后，config 是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在 ready
+>函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在 ready 函数中。
+
+```js
+  wx.ready(() => {
+    // 分享给朋友
+    wxMessageShareData()
+    // 分享到朋友圈
+    wxTimelineShareData()
+    // ...
+  })
+```
+
+
+#### 部分基础 api 接口
+
+```js
+  // 分享给朋友
+  wx.onMenuShareAppMessage({
+    // 分享标题 @string
+    title: '',
+    // 分享描述 @string
+    desc: '',
+    // 分享链接，@string 该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+    link: '',
+    // 分享图片地址 @string
+    imgUrl: '',
+    // 成功回调
+    success() {},
+    // 取消回调
+    cancel() {},
+  })
+
+
+```
+::: tip 提示
+`imgUrl` 分享图片应该是可访问的远程地址，不可以是 base64 图片格式和本地图片
+:::
+
+
+#### 完成代码
+```js
+// vue mixins 方式
+
 export default {
   methods: {
     async wxConfig() {
-      // 获取 config 的配置信息
+      // 向服务器获取信息
       const res = await axios({
-        url: 'wx/getWechatConfig',
+        url: 'wx/sharetasks/getWechatConfig',
         method: 'POST',
         body: {
-          // 用来获取签名的 url 后端需要动态获取
+          // 服务端需要用来签名的地址，就是你需要调用 js-sdk的页面地址（hash 模式有所不同，后续会讲）
           currentUrl: window.location.href,
         },
       })
 
-      // 注意字段的名称，大小写
+      // 鉴权
       const { appId, timestamp, nonceStr, signature } = res
       await wx.config({
-        // 是否开启调试
-        debug: true,
-
-        // 必填，公众号的唯一标识
         appId,
-
-        // 必填，生成签名的时间戳
         timestamp,
-
-        // 必填，生成签名的随机串
         nonceStr,
-
-        // 必填，签名
         signature,
-
-        // 必填，需要使用的JS接口列表
         jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
       })
 
-      // 通过ready接口处理成功验证
+      // ready 后处理 api
       wx.ready(() => {
-        // 需要调用的 js API
+        this.wxMessageShareData()
+        this.wxTimelineShareData()
+      })
+    },
+
+    // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
+    wxMessageShareData(data = {}) {
+      wx.onMenuShareAppMessage({
+        title: data.title || '免费使用电子防疫承诺书',
+        desc: data.desc || '确认员工健康情况，助力企业顺利复工',
+        link: data.link || window.location.href,
+        imgUrl: data.imgUrl || 'https://asset.tsign.cn/apps/tsign-openservice-h5_3.0/common/imgs/esign.png',
+        success() {
+          // 用户确认分享后执行的回调函数
+          data.cb && data.cb()
+        },
+        cancel() {},
+      })
+    },
+
+    // 自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容
+    wxTimelineShareData(data = {}) {
+      wx.onMenuShareTimeline({
+        title: data.title || '速来签署电子防疫承诺书',
+        desc: data.desc || '确认员工健康情况，助力企业顺利复工',
+        link: data.link || window.location.href,
+        imgUrl: data.imgUrl || 'https://asset.tsign.cn/apps/tsign-openservice-h5_3.0/common/imgs/esign.png',
+        success() {
+          // 用户确认分享后执行的回调函数
+          data.cb && data.cb()
+        },
+        cancel() {},
       })
     },
   },
 }
 ```
 
-签名算法见文末的[附录1](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#62)，所有JS接口列表见文末的[附录2](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#63)
+::: tip 提示
+`currentUrl` 服务端需要用来签名的地址，就是你需要调用 js-sdk的页面地址（hash 模式有所不同，后续会讲）
+
+
+具体 js 接口请参考文档签名算法见[附录1](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#62)，所有JS接口列表见文末的[附录2](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#63)
+:::
+
 
 ### 通过config接口注入权限验证配置
 

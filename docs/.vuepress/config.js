@@ -3,7 +3,9 @@ module.exports = {
   title: '知食',
   description: '大明湖畔-王翠花',
   dest: './dist',
-  head: [],
+  head: [
+    ['link', { rel: 'icon', href: '/logo-2.jpeg' }]
+  ],
   theme: '',
   port: 9000,
   themeConfig: {
