@@ -17,11 +17,19 @@ module.exports = {
     ],
     sidebar: [
       {
+        title: '前端技术方案（工作）',
+        path: '/work/',
+        collapsable: false,
+        sidebarDepth: 4,
+        children: [
+          '/work/header/'
+        ]
+      },
+      {
         title: '笔记',
         path: '/notes/',
         collapsable: false,
         sidebarDepth: 4,
-        // displayAllHeaders: true,
         children: [
           '/notes/WeChat/'
         ]
@@ -40,7 +48,6 @@ module.exports = {
       {
         title: '知食',
         path: '/zhishi/',
-        // collapsable: false,
       }
     ],
     lastUpdated: '上次更新',
