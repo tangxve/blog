@@ -14,15 +14,16 @@
 |参数|说明|类型|可选值|默认值|
 |---|---|---|---|---|
 | logo | logo 的数据 | Object | - | - | 
-| nev | 导航的数据 | Array | - | - | 
+| nav | 导航的数据 | Array | - | - | 
 | account | 帮助中心、站内信、头像及退出功能 | Object | - | - | 
 
-#### logo-options
+### Header-logo options
 
 |参数|说明|类型|可选值|默认值|
 |---|---|---|---|---|
 | url | logo图片的地址 | string| - | - |  
 
+::: details 点击查看数据结构
 ```js
   // logo部分
   {
@@ -30,15 +31,18 @@
     url: 'xxxx'
   }
 ```
+:::
 
-#### nev-options
+### Header-nav options
 
 |参数|说明|类型|可选值|默认值|
 |---|---|---|---|---|
-| logo | logo 的数据 | Object | - | - | 
-| nev | 导航的数据 | Array | - | - | 
-| account | 帮助中心、站内信、头像及退出功能 | Object | - | - | 
-
+| nav | 导航的数据 | Array | - | - | 
+| label | nav 的名字 | string| - | - | 
+| path | 路径 | string| - | - | 
+| class | 绑定到元素的 class | array / object | - | - |
+ 
+::: details 点击查看数据结构
 ```js
   // 导航部分
   [
@@ -49,14 +53,25 @@
     }
   ]
 ```
+:::
 
-#### account-options
+### Header-account options
 
+|参数|说明|类型|可选值|默认值|
+|---|---|---|---|---|
+| helpLink | 帮助中心地址，默认帮助中心地址 | string | - | - | 
+| notify | 站内信通知 | object| - | - | 
+| newMsgCount（notify） | 通知信息数量 | string| - | - | 
+| newMessages（notify） | 通知信息列表 | array | - | - | 
+| msg（newMessages） | 通知信息内容 | string | - | - | 
+| messageLink | 我的消息地址 | string | - | - | 
+
+::: details 点击查看数据结构
 ```js
   // 用户部分
-  account: {
+  {
     // 帮助中心地址，默认帮助中心地址 @string
-    helpUrl: 'xxxx',
+    helpLink: 'xxxx',
     // 站内信通知
     notify: {
       // 通知信息数量
@@ -85,7 +100,7 @@
     }
   }
 ```
-
+:::
 ## space
 空间切换组件
 
