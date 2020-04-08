@@ -1,12 +1,7 @@
 # 标准签 header 模块设计方案
 
-## header
+## Header
 头部 导航 组件
-
-### 整体部分
-示意图
-
-![示意图](./img/WechatIMG283.png)
 
 ### Header Attributes
 
@@ -17,13 +12,69 @@
 | nav | 导航的数据 | Array | - | - | 
 | account | 帮助中心、站内信、头像及退出功能 | Object | - | - | 
 
-### Header-logo options
+::: details 查看数据结构
+
+```js
+{
+  // logo部分
+  logo: {
+    // logo 图片的地址，默认 oss 地址 @string
+    url: 'xxxx'
+  },
+  // 导航部分
+  nev: [
+    {
+      label: '证据管理',
+      path: '/aaaa',
+      class: ['nav-item']
+    }
+  ],
+  // 用户部分
+  account: {
+    // 帮助中心地址，默认帮助中心地址 @string
+    helpLink: 'xxxx',
+    // 站内信通知
+    notify: {
+      // 通知信息数量
+      newMsgCount: 0,
+      // 通知信息列表
+      newMessages: [{ msg: 'xxx' }],
+      // 我的消息地址
+      messageLink: 'xxx'
+    },
+    // 用户信息
+    user: {
+      // 用户头像地址
+      head: 'xxx',
+      // 用户姓名
+      name: '',
+      // 用户实名状态 @boolean
+      realName: false,
+      // 手机号
+      mobile: 'xxx',
+      // 邮箱
+      email: 'xxx',
+      // 用户中心地址
+      userLink: '',
+      // 计费中心地址
+      orderLink: ''
+    }
+  }
+}
+```
+
+#### 示意图：
+
+![示意图](./img/WechatIMG283.png)
+:::
+
+### logo options
 
 |参数|说明|类型|可选值|默认值|
 |---|---|---|---|---|
-| url | logo图片的地址 | string| - | - |  
+| url | logo 图片的地址 | string| - | - |  
 
-::: details 点击查看数据结构
+::: details 查看数据结构
 ```js
   // logo部分
   {
@@ -33,7 +84,7 @@
 ```
 :::
 
-### Header-nav options
+### nav options
 
 |参数|说明|类型|可选值|默认值|
 |---|---|---|---|---|
@@ -42,7 +93,7 @@
 | path | 路径 | string| - | - | 
 | class | 绑定到元素的 class | array / object | - | - |
  
-::: details 点击查看数据结构
+::: details 查看数据结构
 ```js
   // 导航部分
   [
@@ -55,18 +106,18 @@
 ```
 :::
 
-### Header-account options
+### account options
 
 |参数|说明|类型|可选值|默认值|
 |---|---|---|---|---|
 | helpLink | 帮助中心地址，默认帮助中心地址 | string | - | - | 
 | notify | 站内信通知 | object| - | - | 
-| newMsgCount（notify） | 通知信息数量 | string| - | - | 
-| newMessages（notify） | 通知信息列表 | array | - | - | 
-| msg（newMessages） | 通知信息内容 | string | - | - | 
+| newMsgCount | 通知信息数量 | string| - | - | 
+| newMessages | 通知信息列表 | array | - | - | 
+| msg | 通知信息内容 | string | - | - | 
 | messageLink | 我的消息地址 | string | - | - | 
 
-::: details 点击查看数据结构
+::: details 查看数据结构
 ```js
   // 用户部分
   {

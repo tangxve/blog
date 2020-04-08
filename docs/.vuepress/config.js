@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: '',
   port: 9000,
+  markdown: {
+    lineNumbers: true
+  },
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },

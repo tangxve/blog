@@ -16,7 +16,7 @@ const Header = {
   // 用户部分
   account: {
     // 帮助中心地址，默认帮助中心地址 @string
-    helpUrl: 'xxxx',
+    helpLink: 'xxxx',
     // 站内信通知
     notify: {
       // 通知信息数量
