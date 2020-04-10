@@ -118,6 +118,7 @@
 | messageLink | 我的消息地址 | string | - | - | 
 
 ::: details 查看数据结构
+
 ```js
   // 用户部分
   {
@@ -151,10 +152,60 @@
     }
   }
 ```
+
 :::
-## space
+## Space
 空间切换组件
 
+### Space Attributes 
+
+|参数|说明|类型|可选值|默认值|
+|---|---|---|---|---|
+| value / v-model | 绑定值（建议是当前组织的 orgId） | string / number | - | - | 
+| label | space 的 value，如果 value 等于 label 就是当前企业 （建议是当前组织的 orgId）| string / number| - | - | 
+| disabled | 是否禁用 | boolean| - | false | 
+| moreOrgan | 显示更多企业按钮 | boolean | - | true | 
+| tabSpaceNum | tab 栏显示多少个企业，超出后会在更多企业里面显示，如果 moreOrgan 是 true 这个必须填写 | number | - | - |
+| addOrgan | 显示添加企业按钮 | boolean | - | true |  
+| addOrganLink | 添加企业地址 | string | - | - | 
+| before-change  | 空间切换前的回调，会暂停 空间的切换| function(done)，done 用于继续切换改变空间  | - | - | 	
+
+
+### Space Events
+|事件名称|说明|回调参数|
+|---|---|---|
+| change | 绑定值变化时触发的事件 | 选中的 space label 值 |
+	
+
+::: details 查看数据结构
+
+```html
+<space-group v-model="spcae">
+  <space label="orgid-xxx1">我的企业空间-1</space>
+  <space label="orgid-xxx2">我的企业空间-2</space>
+  <space label="orgid-xxx3">我的企业空间-3</space>
+  <!-- 更多企业 -->
+  <div slot="more-organ">
+    <space label="orgid-xxx1">我的企业空间-1</space>
+    <space label="orgid-xxx2">我的企业空间-2</space>
+    <space label="orgid-xxx3">我的企业空间-3</space> 
+  </div>
+</space-group>
+```
+
+```js
+  // 导航部分
+  [
+    {
+      label: '证据管理',
+      path: '/aaaa',
+      class: ['nav-item']
+    }
+  ]
+```
+:::
+
+Space Attributes 
 
 ## 组合使用
 
