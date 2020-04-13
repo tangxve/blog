@@ -20,12 +20,13 @@ module.exports = {
     ],
     sidebar: [
       {
-        title: '前端技术方案（工作）',
+        title: '工作方面',
         path: '/work/',
-        collapsable: false,
+        collapsable: true,
         sidebarDepth: 4,
         children: [
-          '/work/header/'
+          '/work/header/',
+          '/work/optimize/'
         ]
       },
       {

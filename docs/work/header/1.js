@@ -46,6 +46,19 @@ const Header = {
   }
 }
 
-const Space = {
-  spcae:'orgid-xxx1'
+// Space
+export default {
+  data() {
+    return {
+      spcae: 'orgid-xxx1'
+    }
+  },
+  methods: {
+    spaceChange(space) {
+      // 手动切换空间
+    },
+    beforeChange(done) {
+      // 切换前的拦截
+    }
+  }
 }
