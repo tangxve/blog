@@ -26,13 +26,14 @@ module.exports = {
         sidebarDepth: 4,
         children: [
           '/work/header/',
-          '/work/optimize/'
+          '/work/optimize/',
+          '/work/handle-update/'
         ]
       },
       {
         title: '笔记',
         path: '/notes/',
-        collapsable: false,
+        collapsable: true,
         sidebarDepth: 4,
         children: [
           '/notes/WeChat/'
@@ -41,7 +42,7 @@ module.exports = {
       {
         title: 'MacOS',
         path: '/mac/',
-        collapsable: false,
+        collapsable: true,
         children: [
           '/mac/chrome/',
           '/mac/homebrew/',

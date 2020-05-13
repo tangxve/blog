@@ -203,18 +203,23 @@ export default {
 
 |name|说明|
 |---|---|
-| more-organ | 更多企业下拉列表中的企业空间 `moreOrgan` 为 true 才会生效 |
+| more-organ | 更多企业按钮 `moreOrgan` 为 true 才会生效 |
+| more-organ-list | 更多企业下拉列表中的企业空间 `moreOrgan` 为 true 才会生效 |
 | add-organ | 添加企业 |
 
 ::: details 查看数据结构
+
+#### slot 方式
 
 ```html
 <space-group v-model="spcae" @change="spaceChange" :before-change="beforeChange">
   <space label="orgid-xxx1">我的企业空间-1</space>
   <space label="orgid-xxx2">我的企业空间-2</space>
   <space label="orgid-xxx3">我的企业空间-3</space>
-  <!-- 更多企业 slot -->
-  <div slot="more-organ">
+  <!--  更多企业按钮  -->
+  <div slot="more-organ">更多企业</div>
+  <!-- 更多企业 列表 slot -->
+  <div slot="more-organ-list">
     <space label="orgid-xxx1">我的企业空间-1</space>
     <space label="orgid-xxx2">我的企业空间-2</space>
     <space label="orgid-xxx3">我的企业空间-3</space> 
@@ -247,7 +252,7 @@ export default {
 
 header 与 space 组件打包使用
 
-如果你使用的是同一个 http 请求方法，那你可以完全可以使用这个组件。
+如果你使用的是同一个 http 请求方法，那你可以完全可以使用这个组件，这里包括切换空间的逻辑的。
 
 |参数|说明|类型|可选值|默认值|
 |---|---|---|---|---|
