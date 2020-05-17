@@ -1,6 +1,6 @@
 module.exports = {
   base: '/',
-  title: '知食',
+  title: '知，食',
   description: '大明湖畔-王翠花',
   dest: './dist',
   head: [
@@ -25,9 +25,10 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 4,
         children: [
-          '/work/header/',
+          '/work/任务中心/',
+          '/work/自助升级/',
           '/work/optimize/',
-          '/work/handle-update/'
+          '/work/header/',
         ]
       },
       {
@@ -51,7 +52,7 @@ module.exports = {
         ]
       },
       {
-        title: '知食',
+        title: '知，食',
         path: '/zhishi/',
       }
     ],
