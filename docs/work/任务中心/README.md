@@ -8,7 +8,8 @@
 
 迭代名称
 
-wiki 地址
+[wiki 地址](http://wiki.timevale.cn:8081/pages/viewpage.action?pageId=90505217)
+[交互地址](https://lanhuapp.com/web/#/item/project/product?tid=2c76857e-e436-4b80-8c5d-57f01c1dcab4&teamId=2c76857e-e436-4b80-8c5d-57f01c1dcab4&pid=6dffe393-a4f4-4af2-968b-5f1775eebe19&project_id=6dffe393-a4f4-4af2-968b-5f1775eebe19&image_id=c423a77d-4a0d-4247-a9df-a967b7d35376&type=share_mark&param=8ec7b714-377f-41bf-adf2-82b14a68e9a1&docId=c423a77d-4a0d-4247-a9df-a967b7d35376&docType=axure&pageId=1782e96844c74c98b6191cd972a0fb1d)
 
 ### 2. 目标
 
@@ -67,6 +68,10 @@ export default {
 }
 ```
 
+#### 合同发起-指定位置页面
+
+子丘 需要添加个 loading，需要个字段告诉子丘 是否显示 loading
+
 
 页面销毁前 清除轮训
 
@@ -78,6 +83,9 @@ export default {
   },
 }
 ```
+
+
+
 
 ### 3. WebSocket 初探
 
