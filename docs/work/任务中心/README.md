@@ -79,10 +79,16 @@ export default {
 }
 ```
 
-### 3. 前端组件
+### 3. WebSocket 初探
+
+[WbeSocket 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket)
+
+[WebSocket 教程](https://www.ruanyifeng.com/blog/2017/05/websocket.html)
+
+### 4. 前端组件
 无
 
-### 4. 兼容性
+### 5. 兼容性
 
 无
 
