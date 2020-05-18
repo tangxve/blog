@@ -1,8 +1,8 @@
 ---
 home: true
 # heroImage: /zhishi.png
-heroText: 知，食
-tagline: 喂，你听说过 All Bule 吗
+heroText: 知食
+tagline: 你听说过 All Bule 吗
 actionText: 知食分子
 actionLink: /zhishi/
 features:

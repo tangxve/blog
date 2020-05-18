@@ -1,6 +1,6 @@
 module.exports = {
   base: '/',
-  title: '知，食',
+  title: '知食',
   description: '大明湖畔-王翠花',
   dest: './dist',
   head: [
