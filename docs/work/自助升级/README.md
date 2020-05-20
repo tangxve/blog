@@ -31,8 +31,47 @@ wiki地址：[自助升级](http://wiki.timevale.cn:8081/pages/viewpage.action?p
 #### 前端应用版本 
 前端应用灰度功能的版本，用来与用户版本和正式版本来做对比。**和 package.json 里面的 version 不是一个东西**
 
-### 1. 流程图
-无
+### 1. 版本灰度 使用流程
+
+#### 1. config 文件添加 版本标示 和 版本号，版本标示需要语义明确
+
+::: tip
+key：版本标示
+
+value：版本号
+:::
+
+```js
+// src/lib/config.js 
+
+export const RELEASE_VERSION_LIST = {
+  Vxxx0: '1.0',
+  Vxxx1: '1.1',
+  Vxxx2: '1.2',
+}
+```
+
+#### 2. 业务使用
+
+```js
+// home.vue
+
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters('version', ['versionGated']),
+  },
+  created() {
+    // 通过 versionGated 调用自己定义 key（版本标示） 
+
+    console.log('home___versionGated', this.versionGated.Vxxx0)    // ===> false
+    console.log('home___versionGated', this.versionGated.Vxxx1)    // ===> true
+    console.log('home___versionGated', this.versionGated.Vxxx2)    // ===> true
+  },  
+}
+```
+
 
 ### 2. 前端应用版本号定义
 
@@ -149,4 +188,18 @@ const actions = {
 
 ## 四、任务排期
 排期表：xxxx
+
+首页-跳转签署页面
+首页-自助升级弹窗提醒
+合同列表页面-批量删除
+合同列表页面-点击草稿
+模版列表页面-设置模版
+模版列表页面-使用模版
+模版列表页面-创建模版
+模版列表页面-查看模版（不确定方法有木有调用）
+
+
+
+老板发起页面-点击返回按钮（这个场景估计没有了）
+老板首页引导升级页面（已经废弃）
 

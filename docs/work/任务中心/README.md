@@ -6,14 +6,16 @@
 
 ### 1. 迭代名称
 
-迭代名称
+任务中心
 
 [wiki 地址](http://wiki.timevale.cn:8081/pages/viewpage.action?pageId=90505217)
+
+
 [交互地址](https://lanhuapp.com/web/#/item/project/product?tid=2c76857e-e436-4b80-8c5d-57f01c1dcab4&teamId=2c76857e-e436-4b80-8c5d-57f01c1dcab4&pid=6dffe393-a4f4-4af2-968b-5f1775eebe19&project_id=6dffe393-a4f4-4af2-968b-5f1775eebe19&image_id=c423a77d-4a0d-4247-a9df-a967b7d35376&type=share_mark&param=8ec7b714-377f-41bf-adf2-82b14a68e9a1&docId=c423a77d-4a0d-4247-a9df-a967b7d35376&docType=axure&pageId=1782e96844c74c98b6191cd972a0fb1d)
 
 ### 2. 目标
 
-目标是什么
+任务中心
 
 ## 二、难点调研（包含技术选型）
 
@@ -52,8 +54,9 @@ export default {
     // 设置空间
     async setSpace() {
       // 静默 切换空间 todo 这里 space 要从后端获取ID，然后到空间列表遍历获取详情
-
       const space = {}
+
+      // 切换
       await this.$EventBus.$emit('SpaceHandleChange', {
         type: 'organ',
         space,
@@ -92,6 +95,11 @@ export default {
 [WbeSocket 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket)
 
 [WebSocket 教程](https://www.ruanyifeng.com/blog/2017/05/websocket.html)
+
+交互图
+
+
+<img src="./img/websocket-1.png" width="200">
 
 ### 4. 前端组件
 无
