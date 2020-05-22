@@ -20,142 +20,152 @@ wiki地址：[自助升级](http://wiki.timevale.cn:8081/pages/viewpage.action?p
 
 ## 三、技术方案
 
-### 术语统一
+### 1.术语统一
 
 #### 用户版本 userVersion
-当前用户可以使用的最新版本
+当前用户可以使用的最新版本（后端返回）
 
 #### 正式版本 regularVersion
-字面意思，大众可以看到的，非灰度的。
 
-#### 前端应用版本 
-前端应用灰度功能的版本，用来与用户版本和正式版本来做对比。**和 package.json 里面的 version 不是一个东西**
+正常的版本，非灰度，大众可以看到的（后端返回）
 
-### 1. 版本灰度 使用流程
+#### 发布版本 releaseVersion 
 
-#### 1. config 文件添加 版本标示 和 版本号，版本标示需要语义明确
+前端应用灰度功能的版本，用来与 ``用户版本`` 和 ``正式版本`` 来做对比。
 
-::: tip
-key：版本标示
+在标准签 `src/lib/config.js` 配置文件中 `RELEASE_VERSION_LIST` 字段维护
 
-value：版本号
+#### 白名单
+灰度白名单，把用户添加到白名单后，就可以看到灰度功能，企业同理
+
+
+#### 个人纬度 灰度
+发布的版本功能针对于 `个人` 来灰度。大多数情况下灰度功能都是个人纬度
+
+
+#### 企业纬度 灰度
+发布的版本功能针对于 `企业` 来灰度。比如标准签中`企业控制台`中的某个需求
+
+
+::: tip 提示
+`发布版本` 与 ``package.json`` 里面的 ``version`` 没有任何关系。
 :::
+
+
+### 2. 前端如何使用
+
+#### 发布版本定义
+ 
+config 文件添加 版本标示 和 版本号，版本标示需要语义明确，用来与 发布版本和正式版本对比
+
 
 ```js
 // src/lib/config.js 
 
 export const RELEASE_VERSION_LIST = {
-  Vxxx0: '1.0',
-  Vxxx1: '1.1',
-  Vxxx2: '1.2',
+  Vxxx0: '1.0',   // 版本 1.0
+  Vxxx1: '1.1',   // 版本 1.1
+  Vxxx2: '1.2',   // 版本 1.2
 }
 ```
 
-#### 2. 业务使用
+::: tip
+key：版本标示，value：版本号
 
-```js
-// home.vue
+版本号递增，一般是2位
 
-import { mapGetters } from 'vuex'
-
-export default {
-  computed: {
-    ...mapGetters('version', ['versionGated']),
-  },
-  created() {
-    // 通过 versionGated 调用自己定义 key（版本标示） 
-
-    console.log('home___versionGated', this.versionGated.Vxxx0)    // ===> false
-    console.log('home___versionGated', this.versionGated.Vxxx1)    // ===> true
-    console.log('home___versionGated', this.versionGated.Vxxx2)    // ===> true
-  },  
-}
-```
-
-
-### 2. 前端应用版本号定义
-
-前端维护一个版本号，用来与后端的版本号做对比
-
-方案一：在默认的环境 `.env` 文件种添加添加 `VUE_APP_VERSION`
-
-~~方案二：在每个特定环境 `.env.dev、.env.test、.env.sml、.evn.prod` 文件中添加 `VUE_APP_VERSION`~~
-
-```sh
-# 方案一：默认环境 .env
-
-VUE_APP_VERSION='1.2'
-
-
-# 方案二：特定环境 .env.dev（项目）.env.test（测试） .env.sml（模拟） .evn.prod（正式）
-
-VUE_APP_VERSION='1.2'
-
-```
-
-::: tip 提示
-版本号只有 2 位
-
-``VUE_APP_VERSION = 1.2``
+每个版本要有注释 
 :::
 
-### 3. 前端版本号对比
+#### 业务中使用
 
-版本号转换成浮点数，比较大小；用户版本或正式版本 >= 前端的应用版本，就是灰度。
+```vue
+<template>
+  <div class="version-test">
+    <div v-if="versionGated.Vxxx0">我是版本 1.0</div>
+    <div v-if="versionGated.Vxxx1">我是版本 1.1</div>
+    <div v-if="versionGated.Vxxx2">我是版本 1.2</div>
+  </div>
+</template>
+
+<script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+    computed: {
+      // 个人纬度：versionGated，企业纬度：organVersionGated
+      ...mapGetters('version', ['versionGated', 'organVersionGated']),
+    },
+    created() {
+      // 通过 versionGated 调用自己定义 key（版本标示）
+      console.log('home___版本 1.0', this.versionGated.Vxxx0)    // ===> false
+      console.log('home___版本 1.2', this.versionGated.Vxxx1)    // ===> true
+      console.log('home___版本 1.2', this.versionGated.Vxxx2)    // ===> true
+    },
+  }
+</script>
+```
+
+### 3. 版本号对比方法
+
+**正式版本 或 灰度版本 大于等于 发布版本就是灰度**  
+
 
 ```js
 // 版本对比方法
-export function virsionDiff(userV, regularV) {
+/**
+ *
+ * @param releaseV 前端发布版本
+ * @param userV 用户版本（后端）
+ * @param regularV 正式版本（后端）
+ * @returns {{gated: boolean, releaseV: * , regularV: *, userV: *}}
+ */
+
+export function virsionDiff(v) {
+ 
+  const { userV, regularV, releaseV } = v
+
   // 用户版本
-  const userVNum = parseFloat(userV)
+  const userVArr = splitV(userV)
 
   // 正式版本
-  const regularVNum = parseFloat(regularV)
+  const regularVArr = splitV(regularV)
 
-  // 前端当前应用版本
-  const appV = process.env.VUE_APP_VERSION
-
-  const appVNum = parseFloat(appV)
+  // 发布版本
+  const releaseVArr = splitV(releaseV)
 
   // 是否灰度
-  let flag = false
-  if (regularVNum >= appVNum) {
-    flag = true
+  let gated = false
+
+  // 正式版本 与 发布版本 对比
+  if (regularVArr[0] > releaseVArr[0] || (regularVArr[0] === releaseVArr[0] && regularVArr[1] >= releaseVArr[1])) {
+    gated = true
   }
 
-  if (userVNum >= appVNum) {
-    flag = true
+  // 用户版本 与 发布版本 对比
+  if (userVArr[0] > releaseVArr[0] || (userVArr[0] === releaseVArr[0] && userVArr[1] >= releaseVArr[1])) {
+    gated = true
   }
 
   return {
     userV,
     regularV,
-    appV,
-    flag,
-  }
+    releaseV,
+    gated,
+  } 
 }
 ```
 
-### 4. 替换旧的灰度接口
+### 4. 前端方法定义
 
-``versionInfo`` 替换 之前的 ``check`` 接口
+store 中 新增 version 模块
 
 ```js
-// 文件路径：src/store/modules/user.js
+// 文件路径：src/store/modules/version.js
 const actions = {
-  // 用户灰度
-  async getGatedStatus({ commit, state }) {
-    
-    // await Saas.api('', '', {
-    //   url: 'v2/whitelist/check',
-    //   method: 'GET',
-    //   params: {},
-    //   body: {
-    //     operateId: state.userInfo.guid || state.userInfo.ouid,
-    //   },
-    // }).then(res => {
-
-    // 获取个人灰度信息，userid 传个人 oid
+  // 获取版本信息 个人纬度
+  async getVersion({ commit, state }) {
+    // 获取版本信息、个人纬度、传个人 ouid
     const res = await Saas.api('', '', {
       url: 'v1/grayscale/user/{userId}/versionInfo',
       method: 'GET',
@@ -164,15 +174,23 @@ const actions = {
 
     const { userVersion, regularVersion } = res.data
 
-    const { flag } = virsionDiff(userVersion, regularVersion)
-    console.log('灰度：', flag)
+    commit('setVersion', { userVersion, regularVersion })
+  },
+  // 获取版本信息 - 企业纬度
+  async getOragnVersion({ commit, state }, userId) {
+    // 获取版本信息、企业纬度、传企业 ouid
+    const res = await Saas.api('', '', {
+      url: 'v1/grayscale/user/{userId}/versionInfo',
+      method: 'GET',
+      params: { userId },
+    })
 
-    commit('setUserVersion', userVersion)
-    commit('updateGatedStatus', flag)
+    const { userVersion, regularVersion } = res.data
 
-    // 兼容老板灰度
-    commit('gated/updateGatedStatus', flag, { root: true })
-  }
+    commit('setOrganVersion', { userVersion, regularVersion })
+  },
+
+
 }
 ```
 
