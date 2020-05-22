@@ -156,6 +156,11 @@ export function virsionDiff(v) {
 }
 ```
 
+
+附图
+
+<img src="./other/vDiff.png" width="200">
+
 ### 4. 前端方法定义
 
 store 中 新增 version 模块
