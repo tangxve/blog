@@ -211,3 +211,54 @@ const actions = {
 
 ## 四、任务排期
 排期表：xxxx
+
+
+### 插件应用 cox-plugin
+
+#### 插件页面： cox-plugin/plugin.html
+
+```html
+  <script src="cox-plugin/plugin.js"></script>
+  <div>
+    我是插件页面
+  </div>
+```
+
+#### 插件配置： cox-plugin/config.json
+
+``url`` 配置插件页面的地址
+
+```json
+
+{
+  "name": "合同审阅",
+  "guid": "asc.{639E69BC-58DE-4029-9B43-F0420F67E6F0}",
+  "variations": [
+    {
+      "description": "合同审阅",
+      "url": "plugin.html"
+    }
+  ]
+}
+```
+
+### 插件的引入
+
+编辑器的初始化的时候 引入（安装）插件配置
+
+```js
+const options = {
+  // 文档打开完成后，自动启动插件列表
+  autostart: ['asc.{639E69BC-58DE-4029-9B43-F0420F67E6F0}'],
+  // 插件配置文件 这里引入配置文件，不是引入插件页面
+  pluginsData: ['cox-plugin/config.json'],
+}
+
+// 初始化
+this.cox = new CXO_API.CXEditor('changxieBox', options)
+
+```
+
+
+
+

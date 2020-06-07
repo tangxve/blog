@@ -70,3 +70,10 @@ export default {
     },
   },
 }
+
+const options = {
+  // 文档打开完成后，自动启动插件列表
+  autostart: ['asc.{639E69BC-58DE-4029-9B43-F0420F67E6F0}'],
+  // 插件配置文件 这里引入配置文件，不是引入插件页面
+  pluginsData: ['cox-plugin/config.json'],
+}
