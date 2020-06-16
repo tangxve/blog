@@ -25,6 +25,7 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 4,
         children: [
+          '/work/编辑中台/',
           '/work/印章管理/',
           '/work/任务中心/',
           '/work/自助升级/',
