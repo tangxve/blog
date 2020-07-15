@@ -25,10 +25,10 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 4,
         children: [
+          '/work/标准签微前端方案/',
           '/work/编辑中台/',
           '/work/印章管理/',
           '/work/任务中心/',
-          '/work/自助升级/',
           '/work/optimize/',
           '/work/header/',
         ]
