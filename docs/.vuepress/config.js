@@ -20,6 +20,18 @@ module.exports = {
     ],
     sidebar: [
       {
+        title: '面试',
+        path: '/mianshi/',
+        collapsable: true,
+        sidebarDepth: 4,
+        children: [
+          '/mianshi/CSS相关/',
+          '/mianshi/JS基础方面/',
+          '/mianshi/JS手写方法/',
+          '/mianshi/算法/',
+        ]
+      },
+      {
         title: '工作方面',
         path: '/work/',
         collapsable: true,
@@ -39,7 +51,7 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 4,
         children: [
-          '/notes/WeChat/'
+          '/notes/WeChat/',
         ]
       },
       {
