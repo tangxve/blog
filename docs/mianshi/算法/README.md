@@ -1,5 +1,27 @@
 # JS 算法
 
+## 除了用for，实现一个0-n的数组
+### es6 扩展运算符
+```javascript
+// es6 扩展运算符
+const arr = [...Array(100).keys()]
+
+// Object.keys 转换 Array.from 生产一个100长度的数组，没有值
+const arr1 = Object.keys(Array.from({ length: 100 }))
+
+// 迭代函数
+// 注意，将res也放进去迭代
+function replay(first = 1, end = 100, res = []) {
+  if (first > end) {
+    return res
+  }
+  
+  res.push(first)
+  
+  return replay(first + 1, end, res)
+}
+```
+
 ## 排序
 
 ### sort 排序
