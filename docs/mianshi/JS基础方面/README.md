@@ -1,5 +1,18 @@
 # JS 基础方面
 
+
+## 构造函数
+创建一个构造函数对象
+
+```javascript
+// 创建一个构造函数
+function Person() {}
+
+// 实例，构造函数的实例
+const p1 = new Person()
+const p2 = new Person()
+```
+
 ### JS 数组
 
 #### push() 数组 尾部 添加，返回该数组的新长度。
