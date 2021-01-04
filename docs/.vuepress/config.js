@@ -37,6 +37,7 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 4,
         children: [
+          '/work/安全各个平台访问地址汇总',
           '/work/标准签微前端方案/',
           '/work/编辑中台/',
           '/work/印章管理/',
