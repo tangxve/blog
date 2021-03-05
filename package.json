@@ -13,8 +13,9 @@
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.4.0",
     "prettier": "^2.0.2",
-    "vuepress": "^1.4.0",
     "vuepress-plugin-zooming": "^1.1.7"
+  },
+  "dependencies": {
+    "vuepress": "^1.8.2"
   }
 }
-

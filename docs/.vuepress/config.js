@@ -4,7 +4,7 @@ module.exports = {
   description: '大明湖畔-王翠花',
   dest: './dist',
   head: [
-    ['link', { rel: 'icon', href: '/logo-2.jpeg' }]
+    ['link', {rel: 'icon', href: '/logo-2.jpeg'}]
   ],
   theme: '',
   port: 9000,
@@ -13,10 +13,10 @@ module.exports = {
   },
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'MacOS', link: '/mac/' },
-      { text: 'Google', link: 'https://google.com' },
-      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
+      {text: 'Home', link: '/'},
+      {text: 'MacOS', link: '/mac/'},
+      {text: 'Google', link: 'https://google.com'},
+      {text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'}
     ],
     sidebar: [
       {
@@ -25,25 +25,10 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 4,
         children: [
+          '/mianshi/JS/原型和原型链',
           '/mianshi/CSS相关/',
-          '/mianshi/JS基础方面/',
           '/mianshi/JS手写方法/',
-          '/mianshi/算法/',
-        ]
-      },
-      {
-        title: '工作方面',
-        path: '/work/',
-        collapsable: true,
-        sidebarDepth: 4,
-        children: [
-          '/work/安全各个平台访问地址汇总',
-          '/work/标准签微前端方案/',
-          '/work/编辑中台/',
-          '/work/印章管理/',
-          '/work/任务中心/',
-          '/work/optimize/',
-          '/work/header/',
+          '/mianshi/算法/'
         ]
       },
       {
@@ -52,7 +37,7 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 4,
         children: [
-          '/notes/WeChat/',
+          '/notes/WeChat/'
         ]
       },
       {
@@ -63,15 +48,15 @@ module.exports = {
           '/mac/chrome/',
           '/mac/homebrew/',
           '/mac/nvm/',
-          '/mac/sh/',
+          '/mac/sh/'
         ]
       },
       {
         title: '知，食',
-        path: '/zhishi/',
+        path: '/zhishi/'
       }
     ],
-    lastUpdated: '上次更新',
+    lastUpdated: '上次更新'
   },
   plugins: [
     '@vuepress/back-to-top',
@@ -82,9 +67,9 @@ module.exports = {
         delay: 1000,
         options: {
           bgColor: 'black',
-          zIndex: 10000,
-        },
-      },
-    ],
+          zIndex: 10000
+        }
+      }
+    ]
   ]
 }

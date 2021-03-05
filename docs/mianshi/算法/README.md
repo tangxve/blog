@@ -16,7 +16,7 @@ function replay(first = 1, end = 100, res = []) {
     return res
   }
   
-  res.push(first)
+  res.push(first)，
   
   return replay(first + 1, end, res)
 }
