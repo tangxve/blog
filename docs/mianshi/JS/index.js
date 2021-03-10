@@ -75,3 +75,28 @@ console.log('5scritp end');
 
 // 第三遍 执行 宏任务
 // setTimeout 打印 setTimeout（9）
+
+
+var outVar = '最外层变量'
+
+// 最外层函数
+function outFun() {
+  var inVar = '内层变量'
+  
+  // 内层函数 innerFun
+  function innerFun() {
+    console.log(inVar)
+  }
+  
+  innerFun()
+}
+
+
+console.log(outVar)   // ==> 最外层变量
+
+outFun()              // ==> 内层变量
+
+console.log(inVar)    // ==> inVar is not defined
+
+innerFun()            // ==> innerFun is not defined
+

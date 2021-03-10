@@ -26,6 +26,8 @@ module.exports = {
         sidebarDepth: 4,
         children: [
           '/mianshi/JS/原型和原型链',
+          '/mianshi/JS/作用域和作用域链',
+          '/mianshi/JS/数组',
           '/mianshi/CSS相关/',
           '/mianshi/JS手写方法/',
           '/mianshi/算法/'
