@@ -1,10 +1,10 @@
 module.exports = {
-  base: '/',
+  base: '/notes/',
   title: '知食',
   description: '大明湖畔-王翠花',
   dest: './dist',
   head: [
-    ['link', {rel: 'icon', href: '/logo-2.jpeg'}]
+    ['link', { rel: 'icon', href: '/logo-2.jpeg' }]
   ],
   theme: '',
   port: 9000,
@@ -13,10 +13,10 @@ module.exports = {
   },
   themeConfig: {
     nav: [
-      {text: 'Home', link: '/'},
-      {text: 'MacOS', link: '/mac/'},
-      {text: 'Google', link: 'https://google.com'},
-      {text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'}
+      { text: 'Home', link: '/' },
+      { text: 'MacOS', link: '/mac/' },
+      { text: 'Google', link: 'https://google.com' },
+      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' }
     ],
     sidebar: [
       {
