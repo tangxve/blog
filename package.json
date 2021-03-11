@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist -m deploy",
+    "deploy:build": "npm run build && npm run deploy"
   },
   "author": "tang xue <tangxue1118@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.4.0",
+    "gh-pages": "^3.1.0",
     "prettier": "^2.0.2",
     "vuepress-plugin-zooming": "^1.1.7"
   },
