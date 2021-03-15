@@ -15,8 +15,8 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'MacOS', link: '/mac/' },
-      { text: 'Google', link: 'https://google.com' },
-      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' }
+      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
+      { text: 'GitHub', link: 'https://github.com/Tang1118' },
     ],
     sidebar: [
       {
