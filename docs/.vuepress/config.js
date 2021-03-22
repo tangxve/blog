@@ -3,6 +3,11 @@ module.exports = {
   title: '知食',
   description: '大明湖畔-王翠花',
   dest: './dist',
+  locales: {
+    '/': {
+      lang: 'zh-CN',
+    }
+  },
   head: [
     ['link', { rel: 'icon', href: '/logo-2.jpeg' }]
   ],
@@ -16,7 +21,7 @@ module.exports = {
       { text: 'Home', link: '/' },
       { text: 'MacOS', link: '/mac/' },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
-      { text: 'GitHub', link: 'https://github.com/Tang1118' },
+      // { text: 'GitHub', link: 'https://github.com/Tang1118' },
     ],
     sidebar: [
       {

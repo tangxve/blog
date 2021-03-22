@@ -8,7 +8,7 @@
     "build": "vuepress build docs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gh-pages -d dist -m deploy",
-    "deploy:build": "npm run build && npm run deploy"
+    "deploy:build": "vuepress build docs && npm run deploy"
   },
   "author": "tang xue <tangxue1118@gmail.com>",
   "license": "MIT",
