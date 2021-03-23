@@ -148,3 +148,17 @@ var x = fn() // x = bar
 b = 200
 
 x() // bar() ==> 30
+
+(function (p) {
+  
+  let x = 1
+  
+  setTimeout(() => {
+    
+    console.log(x) // 1   实参
+    
+    console.log(p) // 20  形参
+    
+  }, 100)
+  
+})(10)
