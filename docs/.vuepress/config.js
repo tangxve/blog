@@ -40,7 +40,6 @@ module.exports = {
           '/mianshi/JS/常用的方法',
           '/mianshi/JS/数组',
           '/mianshi/CSS相关/',
-          '/mianshi/JS手写方法/',
           '/mianshi/算法/'
         ]
       },
