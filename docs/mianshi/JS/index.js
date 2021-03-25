@@ -162,3 +162,35 @@ x() // bar() ==> 30
   }, 100)
   
 })(10)
+
+function baz() {
+  console.log('baz')
+  console.log(this)
+  bar()
+}
+
+function bar() {
+  console.log('bar')
+  console.log(this)
+  foo()
+  baz()
+}
+
+function foo() {
+  console.log('foo')
+  console.log(this)
+}
+
+baz()
+
+var name = 'hj'
+var person = {
+  name: '123',
+  getName: function () {
+    return this.name
+  }
+}
+
+var getName = person.getName()
+
+console.log(getName()) // hj (person.getName 赋值了一个全局变量 getName ，getName 在全局调用)
