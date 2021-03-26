@@ -26,14 +26,15 @@ module.exports = {
     sidebar: [
       {
         title: '面试',
-        path: '/mianshi/',
+        path: '/mianshi',
         collapsable: true,
         sidebarDepth: 4,
         children: [
           '/mianshi/JS/作用域和作用域链',
           '/mianshi/JS/闭包',
           '/mianshi/JS/原型和原型链',
-          '/mianshi/JS/this-call-apply-bind',
+          '/mianshi/JS/this的指向',
+          '/mianshi/JS/call-apply-bind',
           '/mianshi/JS/继承',
           '/mianshi/JS/深浅拷贝',
           '/mianshi/JS/Promise',
