@@ -194,3 +194,14 @@ var person = {
 var getName = person.getName()
 
 console.log(getName()) // hj (person.getName 赋值了一个全局变量 getName ，getName 在全局调用)
+
+var x = 3
+
+function Test() {
+  this.x = 4
+  this.y = 5
+}
+
+var t = new Test()
+
+console.log(t.x, t.y)
