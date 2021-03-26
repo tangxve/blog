@@ -1,6 +1,6 @@
-# this / call / apply / bind
+# this的指向
 
-## this 是什么
+### this 是什么
 
 MDN 上这样写的：
 
@@ -12,9 +12,10 @@ MDN 上这样写的：
 
 **`this` 总会指向，调用函数的那个对象**
 
-## this 的用法
 
-### 全局上下文
+**this 其实不难，看清楚有木有箭头函数或者是 call apply bind ，其他就是看调用对象**
+
+## 全局上下文
 
 在全局上下文中，`this` 都指向全局对象
 
@@ -24,7 +25,7 @@ MDN 上这样写的：
 
 - `var` === `this` === `window`
 
-### 1、纯粹的函数调用
+## 1、纯粹的函数调用
 
 函数属于全局性的调用，`this` 指向全局对象 `window`
 
@@ -37,7 +38,7 @@ function test() {
 test() // 1
 ```
 
-### 2、作为 对象 的一个方法
+## 2、作为 对象 的一个方法
 
 `this` 指向**这个上级对象**
 
@@ -84,7 +85,7 @@ var person = {
 console.log(person.getName()) // window，（getName 是箭头函数，箭头函数指向外层）
 ```
 
-### 3、作为 构造函数 调用
+## 3、作为 构造函数 调用
 
 通过构造函数生成一个新的对象（object），这是 this 指向这个新对象
 
@@ -105,9 +106,34 @@ var t = new Test()
 console.log(t.x, t.y) // 4,5
 ```
 
-### apply 调用
+## apply / call 调用
+`apply` 是函数对象的方法，改变函数的调用对象，
+第一个参数就是改变后的调用对象，因此 this 也是第一个参数
 
-#### 箭头函数
+```javascript
+var x = 0
+function test() {
+  console.log(this.x)
+}
+var o = {
+  x: 1
+}
+
+o.m = test
+
+o.m.apply() // 0
+
+```
+`apply` 参数未空时，默认调用全局对象 `winodw`，因此运行为 0 ，证明 `this` 指向全局对象
+
+`call` 的作用和 apply 作用一样，去吧是写法上
+
+- call 传的是多个参数：`fun.call(thisArg[,arg1[,arg2,…]]);`
+
+- apply 传的是个数组：`fun.apply(thisArg, [argsArray]);`
+
+
+## 箭头函数
 
 所有的箭头函数都没有自己的 `this`，都会指向外层
 
@@ -124,19 +150,5 @@ var p = new Person('123')
 console.log(p.say()) // 123
 ```
 
-
-
-
-
-## call
-
-
-## apply
-
-
-## bind
-
-
-
 ## 参考
-([参考1](https://segmentfault.com/a/1190000017957307)
+[参考1](https://segmentfault.com/a/1190000017957307)
