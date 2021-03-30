@@ -190,5 +190,6 @@ p1.say() // name shiba
 - `call` 和 `bind` 传参需要将参数全部列出，`apply` 传的是数组
 
 ## 参考
-[参考1](https://segmentfault.com/a/1190000017957307)
-[参考2](https://github.com/axuebin/articles/issues/7)
+- [参考1](https://segmentfault.com/a/1190000017957307)
+
+- [参考2](https://github.com/axuebin/articles/issues/7)
