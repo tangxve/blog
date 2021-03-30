@@ -271,3 +271,77 @@ Function.prototype.bind = function (oThis) {
   return fBound
   
 }
+
+function Parent() {
+  this.name = '11'
+}
+
+Parent.prototype.getName = function () {
+  console.log(this.name)
+}
+
+function Child() {}
+
+Child.prototype = new Parent()
+
+var c1 = new Child()
+
+console.log(c1.getName()) // 11
+
+function createObj(o) {
+  function F() {}
+  
+  F.prototype = o
+  
+  return new F()
+}
+
+var person = {
+  name: 'shiba',
+  arrs: ['11', '22']
+}
+
+var person1 = createObj(person)
+
+var person2 = createObj(person)
+
+// 这里是给 person1 添加了 name 的值
+person1.name = 'p1'
+
+console.log(person2.name) // shiba
+
+person1.arrs.push('33')
+
+console.log(person2.arrs) // ['11', '22', '33']
+
+function createObj(o) {
+  var cloe = Object.create(o)
+  
+  cloe.sayName = function () {
+    console.log('hi')
+  }
+  
+  return cloe
+  
+}
+
+function Person(name) {
+  this.name = name
+  this.arrs = ['11', '22', '33']
+}
+
+Person.prototype.getName = function () {
+  console.log(this.name)
+}
+
+function Child(name, age) {
+  Person.call(this, name)
+  
+  this.age = age
+}
+
+Child.prototype = new Person()
+
+var child1 = new Child('hj', 18)
+
+console.log(child1) // { name: 'hj', age: 18, arrs: ['11', '22', '33'] }
