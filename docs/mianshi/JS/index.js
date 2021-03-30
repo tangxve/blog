@@ -122,7 +122,7 @@ function fn() {
 }
 
 function show(f) {
-  var x = 20
+  var x = 20;
   
   (function () {
     f() // 10, 而不是20
@@ -345,3 +345,50 @@ Child.prototype = new Person()
 var child1 = new Child('hj', 18)
 
 console.log(child1) // { name: 'hj', age: 18, arrs: ['11', '22', '33'] }
+
+function Parent(name) {
+  this.name = name
+  this.color = ['red', 'blue', 'green']
+}
+
+Parent.prototype.getName = function () {
+  console.log(this.name)
+}
+
+function Chid(name, age) {
+  Parent.call(this, name)
+  this.age = age
+}
+
+// 关键的三步
+var F = function () {}
+
+F.prototype = Parent.prototype
+
+Chid.prototype = new F()
+
+var child1 = new Chid('shiba', 18)
+
+console.log(child1)
+
+
+
+function obj(parent) {
+  function F() {}
+  
+  F.prototype = parent
+  
+  return new F()
+}
+
+function inherit(child, parent) {
+  
+  var proto = obj(parent.prototype)
+  
+  proto.constructor = child
+  
+  child.prototype = proto
+}
+
+// 使用
+inherit(Chid, Parent)
