@@ -205,3 +205,47 @@ function Test() {
 var t = new Test()
 
 console.log(t.x, t.y)
+
+function superClass() {
+  this.name = 'shiba'
+  this.age = 18
+  this.func = function () {
+    console.log(this.name, this.age)
+  }
+}
+
+function subClass() {
+  superClass.call(this)
+  
+  this.func()
+}
+
+subClass()
+
+function Person(name) {
+  this.name = name
+  this.say = function () {
+    setTimeout(function () {
+      console.log('name', this.name)
+    }, 100)
+  }
+}
+
+var p1 = new Person('shiba')
+
+p1.say() // name, undefined
+
+function Person(name) {
+  this.name = name
+  this.say = function () {
+    
+    var self = this
+    setTimeout(function () {
+      console.log('name', self.name)
+    }, 100)
+  }
+}
+
+var p1 = new Person('shiba')
+
+p1.say() // name shiba
