@@ -58,6 +58,30 @@ funct.call(thisArg, arg1, arg2, ...)
 
 - `bind` 方法的返回值是函数，并且需要调用后，才会执行。而 `apply` 和 `call` 是立即调用的
 
+###  bind 的 polyfill
+```javascript
+Function.prototype.bind = function (oThis) {
+  var aArgs = Array.prototype.slice.call(arguments, 1)
+  
+  var fToBind = this
+  
+  var fNOP = function () {}
+  
+  var fBound = function () {
+    fBound.prototype = this instanceof fNOP ? new fNOP() : fBound.prototype
+    
+    return fToBind.apply(this instanceof fNOP ? this : oThis || this, aArgs)
+  }
+  
+  if (this.prototype) {
+    fNOP.prototype = this.prototype
+  }
+  
+  return fBound
+  
+}
+```
+
 
 ## call \ apply \ bind 的使用场景
 
