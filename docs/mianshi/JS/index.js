@@ -249,3 +249,25 @@ function Person(name) {
 var p1 = new Person('shiba')
 
 p1.say() // name shiba
+
+// 首页
+Function.prototype.bind = function (oThis) {
+  var aArgs = Array.prototype.slice.call(arguments, 1)
+  
+  var fToBind = this
+  
+  var fNOP = function () {}
+  
+  var fBound = function () {
+    fBound.prototype = this instanceof fNOP ? new fNOP() : fBound.prototype
+    
+    return fToBind.apply(this instanceof fNOP ? this : oThis || this, aArgs)
+  }
+  
+  if (this.prototype) {
+    fNOP.prototype = this.prototype
+  }
+  
+  return fBound
+  
+}
