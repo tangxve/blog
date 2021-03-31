@@ -25,11 +25,36 @@ module.exports = {
     ],
     sidebar: [
       {
-        title: '面试',
-        path: '/mianshi',
+        title: '知，食',
+        path: '/zhishi/'
+      },
+      {
+        title: 'MacOS',
+        path: '/mac/',
+        collapsable: true,
+        children: [
+          '/mac/chrome/',
+          '/mac/homebrew/',
+          '/mac/nvm/',
+          '/mac/sh/'
+        ]
+      },
+      {
+        title: '笔记',
+        path: '/notes/',
         collapsable: true,
         sidebarDepth: 4,
         children: [
+          '/notes/WeChat/'
+        ]
+      },
+      {
+        title: '面试',
+        path: '/mianshi',
+        collapsable: true,
+        sidebarDepth: 3,
+        children: [
+          '/mianshi/JS/数据类型',
           '/mianshi/JS/作用域和作用域链',
           '/mianshi/JS/闭包',
           '/mianshi/JS/原型和原型链',
@@ -46,30 +71,6 @@ module.exports = {
           '/mianshi/算法/'
         ]
       },
-      {
-        title: '笔记',
-        path: '/notes/',
-        collapsable: true,
-        sidebarDepth: 4,
-        children: [
-          '/notes/WeChat/'
-        ]
-      },
-      {
-        title: 'MacOS',
-        path: '/mac/',
-        collapsable: true,
-        children: [
-          '/mac/chrome/',
-          '/mac/homebrew/',
-          '/mac/nvm/',
-          '/mac/sh/'
-        ]
-      },
-      {
-        title: '知，食',
-        path: '/zhishi/'
-      }
     ],
     lastUpdated: '上次更新'
   },
