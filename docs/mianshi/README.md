@@ -4,7 +4,7 @@
 PS：参考了各个大佬的文章，自己做了总结，如果有异议，以你的为主
 :::
 
-- [数据类型](../mianshi/JS/数据类型.md) todo
+- [数据类型](../mianshi/JS/数据类型.md)
 - [instanceof 和 typeof](../mianshi/JS/instanceof.md)
 - [作用域和作用域链](../mianshi/JS/作用域和作用域链.md)
 - [闭包](../mianshi/JS/闭包.md)
