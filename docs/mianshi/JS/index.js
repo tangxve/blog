@@ -433,3 +433,25 @@ process.nextTick(function foo() {
   })
 })
 console.log('10')
+
+function myInstanceof(leftV, rightV) {
+  
+  // 取右表达式的 prototype 的值
+  let rigthProto = rightV.prototype
+  
+  // 取左表达式的 __proto__ 值
+  leftV = leftV.__proto__
+  
+  while (true) {
+    if (leftV === null) {
+      return false
+    }
+    
+    // 严格相等时候 返回 true
+    if (leftV === rigthProto) {
+      return true
+    }
+    
+    leftV = leftV.__proto__
+  }
+}
