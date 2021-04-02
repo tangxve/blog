@@ -455,3 +455,46 @@ function myInstanceof(leftV, rightV) {
     leftV = leftV.__proto__
   }
 }
+
+function newOperator() {
+  
+  var obj = new Object()
+  
+  var Constructor = [].shift.call(arguments)
+  
+  obj.__proto__ = Constructor.prototype
+  
+  Constructor.apply(obj, arguments)
+  
+  return obj
+}
+
+function Person(name, age) {
+  this.name = name
+  this.age = age
+  
+  return '德玛西亚'
+}
+
+Person.prototype.getName = function () {
+  console.log('名字：', this.name)
+}
+
+var p1 = new Person('盖伦', 18)
+
+console.log(p1.name)
+console.log(p1.age)
+console.log(p1.getName())
+
+function newOperator() {
+  var obj = new Object()
+  
+  var Constructor = [].shift.apply(arguments)
+  
+  obj.__proto__ = Constructor.prototype
+  
+  var ret = Constructor.apply(obj, arguments)
+  
+  // 这里判断对象不是很严谨，重在理解 new 的过程
+  return typeof ret === 'object' ? ret : obj
+}
