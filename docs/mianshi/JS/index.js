@@ -643,3 +643,13 @@ Function.prototype.myBind = function (context, ...args1) {
     return self.apply(context, args1.concat(args2))
   }
 }
+
+var a1 = { b: { c: {} } }
+
+var a2 = shallowClone(a1)   // 浅拷贝方法
+
+a2.b.c === a1.b.c           // true 新旧对象还是共享同一块内存
+
+var a3 = deepClone(a3)      // 深拷贝方法
+
+a3.b.c === a1.b.c           // false 新对象跟原对象不共享内存
