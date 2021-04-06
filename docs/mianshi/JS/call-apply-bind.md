@@ -15,7 +15,7 @@
 **只有一个区别，就是 `call()` 方法接受的是一个参数列表，而 `apply()` 方法接受的是一个包含多个参数的数组。**
 
 
-## call
+### call
 
 **语法**
 
@@ -31,7 +31,7 @@ funct.call(thisArg, arg1, arg2, ...)
 
 
 
-## apply
+### apply
 
 **语法**
 
@@ -46,7 +46,7 @@ func.apply(thisArg, [argsArray])
 - 第二个参数：**必须是数组或者类数组，它们会被转成类数组**，传到调用的函数中，并且映射到 function 对应的参数上。call 和 apply 之间很重要的一个区别
 
 
-## bind
+### bind
 
 **语法**
 
@@ -203,6 +203,11 @@ p1.say() // name shiba
 `setTimeout` 里面使用 箭头函数也可以实现
 
 
+## 模拟实现 call、apply、bind
+
+[模拟实现 call、apply、bind](./模拟实现call-apply-bind.md)
+
+
 ## 总结
 
 - 三者都可以改变函数的 `this` 的指向
@@ -214,6 +219,7 @@ p1.say() // name shiba
 - `call` 和 `bind` 传参需要将参数全部列出，`apply` 传的是数组
 
 ## 参考
+
 - [参考1](https://segmentfault.com/a/1190000017957307)
 
 - [参考2](https://github.com/axuebin/articles/issues/7)

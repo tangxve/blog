@@ -498,3 +498,88 @@ function newOperator() {
   // 这里判断对象不是很严谨，重在理解 new 的过程
   return typeof ret === 'object' ? ret : obj
 }
+
+Function.prototype.myCallES3 = function (context) {
+  context = context || window
+  
+  context.fn = this
+  
+  var args = []
+  
+  for (var i = 1, len = arguments.length; i < len; i++) {
+    args.push('arguments[' + i + ']')
+  }
+  
+  ['arguments[1]', 'arguments[2]', 'arguments[3]']
+  
+  var result = eval('context.fn(' + args + ')')
+  
+  delete context.fn
+  
+  return result
+}
+
+Function.prototype.myCall = function (context, ...args) {
+  
+  context = context || window
+  
+  // 创建个不会重名的属性
+  const fn = Symbol()
+  
+  context[fn] = this
+  
+  const result = context[fn](...args)
+  
+  delete context[fn]
+  
+  return result
+}
+
+// es3 myApply
+Function.prototype.myApply = function (context, arr) {
+  var context = Object(context) || window
+  
+  context.fn = this
+  
+  var result
+  
+  if (!arr) {
+    // 没有传第二次参数，直接调用
+    result = context.fn()
+  } else {
+    var args = []
+    
+    for (var i = 0, len = arr.length; i < len; i++) {
+      args.push('arr[' + i + ']')
+    }
+    
+    result = eval('context.fn(' + args + ')')
+  }
+  
+  delete context.fn
+  
+  return result
+}
+
+// es6 myApply
+
+Function.prototype.myApply = function (context, arr) {
+  context = context || window
+  
+  const fn = Symbol()
+  
+  context[fn] = this
+  
+  let result
+  
+  if (Array.isArray(arr)) {
+    result = context[fn](...arr)
+  } else {
+    result = context[fn]()
+  }
+  
+  delete context[fn]
+  
+  return result
+  
+}
