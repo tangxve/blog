@@ -583,3 +583,63 @@ Function.prototype.myApply = function (context, arr) {
   return result
   
 }
+
+// 普通版
+Function.prototype.myBind = function (context) {
+  
+  // 判断是否是 函数
+  if (typeof this !== 'function') {
+    throw  new Error('Error')
+  }
+  
+  // 绑定函数的 this（调用 bind 的函数）
+  var self = this
+  
+  // 获取 myBind 函数的 第二个到最后一个的参数
+  var args = Array.prototype.slice.call(arguments, 1)
+  
+  // 作为构造函数使用时，声明空函数做中转，不要绑在 this 上
+  var fNOP = function () {}
+  
+  // 返回的函数
+  var fBound = function () {
+    
+    // 获取返回函数的参数
+    var bindArgs = Array.prototype.slice.call(arguments)
+    
+    // 改变 this 指向
+    self.apply(this instanceof fBound ? this : context, args.concat(bindArgs))
+  }
+  
+  // 修改返回函数的 prototype 为绑定函数的 prototype，实例可以实例就可以访问原型的的值
+  fNOP.prototype = this.prototype
+  fBound.prototype = new fNOP()
+  
+  return fBound
+}
+
+Object.create = function (o) {
+  function f() {}
+  
+  f.prototype = o
+  
+  return new f
+}
+// es6 bind
+
+Function.prototype.myBind = function (context, ...args1) {
+  if (typeof this !== 'function') {
+    throw  new Error('Error')
+  }
+  
+  const self = this
+  
+  return function F(...args2) {
+    // 判断是否构造函
+    if (this instanceof F) {
+      return new self(...args1, ...args2)
+    }
+    
+    return self.apply(context, args1.concat(args2))
+  }
+}
