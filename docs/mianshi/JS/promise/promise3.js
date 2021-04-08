@@ -82,7 +82,7 @@ class MyPromise {
           const x = onRejected(this.reason)
           
           // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
-          x.then ? x.then(resolve, reject) : resolve(x)
+          resolvePromise(promise2, x, resolve, reject);
         } catch (e) {
           reject(e)
         }
@@ -105,6 +105,11 @@ class MyPromise {
 }
 
 function resolvePromise(x, resolve, reject) {
+  
+  if (promise2 === x) {
+    return reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
+  }
+  
   // 判断 x 是不是 MyPromise 的实例
   if (x instanceof MyPromise) {
     // 执行 x，调用 then 方法，目的是将其状态变为 fulfilled 或者 rejected
