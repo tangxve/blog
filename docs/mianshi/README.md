@@ -14,7 +14,7 @@ PS：参考了各个大佬的文章，自己做了总结，如果有异议，以
 - [手写实现 call apply bind](../mianshi/JS/模拟实现call-apply-bind.md)
 - [手写实现 new 操作符](../mianshi/JS/new操作符.md)
 - [手写实现 继承](../mianshi/JS/继承.md)
-- [手写实现 深浅拷贝](../mianshi/JS/深浅拷贝.md) todo
-- [手写实现 防抖、截流](../mianshi/JS/深浅拷贝.md) todo
+- [手写实现 深浅拷贝](../mianshi/JS/深浅拷贝.md)
+- [手写实现 防抖、截流](../mianshi/JS/防抖和节流.md)
 - [Promise](../mianshi/JS/Promise.md) todo
 
