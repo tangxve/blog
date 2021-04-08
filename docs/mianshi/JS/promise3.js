@@ -61,50 +61,44 @@ class MyPromise {
   
   // then 方法
   then(onFulfilled, onRejected) {
-    /**
-     * 链式调用时候需要返回一个新的 promise2
-     * 在 then 的返回中，无论是成功还是失败的回调，只要返回了结果，都要传到下个 then 的成功回调中
-     * @type {MyPromise}
-     */
-      
-      // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
+    // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
     const promise2 = new MyPromise((resolve, reject) => {
-        // 这里会立即执行
-        if (this.state === FULFILLED) {
-          try {
-            // 获取成功回调函数的结果
-            const x = onFulfilled(this.value)
-  
-            // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
-            x.then ? x.then(resolve, reject) : resolve(x)
-          } catch (e) {
-            reject(e)
-          }
-        }
-        
-        if (this.state === REJECTED) {
-          try {
-            // 获取失败函数回调的结果
-            const x = onRejected(this.reason)
-            
-            // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
-            x.then ? x.then(resolve, reject) : resolve(x)
-          } catch (e) {
-            reject(e)
-          }
-        }
-        
-        // 当 promise 状态为等待时（pending），将 onFulfilled 和 onRejected 存入对应的回调队列
-        if (this.state === PENDING) {
-          this.onFulfilledCallbacks.push(() => {
-            onFulfilled(this.value)
-          })
+      // 这里会立即执行
+      if (this.state === FULFILLED) {
+        try {
+          // 获取成功回调函数的结果
+          const x = onFulfilled(this.value)
           
-          this.onRejectedCallbacks.push(() => {
-            onRejected(this.reason)
-          })
+          // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
+          x.then ? x.then(resolve, reject) : resolve(x)
+        } catch (e) {
+          reject(e)
         }
-      })
+      }
+      
+      if (this.state === REJECTED) {
+        try {
+          // 获取失败函数回调的结果
+          const x = onRejected(this.reason)
+          
+          // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
+          x.then ? x.then(resolve, reject) : resolve(x)
+        } catch (e) {
+          reject(e)
+        }
+      }
+      
+      // 当 promise 状态为等待时（pending），将 onFulfilled 和 onRejected 存入对应的回调队列
+      if (this.state === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          onFulfilled(this.value)
+        })
+        
+        this.onRejectedCallbacks.push(() => {
+          onRejected(this.reason)
+        })
+      }
+    })
     
     return promise2
   }
