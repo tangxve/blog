@@ -66,6 +66,7 @@ module.exports = {
           '/mianshi/JS/继承',
           '/mianshi/JS/深浅拷贝',
           '/mianshi/JS/Promise',
+          '/mianshi/JS/防抖和节流',
           '/mianshi/JS/常用的方法',
           '/mianshi/JS/数组',
           '/mianshi/CSS相关/',

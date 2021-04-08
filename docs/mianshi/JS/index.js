@@ -859,3 +859,44 @@ function clone(target, map = new WeakMap()) {
   
   return cloneTarget
 }
+
+// 防抖
+
+function debounce(f, wait) {
+  let timer
+  
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      f(...args)
+    }, wait)
+  }
+}
+
+// 节流
+
+function throttle(f, time) {
+  let pre = 0
+  
+  return function (...args) {
+    if (Date.now() - pre > time) {
+      
+      pre = Data.now()
+      
+      f(...args)
+    }
+  }
+}
+
+function throttle(f, wait) {
+  let timer = null
+  
+  return function (...args) {
+    if (!timer) {
+      timer = setTimeout(() => {
+        timer = null
+        f(...args)
+      }, wait)
+    }
+  }
+}
