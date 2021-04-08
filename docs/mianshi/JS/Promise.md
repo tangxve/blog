@@ -242,7 +242,7 @@ class MyPromise {
 
 - `then` 函数中，无论是 **成功函数回调 `onFulfilled`** ，还是 **失败函数的回调 `onRejected`** ，只要返回了结果就会传到 **下一个 `then`** 中
 
-- 
+- `then` 执行的时候 `onFulfilled`, `onRejected` 可能会出现错误，需要捕获错误，并执行失败回调（处理成失败状态）
 
 :::
 
@@ -369,9 +369,10 @@ class MyPromise {
 
 
 
-      
-[图解搞懂JavaScript引擎Event Loop](https://juejin.cn/post/6844903553031634952)
+## 参考      
 
-[从一道让我失眠的 Promise 面试题开始，深入分析 Promise 实现细节](https://juejin.cn/post/6945319439772434469#heading-31)
+-  [从一道让我失眠的 Promise 面试题开始，深入分析 Promise 实现细节](https://juejin.cn/post/6945319439772434469#heading-31)
 
-[我以为我很懂Promise，直到我开始实现Promise/A+规范 | 技术点评](https://juejin.cn/post/6937076967283884040#heading-17)
+- [图解搞懂JavaScript引擎Event Loop](https://juejin.cn/post/6844903553031634952)
+
+- [我以为我很懂Promise，直到我开始实现Promise/A+规范 | 技术点评](https://juejin.cn/post/6937076967283884040#heading-17)
