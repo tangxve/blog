@@ -310,13 +310,7 @@ class MyPromise {
   
   // then 方法
   then(onFulfilled, onRejected) {
-    /**
-     * 链式调用时候需要返回一个新的 promise2
-     * 在 then 的返回中，无论是成功还是失败的回调，只要返回了结果，都要传到下个 then 的成功回调中
-     * @type {MyPromise}
-     */
-      
-      // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
+    // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
     const promise2 = new MyPromise((resolve, reject) => {
         // 这里会立即执行
         if (this.state === FULFILLED) {
