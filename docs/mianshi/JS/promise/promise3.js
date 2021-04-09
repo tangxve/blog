@@ -61,41 +61,53 @@ class MyPromise {
   
   // then 方法
   then(onFulfilled, onRejected) {
+    // 如果不传，就使用默认函数
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
+    
     // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
     const promise2 = new MyPromise((resolve, reject) => {
       // 这里会立即执行
       if (this.state === FULFILLED) {
-        try {
-          // 获取成功回调函数的结果
-          const x = onFulfilled(this.value)
-          
-          // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
-          x.then ? x.then(resolve, reject) : resolve(x)
-        } catch (e) {
-          reject(e)
-        }
+        queueMicrotask(() => {
+          try {
+            // 获取成功回调函数的结果
+            const x = onFulfilled(this.value)
+            
+            // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
+            x.then ? x.then(resolve, reject) : resolve(x)
+          } catch (e) {
+            reject(e)
+          }
+        })
       }
       
       if (this.state === REJECTED) {
-        try {
-          // 获取失败函数回调的结果
-          const x = onRejected(this.reason)
-          
-          // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
-          resolvePromise(promise2, x, resolve, reject);
-        } catch (e) {
-          reject(e)
-        }
+        queueMicrotask(() => {
+          try {
+            // 获取失败函数回调的结果
+            const x = onRejected(this.reason)
+            
+            // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
+            resolvePromise(promise2, x, resolve, reject)
+          } catch (e) {
+            reject(e)
+          }
+        })
       }
       
       // 当 promise 状态为等待时（pending），将 onFulfilled 和 onRejected 存入对应的回调队列
       if (this.state === PENDING) {
         this.onFulfilledCallbacks.push(() => {
-          onFulfilled(this.value)
+          queueMicrotask(() => {
+            onFulfilled(this.value)
+          })
         })
         
         this.onRejectedCallbacks.push(() => {
-          onRejected(this.reason)
+          queueMicrotask(() => {
+            onRejected(this.reason)
+          })
         })
       }
     })
@@ -104,7 +116,7 @@ class MyPromise {
   }
 }
 
-function resolvePromise(x, resolve, reject) {
+function resolvePromise(promise2, x, resolve, reject) {
   
   if (promise2 === x) {
     return reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
