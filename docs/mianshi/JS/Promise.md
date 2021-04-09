@@ -460,20 +460,30 @@ then(onFulfilled, onRejected) {
   }
 ```
 
-
+## Promise A+ 规范实现
 
 ## 完善其他方法
 
 ### Promise.prototype.then()
+
 ### Promise.prototype.catch()
+
 ### Promise.prototype.finally()
+
 ### Promise.resolve()
+
 ### Promise.reject()
+
 ### Promise.all()
+
 ### Promise.race()
+
 ### Promise.allSettled()
+
 ### Promise.any()
+
 ### Promise.promisify()
+
 
       
 
