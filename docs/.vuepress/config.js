@@ -54,6 +54,7 @@ module.exports = {
         collapsable: true,
         sidebarDepth: 2,
         children: [
+          '/mianshi/面试题',
           '/mianshi/JS/数据类型',
           '/mianshi/JS/作用域和作用域链',
           '/mianshi/JS/闭包',
