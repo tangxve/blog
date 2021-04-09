@@ -1,5 +1,10 @@
 # Promise
 
+## 文档规范
+- [中文翻译-掘金](https://juejin.cn/post/6844903649852784647#heading-21)
+- [中文翻译-图灵社区](https://www.ituring.com.cn/article/66566)
+- [英文文档](https://promisesaplus.com/)
+
 ## 基础版本
 
 - `Promise` 是一个类（构造函数），在执行这个类的时候回传入一个函数（执行器），这个函数回立即执行
@@ -358,7 +363,117 @@ class MyPromise {
 }
 ```
 
-## 
+## then 方法链式调用识别 Promise 是否返回自己
+
+### 扩展 resolvePromise 方法
+
+```javascript
+function resolvePromise(promise2, x, resolve, reject) {
+  // 新增判断  
+  if (promise2 === x) {
+    return reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
+  }
+  
+  if (x instanceof MyPromise) {
+    x.then(resolve, reject)
+  } else {
+    resolve(x)
+  }
+  
+}
+```
+
+### 回调函数中添加异步方法  `queueMicrotask`
+
+文档规定：
+
+> 2.2.4 在执行上下文堆栈（execution context）仅包含平台代码之前，
+> 不得调用 onFulfilled 和 onRejected
+
+>2.2.4 onFulfilled or onRejected must not be called until the execution context stack contains only platform code. [3
+>.1].
+
+
+```javascript
+
+  then(onFulfilled, onRejected) {
+    const promise2 = new MyPromise((resolve, reject) => {
+      if (this.state === FULFILLED) {
+        // ==== 新增 ====
+        queueMicrotask(() => {
+          try {
+            const x = onFulfilled(this.value)
+            resolvePromise(promise2, x, resolve, reject)
+          } catch (e) {
+            reject(e)
+          }
+        })
+      }
+      
+      if (this.state === REJECTED) {
+        // ==== 新增 ====
+        queueMicrotask(() => {
+          try {
+            const x = onRejected(this.reason)
+            resolvePromise(promise2, x, resolve, reject)
+          } catch (e) {
+            reject(e)
+          }
+        })
+      }
+      
+      if (this.state === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          // ==== 新增 ====
+          queueMicrotask(() => {
+            onFulfilled(this.value)
+          })
+        })
+        
+        this.onRejectedCallbacks.push(() => {
+          // ==== 新增 ====
+          queueMicrotask(() => {
+            onRejected(this.reason)
+          })
+        })
+      }
+    })
+    
+    return promise2
+  }
+```
+
+
+## then 的参数变为可选的
+
+```javascript
+
+then(onFulfilled, onRejected) {
+    // ==== 新增 ====
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
+    
+    // 示意代码
+    const promise2 = new MyPromise((resolve, reject) => {})
+    
+    return promise2
+  }
+```
+
+
+
+## 完善其他方法
+
+### Promise.prototype.then()
+### Promise.prototype.catch()
+### Promise.prototype.finally()
+### Promise.resolve()
+### Promise.reject()
+### Promise.all()
+### Promise.race()
+### Promise.allSettled()
+### Promise.any()
+### Promise.promisify()
 
       
 
