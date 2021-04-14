@@ -900,3 +900,14 @@ function throttle(f, wait) {
     }
   }
 }
+
+
+const o = Object.create(null)
+
+console.log(o)      // {}
+
+o.constructor       // undefined
+
+o.__proto__         // undefined
+
+o instanceof Object // false
