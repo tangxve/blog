@@ -901,7 +901,6 @@ function throttle(f, wait) {
   }
 }
 
-
 const o = Object.create(null)
 
 console.log(o)      // {}
@@ -911,3 +910,21 @@ o.constructor       // undefined
 o.__proto__         // undefined
 
 o instanceof Object // false
+
+var length = 10
+
+function fn() {
+  console.log(this.length)
+  console.log(this[4])
+}
+
+var obj = {
+  length: 5,
+  4: '4',
+  method: function (fn) {
+    fn()
+    arguments[0]()
+  }
+}
+
+obj.method(fn, 4, 3, 2, 1)
