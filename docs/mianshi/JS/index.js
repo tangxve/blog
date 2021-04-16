@@ -928,3 +928,27 @@ var obj = {
 }
 
 obj.method(fn, 4, 3, 2, 1)
+
+const object = { 'a': [{ 'b': { 'c': 3 } }] } // path: 'a[0].b.c'
+const array = [{ 'a': { 'b': [1] } }] // path: '[0].a.b[0]'
+
+function stringToPath(string) {
+  return string.split('.').map((str) => str.replace(/^\[|\]$/g, ''))
+}
+
+function getValue(obj, path, defaultValue) {
+  if (!Array.isArray(path)) {
+    path = stringToPath(path)
+  }
+  
+  let i = 0
+  while (obj != null && i < path.length) {
+    obj = obj[path[i++]]
+  }
+  
+  return obj === void 0 ? defaultValue : obj
+}
+
+console.log(getValue(object, 'a[0].b.c', 0))
+console.log(getValue(array, '[0].a.b[0]', 12))
+console.log(getValue(array, '[0].a.b[0].c', 12))
