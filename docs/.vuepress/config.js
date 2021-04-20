@@ -49,6 +49,10 @@ module.exports = {
         ]
       },
       {
+        title: 'webpack',
+        path: '/webpack/'
+      },
+      {
         title: '前端基础',
         path: '/fe/',
         children: [
