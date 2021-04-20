@@ -52,7 +52,7 @@
 
 ## vue 中 props、data、computed 加载顺序
 
-props ==> methods ==> data ==> computed ==> watch
+`props` ==> `methods` ==> `data` ==> `computed` ==> `watch`
 
 vue 中的源码
 ```javascript
@@ -72,10 +72,23 @@ function initState(vm) {
   }
 }
 ```
+- computed 在 data 之后，所以不要在 data 中引用 computed 中的属性，只能得到 undefined。
+- data 可以调用 前面的 props、methods 的属性
+- computed 中可以调用 props，methods，data 中的属性
 
- 
+| 类型       | 加载顺序 |加载时间 | 写法 | 作用 | 备注 |
+| --------  | ---     | --- | --- | --- | --- |
+| props     | 1 |beforeCreated, created 之间| 对象或数组| 接收父组件传递的值| |
+| method    | 2 |beforeCreated, created 之间| 函数     | 提供相对复杂的数据计算和逻辑| |
+| data      | 3 |beforeCreated, created 之间| 对象或数组| 定义和初始化数据| |
+| computed  | 4 |beforeCreated, created 之间| 函数     | 提供相对简单的数据计算| |
+
+##  vue 对应响应式环数据的处理？todo
+
+data 里面声明了一个 a，引用了 dta 里面的 b
+
+
 ## vue template 怎么理解
-
 vue 的模版语法，是一种描述视图的标记语言，通过 vue 的 vue-template-compiler 解析成 render 函数，
 再通过 vnode 加上 diff 算法统一替换 dom 形成证实的视图，所以 vue 和 react 在本质上类似。
 也就是说 vue 也可以和 react 一样通过 jsx 来描绘视图，不同的是 vue 提高了一套更符合前端思维的标记语言
@@ -162,6 +175,8 @@ get state () {
 
 3. 虚拟 DOM 有效的降低大面积真实 DOM 的重绘和排版，因为最后与真实 DOM 比较差异，可以只渲染局部
 
-## 总结 diff 算法的过程
+## 总结 diff 算法的过程 todo 
 - 新旧节点不同：创建新节点 => 更新节点占位符 => 删除旧节点
 - 
+
+## 说下 vue 对 diff 算法做了那些优化 todo
