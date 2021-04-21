@@ -84,8 +84,18 @@ function initState(vm) {
 | computed  | 4 |beforeCreated, created 之间| 函数     | 提供相对简单的数据计算| |
 
 ##  vue 对应响应式环数据的处理？todo
-
 data 里面声明了一个 a，引用了 dta 里面的 b
+
+## keep-alive 是什么，实现原理 
+- `keep-alive` 是 vue 内置抽象组件，在组件实例建立父子关系会被忽略
+- 在它的函数钩子 created 阶段，定义了 caches 对象、keys 数组来缓存已经创建的 vnode
+- keep-alive 还有一个 render 函数，渲染的时候，计算一个key，然后判断是否存在 cache 对象，
+如果有就把缓存的vnode 插入到dom树，没有就把vnode 缓存到 caches 对象 
+- 生命周期：activated（激活）、deacitvated（冻结）
+
+- `inclue`：字符串或者正则表达式。只有名称匹配的组件会被缓存
+- `exclue`: 字符串或者正则表达式。任何名称匹配的组件都不会被缓存。
+- `max`: 最多可以缓存多少组件实例。一旦这个数字达到了，在新实例被创建之前，已缓存组件中最久没有被访问的实例会被销毁掉。
 
 
 ## vue template 怎么理解

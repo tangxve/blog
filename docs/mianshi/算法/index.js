@@ -55,3 +55,5 @@ function insertSort(list) {
     list[pos] = temp
   }
 }
+
+(0.1 * 1000 + 0.2 * 1000) / 1000 == 0.3
