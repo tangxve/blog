@@ -14,24 +14,30 @@
 - 2.0 采用二进制格式传输数据，1.0是文本格式，二进制协议解析起来更高效
 
 ## http 缓存
+
+[https://www.cnblogs.com/wonyun/p/5524617.html](https://www.cnblogs.com/wonyun/p/5524617.html)
+
 ctrl + f5 强制刷新网页时，直接从服务器加载，跳过强缓存和协商缓存
 
 f5 刷新页面时候，跳过强缓存，但是会检测协商缓存
 
 **强缓存**
 - expire（有效期）
-设置一个缓存过期的时间（值为GMT时间），具体到年月日秒，在这个时间内，则直接使用缓存数据
+    - 设置一个缓存过期的时间（值为GMT时间），具体到年月日秒，在这个时间内，则直接使用缓存数据
     - 浏览器时间和服务器时间不同步
     - 缓存过期后，不管文件有木有变化，服务器都会再次读取文件返回浏览器
     - http1.0的东西，现在默认是1.1了，它的作用基本忽略
 - cache-control：
+    - max-age：
     - no-cache：不使用本地缓存，走协商缓存
     - no-store：禁止浏览器缓存数据
     - public：内容可被缓存到到客户代理服务器
     - private：内容仅能被缓存到客户端本地
     
 **协商缓存** todo
-- last-modified 
+1. Last-Modified / If-Modified-Since
+
+2. Etag / If-None-Match
 
 ##  http 安全
 [参考](https://github.com/dwqs/blog/issues/68)
