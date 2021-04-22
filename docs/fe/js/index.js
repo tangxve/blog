@@ -1,3 +1,9 @@
+
+
+function foo() {}
+
+const foo = function () {}
+
 // 创建一个构造函数
 function Person() {
 }
