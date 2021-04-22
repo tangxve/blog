@@ -56,6 +56,7 @@ module.exports = {
         title: '前端基础',
         path: '/fe/',
         children: [
+          '/fe/js/var-let-const区别',
           '/fe/js/数据类型',
           '/fe/js/作用域和作用域链',
           '/fe/js/闭包',
