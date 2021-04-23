@@ -318,6 +318,154 @@ module.exports = {
 - 自动发布打包结果到服务器实现自动部署
 
 
+### 自动清理上次打包的结果 （CleanWebpackPlugin）
+
+```javascript
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new CleanWebpackPlugin()
+  ]
+}
+```
+
+### 用于生成 HTML 插件 html-webpack-plugin
+
+相比于之前写死 HTML 文件的方式，自动生成 HTML 的优势在于：
+
+- html 也输出到 dist 目录中，上线只需要把 dist 目录发布出去就行
+- HTML 中的 script 标签是自动引入的，所以可以确保资源文件的路径是正常的。
+- 可以动态生成 模版 以及模版里面 title、 meta标签的信息
+ 
+```javascript
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Webpack Plugin Sample',
+      template: './src/index.html'
+    })
+  ]
+}
+```
+
+### 用于复制文件的插件 copy-webpack-plugin 
+
+不需要参与构建的静态文件，复制到输出目录下面
+
+图片、icon 拷贝到 static 或者 public 下面
+
+```javascript
+// ./webpack.config.js
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Webpack Plugin Sample',
+      template: './src/index.html'
+    }),
+    // 复制文件
+    new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: 'public', to: 'public'
+          },
+        ]
+    })
+  ]
+}
+```
+
+
+### 手写一个 插件
+
+1. webpack 的插件机制就是我日常软件开发的钩子机制
+
+2. 在 webpack 整个工作过程会有很多环节，为了插件的扩展，webpack在每一个环节都提供钩子函数回调。
+
+3. 这样我们在开发插件时候，通过不同的节点上挂在不同任务就可以了
+
+
+- webpack 要求我们插件必须是一个函数，或者一个包含 apply 方法的对象。
+- webpack 启动的时候会调用这个函数，这个函数会接受一个 compiler 的对象参数
+- compiler 参数是 webpack 构建过程最核心的对象，这个对象可以使用
+
+1. compiler 对象 
+```javascript
+// 手写插件
+class RemoveCommentsPlugin {
+  apply (compiler) {
+    // compiler => 包含了我们此次构建的所有配置信息
+    console.log('RemoveCommentsPlugin 启动')
+  }
+}
+```
+
+2. 通过 compiler 对象的 hooks 属性访问 emit 钩子，在通过tap方法注册一个钩子函数
+
+这个方法接受2个参数
+
+- 插件的名字
+- 挂载到钩子上函数，函数可以接收一个 compilation 参数，这个参数是此次允许打包的上下文
+
+
+简单流程
+
+1. 通过 compilation.assets 属性回去资源文件信息，它是一个对象，其中对象的 key 是每一个文件的名称
+2. for in 遍历获取每个文件对象的 source 方法
+3. 判断是否是 js 文件，如果是 js 文件，就处理文本内容，生成新的文本内容（处理注释）
+4. 暴露一个新的 source 方法来返回新文本内容，和一个 size方法，用来返回内容的大小
+5. 最后覆盖掉 compilation.assets[key] 对应的属性，webpack 内部要求的格式
+
+```javascript
+class RemoveCommentsPlugin {
+  apply (compiler) {
+    compiler.hooks.emit.tap('RemoveCommentsPlugin', compilation => {
+      // compilation => 可以理解为此次打包的上下文
+      for (const name in compilation.assets) {
+        if ()
+      }
+    })
+  }
+}
+```
+
+
+
+
+
+## webpack 打包流程工作原理
+
+1. Webpack CLI 启动打包流程；
+2. 载入 Webpack 核心模块，创建 Compiler（康派来儿） 对象；
+3. 使用 Compiler 对象开始编译整个项目；
+4. 从入口文件开始，解析模块依赖，形成依赖关系树；
+5. 递归依赖树，将每个模块交给对应的 Loader 处理；
+6. 合并 Loader 处理完的结果，将打包结果输出到 dist 目录。
+
+
 
 
 

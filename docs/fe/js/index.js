@@ -1,4 +1,26 @@
-
+class RemoveCommentsPlugin {
+  apply(compiler) {
+    compiler.hooks.emit.tap('RemoveCommentsPlugin', compilation => {
+      // compilation => 可以理解为此次打包的上下文
+      for (const name in compilation.assets) {
+        // 判断是否 js
+        if (name.endsWith('js')) {
+          // 获取内容文本
+          const contents = compilation.assets[name].source()
+          
+          // 处理内容
+          const noComments = contents.replace(/\/\*{2,}\/\s?/g, '')
+          
+          // 覆盖原来的方法
+          compilation.assets[name] = {
+            source: () => noComments,
+            size: () => noComments.length
+          }
+        }
+      }
+    })
+  }
+}
 
 function foo() {}
 
