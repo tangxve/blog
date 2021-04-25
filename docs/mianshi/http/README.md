@@ -1,6 +1,8 @@
 # http 相关面试题
 
 ## http、https 区别
+[十分钟搞懂HTTP和HTTPS协议？](https://zhuanlan.zhihu.com/p/72616216)
+
 - http 是明文传输数据，不安全，https 在http的基础上 使用了 ssl协议进行了加密处理，比较安全
 - http 页面响应速度比 https较快，https多了 ssl 握手的过程，也就是对数据加密的过程
 - http 默认端口是80，https 是 443
