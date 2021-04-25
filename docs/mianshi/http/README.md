@@ -17,31 +17,92 @@
 
 [https://www.cnblogs.com/wonyun/p/5524617.html](https://www.cnblogs.com/wonyun/p/5524617.html)
 
-ctrl + f5 强制刷新网页时，直接从服务器加载，跳过强缓存和协商缓存
 
-f5 刷新页面时候，跳过强缓存，但是会检测协商缓存
+强缓存与协商缓存的区别，可以用下表来进行描述：
 
-**强缓存**
+| 名称 | 资源方式 | 状态码 | 发送请求到服务器 |
+| --------  | --- | --- | --- |
+| 强缓存 | 从缓存中获取 | 200 (from cache) | 否，直接从缓存取 |
+| 协商缓存 | 从缓存中获取 | 304 (not modified) | 是，通过服务器来告知缓存是否可用 |
+
+### 强缓存（本地缓存）
+
 - expire（有效期）
     - 设置一个缓存过期的时间（值为GMT时间），具体到年月日秒，在这个时间内，则直接使用缓存数据
     - 浏览器时间和服务器时间不同步
     - 缓存过期后，不管文件有木有变化，服务器都会再次读取文件返回浏览器
     - http1.0的东西，现在默认是1.1了，它的作用基本忽略
 - cache-control：
-    - max-age：
+    - max-age：max-age=n秒，告诉客户端n秒后失效，n秒内都是使用本地缓存
     - no-cache：不使用本地缓存，走协商缓存
     - no-store：禁止浏览器缓存数据
-    - public：内容可被缓存到到客户代理服务器
+    - public：可以别所有用户缓存，内容可被缓存到到客户代理服务器
     - private：内容仅能被缓存到客户端本地
     
-**协商缓存** todo
+如果 cache-control 和 expires 同时存在的话，cache-control 优先级高于 expires
+    
+### 协商缓存 
+
+协商缓存是有服务器来确定缓存资源是否可用
+
+- 响应头 上配置 last-modified 或者 Etag
+- 请求头 上配置 if-modified-since 或者 if-none-match
+
 1. Last-Modified / If-Modified-Since
+    - 浏览器第一次 请求服务器资源，服务器返回资源，并且在响应头（respone）的 header 加上
+    last-modified 的 header，这个表示资源在服务器上最后修改的时间
+    
+    - 浏览器再次 请求服务器资源，请求头上（request）添加 If-Modified-Since 的 header，
+    这个 header 的值是上一次请求返回的 last-modified 的值
+    
+    - 服务器再次收到资源请求时候，根据 if-modified-since 和 资源在服务器上最后的修改时间判断
+    资源是否有变化。
+        - 没有变化 返回 304 not modified 的同时，返回响应头的 last-modified 不会改变
+        - 有变化就正常返回资源
+    
+    - 浏览器接收到 304 的响应，就会从缓存中加载资源
+    
+    - 如果协商缓存没有命中，浏览器直接从服务器加载资源时候，last-modified 会被重新更新
 
 2. Etag / If-None-Match
+    - 这两个值是有服务器生成的每个资源的唯一标示字符串，资源有变化这个值就会改变
+    
+    - 判断过程和 Last-Modified / If-Modified-Since 类似
+    
+    - 与 Last-Modified 不同是 服务器返回的 304 not modified 响应时，由于 ETag 重新生成过，
+    响应头(response header) 也会把 ETag 返回，即使这个 ETag 更之前的没有变化
+    
+    
+### 既生 Last-Modified 何生 Etag
+
+Etag 主要是为了解决几个 last-modified 比较难解决的问题
+
+- 一些资源也许会周期性的修改，但是他的内容并不改变（仅仅改变的是修改时间），这时候我们并不希望客户端认为这个文件被修改来，而重新 get
+
+- 某些文件修改频繁，比如在秒一下的时间进行修改，（比如 1s 内修改来N次），if-modified-since 能检查到颗粒度是 s(秒)级的，
+这种修改无法判断（或者说 UNIX记录MTIME只能精确到秒）
+
+- 某些服务器不能精确到文件的最后修改时间
+
+这时候 利用 Etag 能够更加准确的控制缓存，因为 Etag 是服务器自动生成或者开发者生成，对应资源在服务器端的唯一标示符
+
+last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**，一致的情况下，才会继续对比 last-modified，最后决定是否返回 304
+
+
+### 用户行为对缓存的影响
+
+| 用户操作 | Expires / Cache-Control | Last-Modified / Etag|
+| --------  | --- | --- | 
+| 地址栏回车     | 有效 | 有效 |
+| 页面链接跳转    | 有效 | 有效 |
+| 新开窗口        | 有效 | 有效 |
+| 前进后退        | 有效 | 有效 |
+| F5 刷新        | 有效 | 有效 |
+| Ctrl + F5 刷新 | 有效 | 有效 |
 
 ##  http 安全
 [参考](https://github.com/dwqs/blog/issues/68)
-#### XSS 跨站脚本攻击
+### XSS 跨站脚本攻击
 恶意将代码注入到客户端攻击
 - 攻击模式：
     - 基于 DOM：恶意修改页面的 dom 结构，是纯粹的客户端攻击
@@ -53,7 +114,7 @@ f5 刷新页面时候，跳过强缓存，但是会检测协商缓存
     - 输入检查，不要相信用户输入的内容，对输入的内容进行必要的过滤、转义，例如vue源码里面 decodingMap 对输入内容转换，转义
     - 输出检查，客户端拿到数据时候，有些渲染也要进行必要过滤、转义，vue 的 v-html，
 
-#### CSRF 跨站请求伪造
+### CSRF 跨站请求伪造
 
 一种劫持受信任用户向服务器发送非预期请求的方式
 
