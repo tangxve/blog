@@ -43,7 +43,7 @@ console.log(arr.sort((a, b) => b - a))
 // 冒泡排序 bubbleSort
 function bubbleSort(list) {
   // 控制轮数
-  for (let i = 0; i < list.length - 1; i++) {
+  for (let i = 0; i < list.length; i++) {
     // 控制每轮的比较次数
     for (let j = 0; j < list.length - 1 - i; j++) {
       // 前后做比较

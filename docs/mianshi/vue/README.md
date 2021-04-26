@@ -14,6 +14,7 @@
     - 通过 $parent 和 $children 来访问组件的实例，拿到组件的实例可以访问组件的方法和 data
 
 3. provide / inject （不能触发响应式）
+[聊聊 Vue 中 provide/inject 的应用](https://juejin.cn/post/6844903989935341581)
     - provide 提供变量
     - inject 来注入 provide 变量
     - 不管子组件调用嵌套有多深，只要调用了inject 那么就可以注入provide中的数据，

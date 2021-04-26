@@ -70,8 +70,8 @@ module.exports = {
           '/fe/js/深浅拷贝',
           '/fe/js/Promise',
           '/fe/js/防抖和节流',
-          '/fe/js/常用的方法',
           '/fe/js/数组',
+          '/fe/js/算法',
         ]
       },
       {
