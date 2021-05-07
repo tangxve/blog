@@ -4,10 +4,23 @@
 
 `new vue` => `init` => `$mount` => `compile(编译)` => `render` => `vnode` => `patch` => `dom`
 
-- 挂载元素会被替换了，所以不能在 `body` 和 `html` 标签上
-- vue 在挂载的时候会判断是否有 render，如果有就不编译 template
-    - .vue 文件的会经过处理的，在 webpack 编译阶段 .vue 文件经过 vue-loader 处理，template 标签在最终后被编译成 render 函数，如果手写来 render 函数就不需要来
-- render 通过 createElement 方法生成 vnode
+- $mount 
+    - 挂载元素会被替换了，所以不能在 `body` 和 `html` 标签上
+- render 阶段
+    - render 通过 createElement 方法生成 vnode
+    1. 扩展：vue 在挂载的时候会判断是否有 render 函数，如果有就不编译 template
+    2. 扩展：普通的 `.vue` 文件中最上面的 template 为什么优先于 render 函数
+            - `.vue` 文件的会经过处理的，在 webpack 编译阶段 `.vue` 文件经过 vue-loader 处理，
+        把 template 标签在最终后被编译成 render 函数，然后添加在对象组件上，所以你运行组件时候其实只有render函数，并没有 template 
+- createElement（render 函数的参数）
+    - children 的规范化：遍历把 children 的节点变成一个一维的 vnode 数组（这里根据 normalizationType 的不同，调用了 normalizeChildren(children
+    ) 和 simpleNormalizeChildren(children) 方法）
+    - 对 tag 进行判断，如果是字符串类型，继续判断是否系统内置的节点，则直接创建一个普通 VNode
+    - 如果是为已注册的组件名，则通过 createComponent 函数，创建一个组件类型的 VNode
+    - 最终返回一个 VNode
+- vue 的 虚拟dom 借鉴了开源库 snabbdom （四san的 dom）
+
+
 
 ## vue 组件通讯的方式有
 1. props / $emit
