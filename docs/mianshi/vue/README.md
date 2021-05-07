@@ -4,6 +4,11 @@
 
 `new vue` => `init` => `$mount` => `compile(编译)` => `render` => `vnode` => `patch` => `dom`
 
+- 挂载元素会被替换了，所以不能在 `body` 和 `html` 标签上
+- vue 在挂载的时候会判断是否有 render，如果有就不编译 template
+    - .vue 文件的会经过处理的，在 webpack 编译阶段 .vue 文件经过 vue-loader 处理，template 标签在最终后被编译成 render 函数，如果手写来 render 函数就不需要来
+- render 通过 createElement 方法生成 vnode
+
 ## vue 组件通讯的方式有
 1. props / $emit
     - 单向数据流
