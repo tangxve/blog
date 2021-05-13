@@ -39,7 +39,7 @@
         
     5. `createChildren()` 执行完后，**创建当前 `vnode占位符` 的对应的 DOM 并把它插入父 vnode**
     
-    6. 最后递归完成到该 `vnode占位符` 的渲染 root vnode（挂载，或者组件的顶级节点），并完成它的 patch。
+    6. 最后递归完成到该 `vnode占位符` 的渲染 vnode（组件的 root vnode 根节点，template标签下面的一级），并完成它的 patch。
     
     - patch 的递归过程是一个自上而下的过程，但是插入到 DOM 节点的顺序是自下而上，也就是子节点先插入，父节点后插入。
 
@@ -52,6 +52,15 @@
     - render 函数是从最内层开始执行，函数的执行先对参数取值，也就是先执行 children
 
 
+
+## vue 组件 path 过程
+
+暂时理解：
+简单的理解，组件化的实现过程就是一个递归 new Vue 的过程，
+new Vue 后就是一个 init -> render -> patch 的过程，
+而 patch 就是把 render 生成的 vnode 转换成真实 DOM 的过程，vnode 
+又分普通的 vnode 和组件 vnode，patch 过程中遇到了组件 vnode，
+就会根据这个组件 vnode 再次执行 new Vue 的过程。
 
 
 ## vue 组件通讯的方式有
