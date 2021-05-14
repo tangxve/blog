@@ -52,8 +52,9 @@
     - render 函数是从最内层开始执行，函数的执行先对参数取值，也就是先执行 children
 
 
-
-## vue 组件 path 过程
+  
+## vue 组件 patch 过程
+[patch 流程](https://coding.imooc.com/learn/questiondetail/AKpB2XJAyRgYbv0E.html)
 
 暂时理解：
 简单的理解，组件化的实现过程就是一个递归 new Vue 的过程，
@@ -61,6 +62,45 @@ new Vue 后就是一个 init -> render -> patch 的过程，
 而 patch 就是把 render 生成的 vnode 转换成真实 DOM 的过程，vnode 
 又分普通的 vnode 和组件 vnode，patch 过程中遇到了组件 vnode，
 就会根据这个组件 vnode 再次执行 new Vue 的过程。
+
+## 响应式对象
+
+### 设置响应式对象的流程
+
+1. initData 的时候调用 `observe`，并把 data 传过去： `observe(data, true /* asRootData */)`
+2. `observe` 方法一系列判断，然后创建一个 Observer 实例 `new Observer()`
+    - 是否是对象、是否是 Vnode、
+    - 对象有 `__ob__`属性：直接返回 `value.__ob__`
+    - 没有 `__ob__`：则通过 def() 也就是 Object.defineProperty 添加不可以枚举 `__ob__` 属性 并把 this 赋值给他
+3. Observer 类会区分 value 是数组或者对象，然后循环或递归调用 `defineReactive()` 函数，给对象添加 getter 和 setter
+    - 如果发现子属性也为对象则会递归调用 observer 方法，第 2 步骤，把该对象变成响应式
+4. `defineReactive()` 实际上调用 `Object.defineProperty` 方法，变成响应式也就是给对象添加 getter 和 setter
+    - 如果有 `shallow` 参数，也就是有子属性，继续递归调用 observer 方法，先把子属性变成响应式的
+    - 先子属性变成响应式，然后在当前属性，当前属性对子属性有依赖 `childOb`
+
+### 依赖收集
+- 依赖收集就是 订阅数据变化的 watcher 的收集
+    - 在 $mount 时候调用 new Watcher 然后调用 vm._render()，所以会触发所有的 getter 
+    ```javascript
+    let  updateComponent = function () {
+      vm._update(vm._render(), hydrating)
+    }
+    new Watcher(vm, updateComponent, noop, null, true /* isRenderWatcher */)
+    ```
+- 在定义相应式对象的的 getter 函数里，触发 `dep.depend` 做依赖收集，
+将获取属性的地方全部加入订阅者列表中，当数据发生变化时，通过遍历订阅者列表实现变更发布。
+
+- 再次 render 时会先做依赖清除，再次进行新的依赖收集，这样做是为了处理v-if条件渲染的数据不用再派发更新了
+
+>那么为什么需要做 deps 订阅的移除呢，在添加 deps 的订阅过程，已经能通过 id 去重避免重复订阅了。
+
+>考虑到一种场景，我们的模板会根据 v-if 去渲染不同子模板 a 和 b，当我们满足某种条件的时候渲染 a 的时候，会访问到 a 中的数据，这时候我们对 a 使用的数据添加了 getter，做了依赖收集，
+>那么当我们去修改 a的数据的时候，理应通知到这些订阅者。那么如果我们一旦改变了条件渲染了 b 模板，又会对 b 使用的数据添加了 getter，如果我们没有依赖移除的过程，那么这时候我去修改 a 模板的数据，会通知 a 数据的订阅的回调，这显然是有浪费的。
+  
+>因此 Vue 设计了在每次添加完新的订阅，会移除掉旧的订阅，这样就保证了在我们刚才的场景中，如果渲染 b 模板的时候去修改 a 模板的数据，a 数据订阅回调已经被移除了，所以不会有任何浪费，真的是非常赞叹 Vue 对一些细节上的处理。  
+
+### 更新派发
+
 
 
 ## vue 组件通讯的方式有
