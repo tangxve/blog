@@ -66,11 +66,11 @@
 - 请求头 上配置 if-modified-since 或者 if-none-match
 
 1. Last-Modified / If-Modified-Since
-    - 浏览器第一次 请求服务器资源，服务器返回资源，并且在响应头（respone）的 header 加上
-    last-modified 的 header，这个表示资源在服务器上最后修改的时间
+    - 浏览器第一次 请求服务器资源，服务器返回资源，并且在 `响应头 respone header` 加上
+    `last-modified` 的 header，这个表示资源在服务器上最后修改的时间
     
-    - 浏览器再次 请求服务器资源，请求头上（request）添加 If-Modified-Since 的 header，
-    这个 header 的值是上一次请求返回的 last-modified 的值
+    - 浏览器再次 请求服务器资源，`请求头 request header` 添加 `If-Modified-Since` 的 header，
+    这个 header 的值是上一次请求返回的 `last-modified` 的值
     
     - 服务器再次收到资源请求时候，根据 if-modified-since 和 资源在服务器上最后的修改时间判断
     资源是否有变化。
