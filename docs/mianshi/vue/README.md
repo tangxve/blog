@@ -68,26 +68,30 @@ new Vue 后就是一个 init -> render -> patch 的过程，
 ### 设置响应式对象的流程
 
 1. initData 的时候调用 `observe`，并把 data 传过去： `observe(data, true /* asRootData */)`
+
 2. `observe` 方法一系列判断，然后创建一个 Observer 实例 `new Observer()`
     - 是否是对象、是否是 Vnode、
     - 对象有 `__ob__`属性：直接返回 `value.__ob__`
     - 没有 `__ob__`：则通过 def() 也就是 Object.defineProperty 添加不可以枚举 `__ob__` 属性 并把 this 赋值给他
+    - **如果是数组，就重写数组的方法（push、pop、shift 等）**
 3. Observer 类会区分 value 是数组或者对象，然后循环或递归调用 `defineReactive()` 函数，给对象添加 getter 和 setter
     - 如果发现子属性也为对象则会递归调用 observer 方法，第 2 步骤，把该对象变成响应式
 4. `defineReactive()` 实际上调用 `Object.defineProperty` 方法，变成响应式也就是给对象添加 getter 和 setter
     - 如果有 `shallow` 参数，也就是有子属性，继续递归调用 observer 方法，先把子属性变成响应式的
     - 先子属性变成响应式，然后在当前属性，当前属性对子属性有依赖 `childOb`
+    - `childOb` 是为 `Vue.$set` 量身定制的
+    - 如果有 `childOb` 会调用 `childOb.dep.depend()` 进行子属性依赖收集
 
 ### 依赖收集
-- 依赖收集就是 订阅数据变化的 watcher 的收集
-    - 在 $mount 时候调用 new Watcher 然后调用 vm._render()，所以会触发所有的 getter 
+- 依赖收集就是 订阅数据变化的 `watcher` 的收集
+    - 在 $mount 时候调用 `new Watcher` 然后调用 `vm._render()`，所以会触发所有的 `getter` 
     ```javascript
     let  updateComponent = function () {
       vm._update(vm._render(), hydrating)
     }
     new Watcher(vm, updateComponent, noop, null, true /* isRenderWatcher */)
     ```
-- 在定义相应式对象的的 getter 函数里，触发 `dep.depend` 做依赖收集，
+- 在定义响应式对象的的 `getter` 函数里，触发 `dep.depend` 做依赖收集，
 将获取属性的地方全部加入订阅者列表中，当数据发生变化时，通过遍历订阅者列表实现变更发布。
 
 - 再次 render 时会先做依赖清除，再次进行新的依赖收集，这样做是为了处理v-if条件渲染的数据不用再派发更新了
@@ -101,14 +105,50 @@ new Vue 后就是一个 init -> render -> patch 的过程，
 
 ### 派发更新
 
-#### 检查数组变化的主意事项
+1. 修改响应的数据，会触发 setter 的逻辑，最后调用 `dep.notify()` 方法
+    ```javascript
+    class Dep {
+      // ...
+      notify () {
+      // stabilize the subscriber list first
+        const subs = this.subs.slice()
+        for (let i = 0, l = subs.length; i < l; i++) {
+          subs[i].update()
+        }
+      }
+    }
+    ```
+2. 遍历所有的 `subs` ，也就是 `watcher` 的实例，然后调用每一个 `watcher` 的 `update` 方法
 
-使用 this.$set 方法
+3. `watcher` 先添加到一队列里面，然后 `nextTick` 后，进行排序
+    - `queue.sort((a, b) => a.id - b.id)` 对队列做了从小到大的排序，这么做主要有以下要确保以下几点：
+    1. 组件的更新由父到子；因为父组件的创建过程是先于子的，所以 watcher 的创建也是先父后子，执行顺序也应该保持先父后子。
+    2. 用户的自定义 watcher 要优先于渲染 watcher 执行；因为用户自定义 watcher 是在渲染 watcher 之前创建的。
+    3. 如果一个组件在父组件的 watcher 执行期间被销毁，那么它对应的 watcher 执行都可以被跳过，所以父组件的 watcher 应该先执行。
+    
+4. 遍历队列，拿大相对于应的 `watcher` ， 执行 `watcher.run()`
+5. `watcher.run()` 会执行 `watcher` 的回调函数
+    - `渲染 watcher` ：就执行在执行 this.get() 方法求值的时候，会执行 getter 方法
+    ```javascript
+    updateComponent = () => {
+      vm._update(vm._render(), hydrating)
+    }
+    ```
+    - 接着会执行 `path` 的过程，这就是修改相关的响应式数据时候，会触发重新渲染的原因，
+    - user watcher 就是直接执行 回调函数 
 
-target 是对象
+### 检查数组变化的主意事项
 
+使用 `this.$set` 方法
+$set 方法最后会执行 `ob.dep.notify()` 手动做一次通知订阅者
 
-1. $set 方法判断该 target 
+1. `$set` 方法判断该 `key` 已经存在与 `target` 中，就直接赋值返回，因为这样的变化是可以被检测的
+2. 如果判断 target 是否是个响应式的
+    - 如果是 接着再获取到 `target.__ob__` 并赋值给 `ob`
+    - 如果不是，就直接把 key 赋值给 target 并直接返回 
+3. 最后通过 `defineReactive(ob.value, key, val)` 把新添加的属性变成响应式属性
+4. 调用 `ob.dep.motify()` 手动触发依赖通知
+
 
 
 ## vue 组件通讯的方式有
