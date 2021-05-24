@@ -177,7 +177,94 @@ $set 方法最后会执行 `ob.dep.notify()` 手动做一次通知订阅者
 
 ## 组件更新 (diff 流程)
 
-### 判断新旧节点（vnode）
+1. 数据发生变化，触发 watcher 的回调函数(vm._update 方法)，进行组件的更新过程
+2. vm._update 会执行 `vm.__patch__(prevVnode, vnode)` 方法，也就是调用 `patch` 函数
+    ```javascript
+    Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
+      const vm: Component = this
+      // ...
+      const prevVnode = vm._vnode
+      if (!prevVnode) {
+         // initial render 初次渲染
+        vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
+      } else {
+        // updates 数据更新渲染
+        vm.$el = vm.__patch__(prevVnode, vnode)
+      }
+      // ...
+    }
+    ```
+3. patch 的逻辑和首次渲染不一样，因为 oldVnode 不为空（并且 oldVnode和 vnode 都是 vonode类型） 
+    接下来通过 `sameVNode` 逻辑
+4. `sameVNode(oldVnode, vnode)` 判断它们是否是相同的 VNode 来决定走不同的更新逻辑
+5. 新旧节点不同
+    - 创建新节点
+    - 更新父的占位节点
+    - 删除旧的节点
+    
+6. 新旧节点相同
+    ```javascript
+    const oldCh = oldVnode.children
+    const ch = vnode.children
+    if (isDef(data) && isPatchable(vnode)) {
+      for (i = 0; i < cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
+      if (isDef(i = data.hook) && isDef(i = i.update)) i(oldVnode, vnode)
+    }
+    if (isUndef(vnode.text)) {
+      // 场景 1
+      if (isDef(oldCh) && isDef(ch)) {
+        if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
+      } 
+      // 场景 2
+      else if (isDef(ch)) {
+        if (isDef(oldVnode.text)) nodeOps.setTextContent(elm, '')
+        addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)
+      }
+      // 场景 3
+      else if (isDef(oldCh)) {
+        removeVnodes(elm, oldCh, 0, oldCh.length - 1)
+      }
+      // 场景 4
+      else if (isDef(oldVnode.text)) {
+        nodeOps.setTextContent(elm, '')
+      }
+    }
+    // 场景 5
+    else if (oldVnode.text !== vnode.text) {
+      nodeOps.setTextContent(elm, vnode.text)
+    }
+    ```
+   
+    如果 vnode 是个文本节点且新旧文本不相同，则直接替换文本内容。如果不是文本节点，则判断它们的子节点，并分了几种情况处理：
+    
+    1. `oldCh 旧子节点` 与 `ch 新子节点` 同时存在：使用 `updateChildren` 函数更新节点
+    2. 只有 `ch 新子节点` 存在：表示就节点不需要，如果旧的节点是文本节点，先将节点的文本清除，
+    然后通过 addVnodes 将 ch 批量添加到 elm 下
+    3. 如果只有 `oldCh` 存在，表示更新的是空节点，则需要将旧的节点通过 removeVnodes 全部清除。
+    4. 当只有旧节点是文本节点的时候，则清除其节点文本内容。
+    5. 如果是文本节点，就直接替换文本内容，
+    
+       
+
+
+### 数据发生变化
+
+触发渲染 watcher 的回调函数，进行组件的更新过程
+
+```javascript
+updateComponent = () => {
+  vm._update(vm._render(), hydrating)
+}
+new Watcher(vm, updateComponent, noop, {
+  before () {
+    if (vm._isMounted) {
+      callHook(vm, 'beforeUpdate')
+    }
+  }
+}, true /* isRenderWatcher */)
+```
+
+### 判断新旧节点（vnode） sameVnode
 
 1. 首先不是一个真实的dom 标签
 2. sameVnode 方法
@@ -211,6 +298,28 @@ $set 方法最后会执行 `ob.dep.notify()` 手动做一次通知订阅者
 
 ### 新旧节点相同的情况
 会执行 patchVnode
+
+### 组件的 diff 算法
+
+基本思路是 `双端比较的方式`
+
+- 这种方式的优势在于尽可能用一种较少的 DOM 操作完成新旧子树(子节点)的更新。
+- 而不是在于循环遍历次数导致的性能浪费。即使你顺序循环一次，也就是一个 O(n) 的复杂度，没有本质区别。
+
+
+
+## 为什么循环的时候要加上key
+
+[key 的重要性](https://coding.imooc.com/learn/questiondetail/195765.html)
+- 加上 key 之后，当数据再次更新，新旧虚拟 dom 进行 diff 算法对比的时候，sameVnode 函数
+- 如果发现 key 相同的两组 Vnode，就可以直接拿来复用，
+- 而不用删除就节点后在创建新节点，提高 diff 算法效率
+- 如果没有 key，会走 findIdxInOld 方法，去查处 vnode
+    ```javascript
+    idxInOld = isDef(newStartVnode.key)
+      ? oldKeyToIdx[newStartVnode.key]
+      : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx);
+    ```
 
 ## vue 组件通讯的方式有
 1. props / $emit
@@ -355,13 +464,6 @@ get state () {
   return this._vm._data.$$state
 }
 ```
-
-## 为什么循环的时候要加上key
-
-- 加上key之后，当数据再次更新，新旧虚拟 dom 进行 diff 算法对比的时候，
-- 如果发现 key 相同的两组 Vnode，就可以直接拿来复用，
-- 而不用删除就节点后在创建新节点，提高 diff 算法效率
-
 
 ## Virtual（虚拟） Dom 的优势在哪里？
 
