@@ -177,8 +177,21 @@ $set 方法最后会执行 `ob.dep.notify()` 手动做一次通知订阅者
 
 ## 组件更新 (diff 流程)
 
-1. 数据发生变化，触发 watcher 的回调函数(vm._update 方法)，进行组件的更新过程
-2. vm._update 会执行 `vm.__patch__(prevVnode, vnode)` 方法，也就是调用 `patch` 函数
+1. 数据发生变化，触发 watcher 的回调函数 `vm._update` 方法，进行组件的更新过程
+    - `vm._update` 会调用 `vm._render()` 函数创建新的 `vonde`
+    ```javascript
+    updateComponent = () => {
+      vm._update(vm._render(), hydrating)
+    }
+    new Watcher(vm, updateComponent, noop, {
+      before () {
+        if (vm._isMounted) {
+          callHook(vm, 'beforeUpdate')
+        }
+      }
+    }, true /* isRenderWatcher */)
+    ```
+2. `vm._update` 会执行 `vm.__patch__(prevVnode, vnode)` 方法，也就是调用 `patch` 函数
     ```javascript
     Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
       const vm: Component = this
@@ -203,6 +216,12 @@ $set 方法最后会执行 `ob.dep.notify()` 手动做一次通知订阅者
     - 删除旧的节点
     
 6. 新旧节点相同
+    执行 patchVnode，patchVnode 的作用就是把新的 vnode patch 到旧的 vnode 上
+    - 执行 prepatch 钩子函数，执行 updateChildComponent 方法
+        - updateChildComponent 逻辑： 由于更新了 vnode，那么 vnode 对应的实例 vm 的一系列属性也会发生变化，
+        包括占位符 vm.$vnode 的更新、slot 的更新，listeners 的更新，props 的更新等等。
+    - 执行 update 钩子函数
+    - 完成 patch 过程
     ```javascript
     const oldCh = oldVnode.children
     const ch = vnode.children
@@ -237,7 +256,7 @@ $set 方法最后会执行 `ob.dep.notify()` 手动做一次通知订阅者
    
     如果 vnode 是个文本节点且新旧文本不相同，则直接替换文本内容。如果不是文本节点，则判断它们的子节点，并分了几种情况处理：
     
-    1. `oldCh 旧子节点` 与 `ch 新子节点` 同时存在：使用 `updateChildren` 函数更新节点
+    1. `oldCh 旧子节点` 与 `ch 新子节点` 都存在切不相等：使用 `updateChildren` 函数更新节点
     2. 只有 `ch 新子节点` 存在：表示就节点不需要，如果旧的节点是文本节点，先将节点的文本清除，
     然后通过 addVnodes 将 ch 批量添加到 elm 下
     3. 如果只有 `oldCh` 存在，表示更新的是空节点，则需要将旧的节点通过 removeVnodes 全部清除。
