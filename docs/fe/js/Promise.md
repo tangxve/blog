@@ -29,7 +29,7 @@ const PENDING = 'pending'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'
 
-class MyPromise {
+class Promise {
   /**
    * 在 new Promise 的时候会传入一个执行器 (executor) 同时这个执行器是立即执行的
    * state      Promise的状态，初始化为等待
@@ -121,7 +121,7 @@ promise.then(value => {
 问题代码：
 
 ```javascript
-const promise = new MyPromise((resolve, reject) => {
+const promise = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve('success')
   }, 2000)
@@ -157,7 +157,7 @@ const PENDING = 'pending'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'
 
-class MyPromise {
+class Promise {
   /**
    * 在 new Promise 的时候会传入一个执行器 (executor) 同时这个执行器是立即执行的
    * state                   Promise的状态，初始化为等待
@@ -259,7 +259,7 @@ const PENDING = 'pending'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'
 
-class MyPromise {
+class Promise {
   /**
    * 在 new Promise 的时候会传入一个执行器 (executor) 同时这个执行器是立即执行的
    * state                   Promise的状态，初始化为等待
@@ -315,8 +315,8 @@ class MyPromise {
   
   // then 方法
   then(onFulfilled, onRejected) {
-    // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
-    const promise2 = new MyPromise((resolve, reject) => {
+    // 为了链式调用这里直接创建一个 Promise，并在后面 return 出去
+    const promise2 = new Promise((resolve, reject) => {
         // 这里会立即执行
         if (this.state === FULFILLED) {
           try {
@@ -374,7 +374,7 @@ function resolvePromise(promise2, x, resolve, reject) {
     return reject(new TypeError('Chaining cycle detected for promise #<Promise>'))
   }
   
-  if (x instanceof MyPromise) {
+  if (x instanceof Promise) {
     x.then(resolve, reject)
   } else {
     resolve(x)
@@ -397,7 +397,7 @@ function resolvePromise(promise2, x, resolve, reject) {
 ```javascript
 
   then(onFulfilled, onRejected) {
-    const promise2 = new MyPromise((resolve, reject) => {
+    const promise2 = new Promise((resolve, reject) => {
       if (this.state === FULFILLED) {
         // ==== 新增 ====
         queueMicrotask(() => {
@@ -443,7 +443,6 @@ function resolvePromise(promise2, x, resolve, reject) {
   }
 ```
 
-
 ## then 的参数变为可选的
 
 ```javascript
@@ -454,7 +453,7 @@ then(onFulfilled, onRejected) {
     onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
     
     // 示意代码
-    const promise2 = new MyPromise((resolve, reject) => {})
+    const promise2 = new Promise((resolve, reject) => {})
     
     return promise2
   }
@@ -536,7 +535,7 @@ function resolvePromise(promise, x, resolve, reject) {
   
 }
 
-class MyPromise {
+class Promise {
   /**
    * 在 new Promise 的时候会传入一个执行器 (executor) 同时这个执行器是立即执行的
    * state                   Promise的状态，初始化为等待
@@ -596,8 +595,8 @@ class MyPromise {
     onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
     onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
     
-    // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
-    const promise2 = new MyPromise((resolve, reject) => {
+    // 为了链式调用这里直接创建一个 Promise，并在后面 return 出去
+    const promise2 = new Promise((resolve, reject) => {
       if (this.state === FULFILLED) {
         queueMicrotask(() => {
           try {
@@ -663,9 +662,40 @@ class MyPromise {
   
 }
 ```
+
 ## 完善其他方法
 
-### Promise.prototype.catch()
+## Promise.resolve()
+
+- 将现有对象转为 Promise 实例，该实例的状态为 resolved
+
+```javascript
+  static resolve(parameter) {
+    // 如果传入 Promise 就直接返回
+    if (parameter instanceof Promise) {
+      return parameter
+    }
+    
+    // 转成常规方式
+    return new Promise(resolve => {
+      resolve(parameter)
+    })
+  }
+```
+
+## Promise.reject()
+
+- 将现有对象转为 promise 实例，该实例状态为 reject
+
+```javascript
+  static reject(reason) {
+    return new Promise((resolve, reject) => {
+      reject(reason)
+    })
+  }
+```
+
+## Promise.prototype.catch()
 
 catch 用于发生错误是的回调函数，实际上是 .then(null, rejection)或.then(undefined, rejection)的别名
 
@@ -675,7 +705,7 @@ catch 用于发生错误是的回调函数，实际上是 .then(null, rejection)
   }
 ```
 
-### Promise.prototype.finally()
+## Promise.prototype.finally()
 
 - finally 用于指定不管 promise 最后的状态如何 都会执行操作
 - 在 finally 后面还可以继续 then ，并将值原封不动的传递下去
@@ -685,46 +715,23 @@ catch 用于发生错误是的回调函数，实际上是 .then(null, rejection)
 ```javascript
   finall(cb) {
     return this.then(
-      value => MyPromise.resolve(cb()).then(() => value),
-      reason => MyPromise.resolve(cb()).then(() => {throw  reason})
+      value => Promise.resolve(cb()).then(() => value),
+      reason => Promise.resolve(cb()).then(() => {throw  reason})
     )
   }
 ```
 
-### Promise.resolve()
-- 将现有对象转为 Promise 实例，该实例的状态为 resolved
-
-```javascript
-  static resolve(parameter) {
-    // 如果传入 MyPromise 就直接返回
-    if (parameter instanceof MyPromise) {
-      return parameter
-    }
-    
-    // 转成常规方式
-    return new MyPromise(resolve => {
-      resolve(parameter)
-    })
-  }
-```
-### Promise.reject()
-- 将现有对象转为 promise 实例，该实例状态为 reject
-
-```javascript
-  static reject(reason) {
-    return new MyPromise((resolve, reject) => {
-      reject(reason)
-    })
-  }
-```
-### Promise.all()
+## Promise.all()
 
 - 用于多个 Promise 实例，包装成一个新的 Promise 实例
-- 只有所有的 Promise 返回成功，才会成功，有一个失败，就是失败状态
+
+1. 只有所有的 Promise 返回成功，才会成功，
+2. 如果有一个失败，就是失败状态，并且不会返回其他已经成功的状态
+
 ```javascript
 
   static all(promises) {
-    return new MyPromise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // 参数不是数组 直接 reject
       if (!Array.isArray(promises)) {
         reject(new TypeError('参数必须是数组'))
@@ -753,7 +760,7 @@ catch 用于发生错误是的回调函数，实际上是 .then(null, rejection)
       }
       
       for (let i = 0; i < promises.length; i++) {
-        MyPromise.resolve(promises[i]).then(
+        Promise.resolve(promises[i]).then(
           v => {
             check(i, v)
           },
@@ -767,7 +774,143 @@ catch 用于发生错误是的回调函数，实际上是 .then(null, rejection)
 
 ```
 
+## Promise.race()
 
+- 用于将多个 Promise 实例，包装成一个新的 Promise 实例
+- 新的 Promise 实例状态会根据 **最先更改状态的**  Promise 而更改状态
+
+    只要有一个 Promise 状态发生改变，就调用其状态对应的回调方法
+- https://es6.ruanyifeng.com/#docs/promise#Promise-race
+
+```javascript
+  static race(promises) {
+    return new Promise((resolve, reject) => {
+      // 参数不为数组时直接 reject
+      if (!Array.isArray(promises)) {
+        reject(new TypeError('参数必须为数组'))
+        return
+      }
+
+      // 如果传入一个空数组则直接返回
+      if (promises.length === 0) {
+        resolve()
+        return
+      }
+
+      for (let i = 0; i < promises.length; i++) {
+        // 只要有一个 Promise 状态发生改变，就调用其状态对应的回调方法
+        Promise.resolve(promises[i]).then(resolve, reject)
+      }
+    })
+  }
+```
+
+## Promise.allSettled()
+- 用于将多个 Promise 实例，包装成一个新的 Promise 实例
+- 新的 Promise 实例只有等到 **所有这些参数实例都返回结果** 
+
+    不管是 `resolved（成功）` 还是 `rejected（失败）`
+
+    包装实例才会结束，一旦结束，状态总是 `resolved（成功）` 并且把所有状态返回
+
+- 该方法由 ES2020 引入
+- https://es6.ruanyifeng.com/#docs/promise#Promise-allSettled
+
+```javascript
+  static allSettled(promises) {
+    return new Promise((resolve, reject) => {
+      // 参数不为数组时直接 reject
+      if (!Array.isArray(promises)) {
+        reject(new TypeError('参数必须为数组'))
+        return
+      }
+
+      const result = []
+
+      // 如果传入一个空数组则直接返回
+      if (promises.length === 0) {
+        resolve(result)
+        return
+      }
+
+      // 记录当前已返回结果的 Promise 数量
+      let num = 0
+
+      // resolve 验证函数
+      function check(i, data) {
+        result[i] = data
+        num++
+        // 只有已返回结果的 Promise 数量等于传入的数组长度时才调用 resolve
+        if (num === promises.length) {
+          resolve(result)
+        }
+      }
+
+      for (let i = 0; i < promises.length; i++) {
+        Promise.resolve(promises[i]).then(
+          (value) => {
+            check(i, {
+              status: FULFILLED,
+              value,
+            })
+          },
+          (reason) => {
+            check(i, {
+              status: REJECTED,
+              reason,
+            })
+          }
+        )
+      }
+    })
+  }
+```
+
+## Promise.any()
+
+- 用于将多个 `Promise` 实例，包装成一个新的 `Promise` 实例
+- 只要参数实例有一个变成 `resolved` 状态，包装实例就会变成 `resolved` 状态；
+- 如果**所有参数实例**都变成 `rejected` 状态，包装实例就会变成 `rejected` 状态
+- https://es6.ruanyifeng.com/#docs/promise#Promise-any
+
+```javascript
+  static any(promises) {
+    return new Promise((resolve, reject) => {
+      // 参数不为数组时直接 reject
+      if (!Array.isArray(promises)) {
+        reject(new TypeError('参数必须为数组'))
+        return
+      }
+
+      // 如果传入一个空数组则直接返回
+      if (promises.length === 0) {
+        resolve()
+        return
+      }
+
+      const rejects = []
+      // 记录当前已失败的 Promise 数量
+      let num = 0
+
+      // reject 验证函数
+      function check(i, data) {
+        rejects[i] = data
+        num++
+        // 只有失败的 Promise 数量等于传入的数组长度时才调用 reject
+        if (num === promises.length) {
+          reject(rejects)
+        }
+      }
+
+      for (let i = 0; i < promises.length; i++) {
+        // 当其中一个 Promise 成功时直接调用 resolve
+        Promise.resolve(promises[i]).then(resolve, (r) => {
+          check(i, r)
+        })
+      }
+    })
+  }
+```
 
 ## 完整代码
 
@@ -826,7 +969,7 @@ function resolvePromise(promise, x, resolve, reject) {
   
 }
 
-class MyPromise {
+class Promise {
   constructor(executor) {
     this.state = PENDING
     this.value = undefined
@@ -864,7 +1007,7 @@ class MyPromise {
     onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
     onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
     
-    const promise2 = new MyPromise((resolve, reject) => {
+    const promise2 = new Promise((resolve, reject) => {
       if (this.state === FULFILLED) {
         queueMicrotask(() => {
           try {
@@ -925,29 +1068,29 @@ class MyPromise {
   
   finall(cb) {
     return this.then(
-      value => MyPromise.resolve(cb()).then(() => value),
-      reason => MyPromise.resolve(cb()).then(() => {throw  reason})
+      value => Promise.resolve(cb()).then(() => value),
+      reason => Promise.resolve(cb()).then(() => {throw  reason})
     )
   }
   
   static resolve(parameter) {
-    if (parameter instanceof MyPromise) {
+    if (parameter instanceof Promise) {
       return parameter
     }
     
-    return new MyPromise(resolve => {
+    return new Promise(resolve => {
       resolve(parameter)
     })
   }
   
   static reject(reason) {
-    return new MyPromise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       reject(reason)
     })
   }
   
   static all(promises) {
-    return new MyPromise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       if (!Array.isArray(promises)) {
         reject(new TypeError('参数必须是数组'))
         return
@@ -972,7 +1115,7 @@ class MyPromise {
       }
       
       for (let i = 0; i < promises.length; i++) {
-        MyPromise.resolve(promises[i]).then(
+        Promise.resolve(promises[i]).then(
           v => {
             check(i, v)
           },
@@ -986,9 +1129,9 @@ class MyPromise {
 }
 
 // 测试方法
-MyPromise.deferred = function () {
+Promise.deferred = function () {
   var result = {}
-  result.promise = new MyPromise(function (resolve, reject) {
+  result.promise = new Promise(function (resolve, reject) {
     result.resolve = resolve
     result.reject = reject
   })
@@ -996,7 +1139,7 @@ MyPromise.deferred = function () {
   return result
 }
 
-module.exports = MyPromise
+module.exports = Promise
 
 ```
       
