@@ -326,6 +326,32 @@ new Watcher(vm, updateComponent, noop, {
 - 而不是在于循环遍历次数导致的性能浪费。即使你顺序循环一次，也就是一个 O(n) 的复杂度，没有本质区别。
 
 
+## 编译过程
+
+- 解析模版字符串，生成 AST 语法树
+- 优化 AST 语法树
+- 生成 render 代码
+
+```javascript
+// 解析模板字符串生成 AST
+const ast = parse(template.trim(), options)
+// 优化语法树
+optimize(ast, options)
+// 生成代码
+const code = generate(ast, options)
+
+```
+
+### parse
+parse 的目标是把 template 模板字符串转换成 AST 树，
+它是一种用 JavaScript 对象的形式来描述整个模板。那么整个 parse 的过程是利用正则表达式顺序解析模板，
+当解析到开始标签、闭合标签、文本的时候都会分别执行对应的回调函数，来达到构造 AST 树的目的。
+
+### 2. 优化语法树
+
+
+
+### 
 
 ## 为什么循环的时候要加上key
 

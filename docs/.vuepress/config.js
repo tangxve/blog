@@ -1,3 +1,7 @@
+// console.log('process.env', process.env)
+
+const isDev = process.env.NODE_ENV === 'development'
+
 module.exports = {
   base: '/notes/',
   title: '知食',
@@ -85,8 +89,7 @@ module.exports = {
           '/mianshi/http/',
           '/mianshi/vue/',
           '/mianshi/算法/',
-          '/mianshi/面试记录',
-        ]
+        ].concat(isDev ? ['/mianshi/面试记录'] : [])
       },
     ],
     lastUpdated: '上次更新'

@@ -189,7 +189,7 @@ last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**
 
 - JS 优化：在页面的最下面引入 js，或者使用 defer 属性，这样页面在渲染会在渲染完成后加载
     - async：异步加载，下载过程中不会影响到 html 的解析，但是下载完成后会立即执行，对堵塞 html 解析
-    - defer：异步加载，下载过程中不会形象到 html 的解析，会在所有的元素解析完成后，DOMContentLoaded 事件之前触发完成
+    - defer：异步加载，下载过程中不会影响到 html 的解析，会在所有的元素解析完成后，DOMContentLoaded 事件之前触发完成
 
 
 ## tcp 的三次握手
