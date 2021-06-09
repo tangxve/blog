@@ -57,8 +57,13 @@ module.exports = {
         path: '/webpack/'
       },
       {
+        title: '微前端',
+        path: '/microFE/'
+      },
+      {
         title: '前端基础',
         path: '/fe/',
+        sidebarDepth: 3,
         children: [
           '/fe/js/var-let-const区别',
           '/fe/js/数据类型',
@@ -79,15 +84,27 @@ module.exports = {
         ]
       },
       {
+        title: 'Vue 面试',
+        path: '/mianshi/vue/'
+      },
+      {
+        title: 'JS 面试',
+        path: '/mianshi/js/'
+      },
+      {
+        title: 'Css 面试',
+        path: '/mianshi/css/'
+      },
+      {
+        title: 'http 面试',
+        path: '/mianshi/http/'
+      },
+      {
         title: '面试',
         path: '/mianshi',
         collapsable: true,
         sidebarDepth: 2,
         children: [
-          '/mianshi/js/',
-          '/mianshi/css/',
-          '/mianshi/http/',
-          '/mianshi/vue/',
           '/mianshi/算法/',
         ].concat(isDev ? ['/mianshi/面试记录'] : [])
       },
