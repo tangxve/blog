@@ -1145,9 +1145,8 @@ module.exports = Promise
       
 
 
-
-
-
+## 测试
+<<< @/docs/fe/js/promise/promise.js
 
 
 

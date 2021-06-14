@@ -77,8 +77,10 @@ module.exports = {
           '/fe/js/new操作符',
           '/fe/js/继承',
           '/fe/js/深浅拷贝',
-          '/fe/js/Promise',
           '/fe/js/防抖和节流',
+          '/fe/js/Promise',
+          '/fe/js/事件循环',
+          '/fe/js/ESModule',
           '/fe/js/数组',
           '/fe/js/算法',
         ]
