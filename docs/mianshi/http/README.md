@@ -10,6 +10,9 @@
 - http：IP => TCP => HTTP(应用层)
 - https：IP => TCP => SSL => HTTP(应用层)
 
+
+## 为什么说HTTPS比HTTP安全? HTTPS是如何保证安全的
+
 ## https 请求过程（ssl握手）
 
 1. 客户端通过 URL 访问服务器建立 SSL 连接
