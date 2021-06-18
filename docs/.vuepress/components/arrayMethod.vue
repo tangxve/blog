@@ -35,7 +35,7 @@
 import { type, loopArray, originArray, changeArray, createArray } from './arrayMethod'
 
 export default {
-  name: 'ArrayMethod',
+  name: 'arrayMethod',
   data() {
     return {
       type, loopArray, originArray, changeArray, createArray
