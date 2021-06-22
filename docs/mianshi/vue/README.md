@@ -149,6 +149,26 @@ $set 方法最后会执行 `ob.dep.notify()` 手动做一次通知订阅者
 3. 最后通过 `defineReactive(ob.value, key, val)` 把新添加的属性变成响应式属性
 4. 调用 `ob.dep.motify()` 手动触发依赖通知
 
+
+## defineProperty VS Proxy
+
+[为什么Vue3.0不再使用defineProperty实现数据监听？](https://cloud.tencent.com/developer/article/1590851)
+### 无法监控到数组下标的变化？
+
+事实上，Object.defineProperty 本身是可以监控到数组下标的变化的，只是在 Vue 的实现中，从性能/体验的性价比考虑，放弃了这个特性。
+
+Object.defineProperty 在数组中的表现和在对象中的表现是一致的，数组的索引就可以看做是对象中的 key。
+
+1. 通过索引访问或设置对应元素的值时，可以触发 getter 和 setter 方法
+
+2. 通过 push 或 unshift 会增加索引，对于新增加的属性，需要再手动初始化才能被observe。
+
+3. 通过 pop 或 shift 删除元素，会删除并更新索引，也会触发 setter 和 getter 方法。
+
+所以，Object.defineProperty 是有监控数组下标变化的能力的，只是vue2.x放弃了这个特性。
+
+ 
+
 ## vue 的 计算属性 VS 监听属性
 **计算属性**
 - 计算属性被访问的时触发 getter 函数，执行用户返回的计算结果，
