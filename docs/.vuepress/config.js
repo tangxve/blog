@@ -1,6 +1,7 @@
 // console.log('process.env', process.env)
 
-const isDev = process.env.NODE_ENV === 'development'
+// const isDev = process.env.NODE_ENV === 'development'
+const isDev = true
 
 module.exports = {
   base: '/notes/',
