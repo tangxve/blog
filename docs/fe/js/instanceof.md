@@ -1,4 +1,4 @@
-# instanceof 和 typeof 实现原理
+# typeof / instanceof / Object.prototype.toString 实现原理
 
 ## typeof
 
@@ -75,6 +75,10 @@ function myInstanceof(leftV, rightV) {
   }
 }
 ```
+
+##  Object.prototype.toString
+
+判断原理：[Object.prototype.toString 方法的原理](https://juejin.cn/post/6972878737582850062#heading-29)
 
 ## 参考
 
