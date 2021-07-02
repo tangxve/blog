@@ -3,7 +3,7 @@ const PENDING = 'pending'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'
 
-class MyPromise {
+class Promise {
   /**
    * 在 new Promise 的时候会传入一个执行器 (executor) 同时这个执行器是立即执行的
    * state      Promise的状态，初始化为等待
@@ -14,6 +14,12 @@ class MyPromise {
     this.state = PENDING
     this.value = undefined
     this.reason = undefined
+
+    // 储存成功的回调函数
+    this.onResolvedCallback = null
+    
+    // 储存失败的回调函数
+    this.onRejectedCallback = null
     
     /**
      * resolve 和 reject 函数中
@@ -24,6 +30,9 @@ class MyPromise {
         if (this.state === PENDING) {
           this.state = FULFILLED
           this.value = value
+          
+          // 如果有成功回调就调用
+          this.onResolvedCallback && this.onResolvedCallback(value)
         }
       }
     
@@ -32,6 +41,9 @@ class MyPromise {
       if (this.state === PENDING) {
         this.state = REJECTED
         this.reason = reason
+        
+        // 如果有失败的回调就调用
+        this.onRejectedCallback && this.onRejectedCallback(reason)
       }
     }
     
@@ -47,18 +59,27 @@ class MyPromise {
     }
   }
   
+  // # esay snippet
+  
   // then 方法
-  then(onFulfilled, onRejected) {
+  then(onResolved, onRejected) {
     if (this.state === FULFILLED) {
       // 成功后的回调，并把值返回
-      onFulfilled(this.value)
+      onResolved(this.value)
     }
     
     if (this.state === REJECTED) {
       // 失败的回调，并把失败原因返回
       onRejected(this.reason)
     }
+    
+    // === 新增 ===
+    if (this.state === PENDING) {
+      // 不知道后续的状态变化情况，先把成功和失败的回调储存起来
+      this.onResolvedCallback = onResolved
+      this.onRejectedCallback = onRejected
+    }
   }
 }
 
-module.exports = MyPromise
+module.exports = Promise

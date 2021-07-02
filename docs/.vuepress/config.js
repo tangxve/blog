@@ -79,7 +79,7 @@ module.exports = {
           '/fe/js/继承',
           '/fe/js/深浅拷贝',
           '/fe/js/防抖和节流',
-          '/fe/js/Promise',
+          '/fe/js/promise/Promise',
           '/fe/js/事件循环',
           '/fe/js/ESModule',
           '/fe/js/数组',

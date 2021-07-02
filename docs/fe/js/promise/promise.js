@@ -72,20 +72,20 @@ function resolvePromise(promise, x, resolve, reject) {
   
 }
 
-class MyPromise {
+class Promise {
   /**
    * 在 new Promise 的时候会传入一个执行器 (executor) 同时这个执行器是立即执行的
    * state                   Promise的状态，初始化为等待
    * value                   成功的值
    * reason                  错误的原因
-   * onFulfilledCallbacks     成功函数的回调队列
+   * onResolvedCallbacks     成功函数的回调队列
    * onRejectedCallbacks     失败函数的回调队列
    */
   constructor(executor) {
     this.state = PENDING
     this.value = undefined
     this.reason = undefined
-    this.onFulfilledCallbacks = []
+    this.onResolvedCallbacks = []
     this.onRejectedCallbacks = []
     
     /**
@@ -99,7 +99,7 @@ class MyPromise {
           this.value = value
           
           // 执行 resolve 回调队列
-          this.onFulfilledCallbacks.forEach(fn => fn())
+          this.onResolvedCallbacks.forEach(fn => fn())
         }
       }
     
@@ -127,18 +127,18 @@ class MyPromise {
   }
   
   // then 方法
-  then(onFulfilled, onRejected) {
+  then(onResolved, onRejected) {
     // 如果不传，就使用默认函数
-    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onResolved = typeof onResolved === 'function' ? onResolved : value => value
     onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
     
-    // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
-    const promise2 = new MyPromise((resolve, reject) => {
+    // 为了链式调用这里直接创建一个 Promise，并在后面 return 出去
+    const promise2 = new Promise((resolve, reject) => {
       if (this.state === FULFILLED) {
         queueMicrotask(() => {
           try {
             // 获取成功回调函数的结果
-            const x = onFulfilled(this.value)
+            const x = onResolved(this.value)
             
             // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
             resolvePromise(promise2, x, resolve, reject)
@@ -162,13 +162,13 @@ class MyPromise {
         })
       }
       
-      // 当 promise 状态为等待时（pending），将 onFulfilled 和 onRejected 存入对应的回调队列
+      // 当 promise 状态为等待时（pending），将 onResolved 和 onRejected 存入对应的回调队列
       if (this.state === PENDING) {
-        this.onFulfilledCallbacks.push(() => {
+        this.onResolvedCallbacks.push(() => {
           queueMicrotask(() => {
             try {
               // 获取成功回调函数的结果
-              const x = onFulfilled(this.value)
+              const x = onResolved(this.value)
               
               // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
               resolvePromise(promise2, x, resolve, reject)
@@ -217,8 +217,8 @@ class MyPromise {
    */
   finall(cb) {
     return this.then(
-      value => MyPromise.resolve(cb()).then(() => value),
-      reason => MyPromise.resolve(cb()).then(() => {throw  reason})
+      value => Promise.resolve(cb()).then(() => value),
+      reason => Promise.resolve(cb()).then(() => {throw  reason})
     )
   }
   
@@ -228,13 +228,13 @@ class MyPromise {
    * https://es6.ruanyifeng.com/#docs/promise#Promise-resolve
    */
   static resolve(parameter) {
-    // 如果传入 MyPromise 就直接返回
-    if (parameter instanceof MyPromise) {
+    // 如果传入 Promise 就直接返回
+    if (parameter instanceof Promise) {
       return parameter
     }
     
     // 转成常规方式
-    return new MyPromise(resolve => {
+    return new Promise(resolve => {
       resolve(parameter)
     })
   }
@@ -246,7 +246,7 @@ class MyPromise {
    */
   // reject 静态方法
   static reject(reason) {
-    return new MyPromise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       reject(reason)
     })
   }
@@ -259,7 +259,7 @@ class MyPromise {
    */
   
   static all(promises) {
-    return new MyPromise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // 参数不是数组 直接 reject
       if (!Array.isArray(promises)) {
         reject(new TypeError('参数必须是数组'))
@@ -288,7 +288,7 @@ class MyPromise {
       }
       
       for (let i = 0; i < promises.length; i++) {
-        MyPromise.resolve(promises[i]).then(
+        Promise.resolve(promises[i]).then(
           v => {
             check(i, v)
           },
@@ -302,9 +302,9 @@ class MyPromise {
 }
 
 // 测试方法
-MyPromise.deferred = function () {
+Promise.deferred = function () {
   var result = {}
-  result.promise = new MyPromise(function (resolve, reject) {
+  result.promise = new Promise(function (resolve, reject) {
     result.resolve = resolve
     result.reject = reject
   })
@@ -312,4 +312,4 @@ MyPromise.deferred = function () {
   return result
 }
 
-module.exports = MyPromise
+module.exports = Promise
