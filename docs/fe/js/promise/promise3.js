@@ -11,14 +11,14 @@ class MyPromise {
    * state                   Promise的状态，初始化为等待
    * value                   成功的值
    * reason                  错误的原因
-   * onFulfilledCallbacks     成功函数的回调队列
+   * onResolvedCallbacks     成功函数的回调队列
    * onRejectedCallbacks     失败函数的回调队列
    */
   constructor(executor) {
     this.state = PENDING
     this.value = undefined
     this.reason = undefined
-    this.onFulfilledCallbacks = []
+    this.onResolvedCallbacks = []
     this.onRejectedCallbacks = []
     
     /**
@@ -32,7 +32,7 @@ class MyPromise {
           this.value = value
           
           // 执行 resolve 回调队列
-          this.onFulfilledCallbacks.forEach(fn => fn())
+          this.onResolvedCallbacks.forEach(fn => fn())
         }
       }
     
@@ -60,9 +60,9 @@ class MyPromise {
   }
   
   // then 方法
-  then(onFulfilled, onRejected) {
+  then(onResolved, onRejected) {
     // 如果不传，就使用默认函数
-    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onResolved = typeof onResolved === 'function' ? onResolved : value => value
     onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
     
     // 为了链式调用这里直接创建一个 MyPromise，并在后面 return 出去
@@ -72,7 +72,7 @@ class MyPromise {
         queueMicrotask(() => {
           try {
             // 获取成功回调函数的结果
-            const x = onFulfilled(this.value)
+            const x = onResolved(this.value)
             
             // x 判断下，如果是 promise 就执行 x.then 方法。如果不是返回正常的值
             x.then ? x.then(resolve, reject) : resolve(x)
@@ -96,11 +96,11 @@ class MyPromise {
         })
       }
       
-      // 当 promise 状态为等待时（pending），将 onFulfilled 和 onRejected 存入对应的回调队列
+      // 当 promise 状态为等待时（pending），将 onResolved 和 onRejected 存入对应的回调队列
       if (this.state === PENDING) {
-        this.onFulfilledCallbacks.push(() => {
+        this.onResolvedCallbacks.push(() => {
           queueMicrotask(() => {
-            onFulfilled(this.value)
+            onResolved(this.value)
           })
         })
         
