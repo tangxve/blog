@@ -82,6 +82,8 @@ module.exports = {
           '/fe/js/promise/Promise',
           '/fe/js/事件循环',
           '/fe/js/ESModule',
+          '/fe/js/内存泄露',
+          '/fe/js/函数柯理化',
           '/fe/js/数组',
           '/fe/js/算法',
         ]
