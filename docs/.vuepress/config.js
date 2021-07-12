@@ -105,11 +105,8 @@ module.exports = {
         path: '/mianshi/http/'
       },
       {
-        title: '面试',
-        path: '/mianshi',
-        collapsable: true,
-        sidebarDepth: 2,
-        children: [].concat(isDev ? ['/mianshi/面试记录'] : [])
+        title: '面经',
+        path: '/mianshi/面试记录',
       },
     ],
     lastUpdated: '上次更新'
