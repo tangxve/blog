@@ -109,9 +109,7 @@ module.exports = {
         path: '/mianshi',
         collapsable: true,
         sidebarDepth: 2,
-        children: [
-          '/mianshi/算法/',
-        ].concat(isDev ? ['/mianshi/面试记录'] : [])
+        children: [].concat(isDev ? ['/mianshi/面试记录'] : [])
       },
     ],
     lastUpdated: '上次更新'

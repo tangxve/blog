@@ -1,4 +1,12 @@
+const arr = [
+  [5, 6, 7, 3],
+  [3, 2, 6, 1],
+  [8, 1, 4, 2]
+]
 
+function minPathSum() {
+  //...
+}
 
 function bubbleSort2(arr) {
   console.time('改进后冒泡排序耗时')
