@@ -8,7 +8,7 @@ PS：参考了各个大佬的文章，自己做了总结，如果有异议，以
 - [作用域和作用域链](js/作用域和作用域链.md)
 - [闭包](js/闭包.md)
 - [原型和原型链](js/原型和原型链.md)
-- [instanceof 和 typeof](js/instanceof.md)
+- [instanceof 和 typeof](js/类型判断原理.md)
 - [this 的指向](js/this的指向.md)
 - [call / apply / bind](js/call-apply-bind.md)
 - [手写实现 call apply bind](js/模拟实现call-apply-bind.md)

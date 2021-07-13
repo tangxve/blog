@@ -68,12 +68,12 @@ module.exports = {
         children: [
           '/fe/js/var-let-const区别',
           '/fe/js/数据类型',
+          '/fe/js/类型判断原理',
           '/fe/js/作用域和作用域链',
           '/fe/js/闭包',
           '/fe/js/原型和原型链',
           '/fe/js/this的指向',
           '/fe/js/call-apply-bind',
-          '/fe/js/instanceof',
           '/fe/js/模拟实现call-apply-bind',
           '/fe/js/new操作符',
           '/fe/js/继承',
