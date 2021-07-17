@@ -28,93 +28,134 @@ module.exports = {
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
       // { text: 'GitHub', link: 'https://github.com/Tang1118' },
     ],
-    sidebar: [
-      {
-        title: '知，食',
-        path: '/zhishi/'
-      },
-      {
-        title: 'MacOS',
-        path: '/mac/',
-        collapsable: true,
-        children: [
-          '/mac/chrome/',
-          '/mac/homebrew/',
-          '/mac/nvm/',
-          '/mac/sh/'
-        ]
-      },
-      {
-        title: '笔记',
-        path: '/notes/',
-        collapsable: true,
-        sidebarDepth: 4,
-        children: [
-          '/notes/WeChat/'
-        ]
-      },
-      {
-        title: 'webpack',
-        path: '/webpack/'
-      },
-      {
-        title: '微前端',
-        path: '/microFE/'
-      },
-      {
-        title: '前端基础',
-        path: '/fe/',
-        sidebarDepth: 3,
-        children: [
-          {
-            title:'数据类型',
-            children:[
-              '/fe/js/1-1-数据类型',
-            ]
-          },
-          '/fe/js/1-1-数据类型',
-          // '/fe/js/1.2-数据类型判断原理',
-          // '/fe/js/var-let-const区别',
-          // '/fe/js/作用域和作用域链',
-          // '/fe/js/闭包',
-          // '/fe/js/原型和原型链',
-          // '/fe/js/this的指向',
-          // '/fe/js/call-apply-bind',
-          // '/fe/js/模拟实现call-apply-bind',
-          // '/fe/js/new操作符',
-          // '/fe/js/继承',
-          // '/fe/js/深浅拷贝',
-          // '/fe/js/防抖和节流',
-          // '/fe/js/promise/Promise',
-          '/fe/js/事件循环',
-          // '/fe/js/ESModule',
-          // '/fe/js/内存泄露',
-          // '/fe/js/函数柯理化',
-          // '/fe/js/数组',
-          // '/fe/js/算法',
-        ]
-      },
-      {
-        title: 'Vue 面试',
-        path: '/mianshi/vue/'
-      },
-      {
-        title: 'JS 面试',
-        path: '/mianshi/js/'
-      },
-      {
-        title: 'Css 面试',
-        path: '/mianshi/css/'
-      },
-      {
-        title: 'http 面试',
-        path: '/mianshi/http/'
-      },
-      {
-        title: '面经',
-        path: '/mianshi/面试记录',
-      },
-    ],
+    sidebar: {
+      '/fe/': [
+        {
+          title: '前端基础',
+          collapsable: true,
+          path: '/fe/',
+          children: [
+            {
+              title: '数据类型',
+              collapsable: false,
+              children: [
+                '/fe/js/1-1-数据类型',
+                '/fe/js/1-2-类型判断原理',
+              ]
+            },
+            {
+              title: '原型与继承',
+              collapsable: false,
+              children: [
+                '/fe/js/3.1-原型',
+                '/fe/js/3.2-继承',
+              ]
+            },
+            {
+              title: '作用域 与 闭包',
+              children: [
+                '/fe/js/3.1-原型',
+                '/fe/js/3.2-继承',
+              ]
+            },
+            {
+              title: 'this 与 执行上下文',
+              children: [
+                '/fe/js/3.1-原型',
+                '/fe/js/3.2-继承',
+              ]
+            },
+            {
+              title: 'Event Loop（事件机制）',
+              children: [
+                '/fe/js/3.1-原型',
+                '/fe/js/3.2-继承',
+              ]
+            },
+            {
+              title: 'ES6 / ES7 相关',
+              children: [
+                '/fe/js/3.1-原型',
+                '/fe/js/3.2-继承',
+              ]
+            },
+            {
+              title: 'JS 单线程的理解',
+              children: [
+                '/fe/js/3.1-原型',
+                '/fe/js/3.2-继承',
+              ]
+            },
+            {
+              title: 'JS 引擎相关（V8）',
+              children: [
+                '/fe/js/3.1-原型',
+                '/fe/js/3.2-继承',
+              ]
+            },
+            {
+              title: '其他',
+              children: [
+                '/fe/js/3.1-原型',
+                '/fe/js/3.2-继承',
+              ]
+            },
+            
+          ]
+        },
+        {
+          title: '知，食',
+          path: '/zhishi/'
+        },
+        {
+          title: 'MacOS',
+          path: '/mac/',
+          collapsable: true,
+          children: [
+            '/mac/chrome/',
+            '/mac/homebrew/',
+            '/mac/nvm/',
+            '/mac/sh/'
+          ]
+        },
+        {
+          title: '笔记',
+          path: '/notes/',
+          sidebarDepth: 4,
+          children: [
+            '/notes/WeChat/'
+          ]
+        },
+        {
+          title: 'webpack',
+          path: '/webpack/'
+        },
+        {
+          title: '微前端',
+          path: '/microFE/'
+        },
+        {
+          title: 'Vue 面试',
+          path: '/mianshi/vue/'
+        },
+        {
+          title: 'JS 面试',
+          path: '/mianshi/js/'
+        },
+        {
+          title: 'Css 面试',
+          path: '/mianshi/css/'
+        },
+        {
+          title: 'http 面试',
+          path: '/mianshi/http/'
+        },
+        {
+          title: '面经',
+          path: '/mianshi/面试记录',
+        },
+      ]
+    },
     lastUpdated: '上次更新'
   },
   plugins: [
