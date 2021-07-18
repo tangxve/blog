@@ -24,7 +24,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'MacOS', link: '/mac/' },
+      { text: 'MacOS', link: '/app/' },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
       // { text: 'GitHub', link: 'https://github.com/Tang1118' },
     ],
@@ -35,13 +35,13 @@ module.exports = {
       },
       {
         title: 'MacOS',
-        path: '/mac/',
+        path: '/app/',
         collapsable: true,
         children: [
-          '/mac/chrome/',
-          '/mac/homebrew/',
-          '/mac/nvm/',
-          '/mac/sh/'
+          '/app/chrome/',
+          '/app/homebrew/',
+          '/app/nvm/',
+          '/app/sh/'
         ]
       },
       {

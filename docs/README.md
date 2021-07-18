@@ -4,7 +4,7 @@ home: true
 heroText: 知食
 tagline: 听说过 All Bule 么
 actionText: 知食分子
-actionLink: /zhishi/
+actionLink: /fe/
 features:
 - title: 干饭人
   details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
