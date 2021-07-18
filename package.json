@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "test_promise": "promises-aplus-tests docs/mianshi/js/promise/promise",
+    "test_promise": "promises-aplus-tests docs/fe/mianshi/js/promise/promise",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gh-pages -d dist -m deploy",
     "deploy:build": "vuepress build docs && npm run deploy"
