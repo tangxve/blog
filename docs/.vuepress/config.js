@@ -1,6 +1,8 @@
 // console.log('process.env', process.env)
 
 // const isDev = process.env.NODE_ENV === 'development'
+
+console.log('process', process.cwd())
 const isDev = true
 
 module.exports = {
@@ -119,6 +121,10 @@ module.exports = {
             },
           
           ]
+        },
+        {
+          title: '编程题',
+          path: '/fe/coding/'
         },
         {
           collapsable: true,
