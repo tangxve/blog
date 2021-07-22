@@ -23,7 +23,6 @@ export const flat = function (arr = [], depth = 1) {
   return result
   
 }
-
 // #endregion flat
 
 // #region myNew
@@ -45,44 +44,52 @@ function myNew() {
   return typeof ret === 'object' ? ret || obj : obj
   
 }
-
 // #endregion myNew
 
-// #region add
+// #region add1
 function add(...args) {
-  // 如果参数小于等于1个，就直接返回第一个参数：add(2) ===> 2
+  
   if (args.length <= 1) return Promise.resolve(args[0])
   
-  // 收集 promise
   const promiseList = []
   
-  // 每次计算2个相邻的参数
+  // 获取2个相邻的参数，传给 addRemote
   for (let i = 0; i * 2 < args.length - 1; i++) {
     const promise = addRemote(args[i * 2], args[i * 2 + 1])
     promiseList.push(promise)
   }
-  // promiseList = [addRemote(1,2),addRemote(3,4)]
   
-  
-  // 把对2取余，最后一个参数push
+  // 对2取余，最后一个参数push
   if (args.length % 2) {
     const promise = Promise.resolve(args[args.length - 1])
     promiseList.push(promise)
   }
-  // promiseList = [addRemote(1,2),addRemote(3,4),5]
-  
-  
-  // addRemote(1,2),addRemote(3,4) 这2个异步会同时执行
   
   return Promise.all(promiseList).then(results => add(...results))
   
 }
+// #endregion add1
 
-add(1, 2, 3, 4, 5)
+// #region add2
+async function add(...input) {
+  const promiseList = []
+  
+  while (promiseList) {
+    const [a = 0, b = 0] = input.splice(0, 2)
+    
+    promiseList.push(addRemote(a, b))
+  }
+  
+  return Promise.all(promiseList).then((res) => {
+    
+    if (res.length === 1) return res[0]
+    
+    return add(...res)
+  })
+}
+// #endregion add2
 
-// #endregion add
 
-// #region
 // #endregion
 // #region
 // #endregion
