@@ -6,7 +6,7 @@ console.log('process', process.cwd())
 const isDev = true
 
 module.exports = {
-  base: '/notes/',
+  base: '/blog/',
   title: '知食',
   description: '大明湖畔-王翠花',
   dest: './dist',
