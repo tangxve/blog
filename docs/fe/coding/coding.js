@@ -61,8 +61,7 @@ function add(...args) {
     const promise = addRemote(args[i * 2], args[i * 2 + 1])
     promiseList.push(promise)
   }
-  // （第一次）promiseList = [addRemote(1,2),addRemote(3,4)]
-  // （第一次）promiseList = [addRemote(1,2),addRemote(3,4)]
+  // promiseList = [addRemote(1,2),addRemote(3,4)]
   
   
   // 把对2取余，最后一个参数push
@@ -73,14 +72,13 @@ function add(...args) {
   // promiseList = [addRemote(1,2),addRemote(3,4),5]
   
   
-  // 第一次：addRemote(1,2),addRemote(3,4) 这2个异步会同时执行
+  // addRemote(1,2),addRemote(3,4) 这2个异步会同时执行
   
   return Promise.all(promiseList).then(results => add(...results))
   
 }
 
 add(1, 2, 3, 4, 5)
-// 第一次执行
 
 // #endregion add
 
