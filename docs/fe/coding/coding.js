@@ -45,12 +45,45 @@ function myNew() {
   return typeof ret === 'object' ? ret || obj : obj
   
 }
+
 // #endregion myNew
 
+// #region add
+function add(...args) {
+  // 如果参数小于等于1个，就直接返回第一个参数：add(2) ===> 2
+  if (args.length <= 1) return Promise.resolve(args[0])
+  
+  // 收集 promise
+  const promiseList = []
+  
+  // 每次计算2个相邻的参数
+  for (let i = 0; i * 2 < args.length - 1; i++) {
+    const promise = addRemote(args[i * 2], args[i * 2 + 1])
+    promiseList.push(promise)
+  }
+  // （第一次）promiseList = [addRemote(1,2),addRemote(3,4)]
+  // （第一次）promiseList = [addRemote(1,2),addRemote(3,4)]
+  
+  
+  // 把对2取余，最后一个参数push
+  if (args.length % 2) {
+    const promise = Promise.resolve(args[args.length - 1])
+    promiseList.push(promise)
+  }
+  // promiseList = [addRemote(1,2),addRemote(3,4),5]
+  
+  
+  // 第一次：addRemote(1,2),addRemote(3,4) 这2个异步会同时执行
+  
+  return Promise.all(promiseList).then(results => add(...results))
+  
+}
 
+add(1, 2, 3, 4, 5)
+// 第一次执行
 
-// #region
-// #endregion
+// #endregion add
+
 // #region
 // #endregion
 // #region
@@ -70,7 +103,7 @@ const result = arr.reduce((acc, cur, i) => {
   if (i !== deleteIndex) {
     return acc.concat(cur)
   }
-  return  acc
+  return acc
 }, [])
 
 console.log('result', result)

@@ -9,3 +9,7 @@
 <<< @/docs/fe/coding/coding.js#myNew
 
 
+##  add
+
+<<< @/docs/fe/coding/coding.js#add
+
