@@ -44,6 +44,7 @@ function myNew() {
   return typeof ret === 'object' ? ret || obj : obj
   
 }
+
 // #endregion myNew
 
 // #region add1
@@ -68,6 +69,7 @@ function add(...args) {
   return Promise.all(promiseList).then(results => add(...results))
   
 }
+
 // #endregion add1
 
 // #region add2
@@ -87,12 +89,54 @@ async function add(...input) {
     return add(...res)
   })
 }
+
 // #endregion add2
 
+// #region bigNumAdd
+let a = '900719925474099'
+let b = '123456789999999999'
 
-// #endregion
-// #region
-// #endregion
+export const bigNumAdd = function (a, b) {
+  // 取两个数字的最大长度
+  let maxLength = Math.max(a.length, b.length)
+  
+  // 用0去补齐长度
+  a = a.padStart(maxLength, 0)  // "000900719925474099"
+  b = b.padStart(maxLength, 0)  // "123456789999999999"
+  
+  //定义加法过程中需要用到的变量
+  let t = 0
+  let f = 0   // 满 10 进位
+  let sum = ''
+  
+  // 从尾端开始计算，也就是从个位开始计算，个十百千万
+  for (let i = maxLength - 1; i >= 0; i--) {
+    // 对应的下标相加，加上上一的进位 （9 + 9 = 18）
+    t = parseInt(a[i]) + parseInt(b[i]) + f
+    
+    // 相加值，除以10（满10进1位），向下取整，获取到进位（18 / 10 = 1）
+    f = Math.floor(t / 10)
+    
+    // 相加值，对10取余，获取对应的位置的数字（18 % 10 = 8）
+    sum = t % 10 + sum
+    
+    // 第一轮 sum = 8
+    // 第二轮 sum = 98
+    
+  }
+  
+  // 相加后字符串的第一位（这里指下标的第一位）对应数值应该是最大位（个十百千万）
+  if (f == 1) {
+    sum = '1' + sum
+  }
+  return sum
+  
+}
+
+bigNumAdd(a, b)
+
+// #endregion bigNumAdd
+
 // #region
 // #endregion
 // #region
