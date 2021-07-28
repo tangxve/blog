@@ -39,14 +39,8 @@ module.exports = {
           collapsable: true,
           path: '/fe/',
           children: [
-            {
-              title: '数据类型',
-              collapsable: false,
-              children: [
-                '/fe/js/1-1-数据类型',
-                '/fe/js/1-2-类型判断原理',
-              ]
-            },
+            '/fe/js/1-1-数据类型',
+            '/fe/js/1-2-类型判断原理',
             {
               title: '作用域 与 闭包',
               collapsable: false,
