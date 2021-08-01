@@ -12,11 +12,11 @@ module.exports = {
   dest: './dist',
   locales: {
     '/': {
-      lang: 'zh-CN'
+      lang: 'zh-CN',
     }
   },
   head: [
-    ['link', {rel: 'icon', href: '/logo-2.jpeg'}]
+    ['link', { rel: 'icon', href: '/logo-2.jpeg' }]
   ],
   theme: '',
   port: 9000,
@@ -25,28 +25,13 @@ module.exports = {
   },
   themeConfig: {
     nav: [
-      {text: 'Home', link: '/'},
-      {
-        text: '前端基础', link: '/fe/', items: [
-          {text: 'webpack 相关', link: '/fe/webpack/'},
-          {text: '微前端 相关', link: '/fe/microFE/'},
-        ]
-      },
-      {
-        text: '面试', link: '/interview/', items: [
-          {text: 'css 相关', link: '/interview/css/'},
-          {text: 'vue 相关', link: '/interview/vue/'},
-          {text: 'js 相关', link: '/interview/js/'},
-          {text: 'http 相关', link: '/interview/http/'},
-          {text: '在线编程', link: '/interview/coding/'}
-        ]
-      },
-      {text: '踩坑笔记', link: '/notes/'},
-      {text: '常用软件', link: '/app/'},
-      {text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'}
+      { text: 'Home', link: '/' },
+      { text: '前端面试', link: '/fe/' },
+      { text: '踩坑笔记', link: '/notes/' },
+      { text: '常用软件', link: '/app/' },
+      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
       // { text: 'GitHub', link: 'https://github.com/Tang1118' },
     ],
-    displayAllHeaders: true,
     sidebar: {
       '/fe/': [
         {
@@ -61,7 +46,7 @@ module.exports = {
               collapsable: false,
               children: [
                 '/fe/js/2-1-作用域',
-                '/fe/js/2-2-闭包'
+                '/fe/js/2-2-闭包',
               ]
             },
             {
@@ -70,7 +55,7 @@ module.exports = {
               children: [
                 '/fe/js/3-1-原型',
                 '/fe/js/3-2-继承',
-                '/fe/js/3-3-new 关键字'
+                '/fe/js/3-3-new 关键字',
               ]
             },
             {
@@ -79,14 +64,14 @@ module.exports = {
               children: [
                 '/fe/js/4-1-this和执行上下文',
                 '/fe/js/4-2-call-apply-bind',
-                '/fe/js/4-3-箭头函数和普通函数'
+                '/fe/js/4-3-箭头函数和普通函数',
               ]
             },
             {
               title: 'Event Loop（事件机制）',
               collapsable: false,
               children: [
-                '/fe/js/5-1-说下 event loop'
+                '/fe/js/5-1-说下 event loop',
                 // '/fe/js/5-2-宏任务和微任务的区别',
                 // '/fe/js/5-3-浏览器的执行顺序',
               ]
@@ -99,7 +84,7 @@ module.exports = {
                 '/fe/js/6-2-Promise',
                 '/fe/js/6-3-generator原理',
                 '/fe/js/6-4-async、await',
-                '/fe/js/6-5-Set 和 Map 数据结构'
+                '/fe/js/6-5-Set 和 Map 数据结构',
                 // '/fe/js/6-6-JS 怎么实现 let 和 const 作用域的',
                 // '/fe/js/6-7-JS Babel 和 polyfill',
               ]
@@ -115,7 +100,7 @@ module.exports = {
               children: [
                 '/fe/js/8-1-js执行过程',
                 '/fe/js/8-2-js 垃圾回收',
-                '/fe/js/8-3-内存泄露'
+                '/fe/js/8-3-内存泄露',
               ]
             },
             {
@@ -125,11 +110,15 @@ module.exports = {
                 '/fe/js/深浅拷贝',
                 '/fe/js/函数柯理化',
                 '/fe/js/防抖和节流',
-                '/fe/js/浮点数精度问题'
+                '/fe/js/浮点数精度问题',
               ]
-            }
+            },
 
           ]
+        },
+        {
+          title: '编程题',
+          path: '/fe/coding/'
         },
         {
           collapsable: true,
@@ -139,30 +128,27 @@ module.exports = {
         {
           title: '微前端',
           path: '/fe/microFE/'
-        }
-      ],
-      '/interview/': [
-        {
-          collapsable: true,
-          title: 'Vue 系列',
-          path: '/interview/vue/'
         },
         {
-          title: 'Css 系列',
-          path: '/interview/css/'
+          title: 'Vue 面试',
+          path: '/fe/mianshi/vue/'
         },
         {
-          title: 'JavaScript 系列',
-          path: '/interview/js/'
+          title: 'JS 面试',
+          path: '/fe/mianshi/js/'
         },
         {
-          title: 'Http 系列',
-          path: '/interview/http/'
+          title: 'Css 面试',
+          path: '/fe/mianshi/css/'
         },
         {
-          title: 'coding',
-          path: '/interview/coding/'
-        }
+          title: 'http 面试',
+          path: '/fe/mianshi/http/'
+        },
+        {
+          title: '面经',
+          path: '/fe/mianshi/面试记录',
+        },
       ],
       '/notes/': [
         {
