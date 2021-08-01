@@ -1,15 +1,41 @@
 # 编程题
 
-## 数组降维 flat 方法
+## flat 数组扁平化/降纬
 ::: details 数组降维 flat 方法
-<<< @/docs/fe/coding/coding.js#flat
+<<< @/docs/interview/coding/coding.js#flat
+:::
+
+## flatten 对象和数组 扁平化
+```javascript
+  // 对象扁平化
+  // 说明：请实现 flatten(input) 函数，input 为一个 javascript 对象（Object 或者 Array），返回值为扁平化后的结果。
+
+const input = {
+    a: 1,
+    b: [1, 2, {c: true}, [3]],
+    d: {e: 2, f: 3},
+    g: null
+  }
+
+//  output如下
+const output = {
+  'a': 1,
+  'b[0]': 1,
+  'b[1]': 2,
+  'b[2].c': true, 'b[3][0]': 3, 'd.e': 2,
+  'd.f': 3
+  // "g": null,  值为null或者undefined，丢弃
+}
+```
+::: details flatten 对象和数组 扁平化
+<<< @/docs/interview/coding/coding.js#flatten
 :::
 
 ## 获取 Url 参数 getQueryString
 
 ## new 关键词方法
 ::: details new 关键词方法
-<<< @/docs/fe/coding/coding.js#myNew
+<<< @/docs/interview/coding/coding.js#myNew
 :::
 
 ###  add
@@ -42,17 +68,17 @@
   :::
 - 方法 1 `Promise.all` + `for` 循环
   ::: details add 方法1
-  <<< @/docs/fe/coding/coding.js#add1
+  <<< @/docs/interview/coding/coding.js#add1
   :::
 
 - 方法 2 `Promise.all` + `while` 循环
   ::: details add 方法2
-  <<< @/docs/fe/coding/coding.js#add2
+  <<< @/docs/interview/coding/coding.js#add2
   :::
   
 
 ## 大数相加
 ::: details 大数相加
-<<< @/docs/fe/coding/coding.js#bigNumAdd
+<<< @/docs/interview/coding/coding.js#bigNumAdd
 :::
 
