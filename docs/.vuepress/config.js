@@ -162,6 +162,10 @@ module.exports = {
         {
           title: 'coding',
           path: '/interview/coding/'
+        },
+        {
+          title: '面经',
+          path: '/interview/面试记录'
         }
       ],
       '/notes/': [
