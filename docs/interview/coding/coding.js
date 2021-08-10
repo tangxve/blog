@@ -97,6 +97,7 @@ flatten(input)
 
 
 // #region myNew
+// 实现一个 new
 function myNew() {
 
   // 创建一个新的对象
@@ -119,6 +120,7 @@ function myNew() {
 // #endregion myNew
 
 // #region add1
+// 实现远程相加
 function add(...args) {
 
   if (args.length <= 1) return Promise.resolve(args[0])
@@ -144,6 +146,7 @@ function add(...args) {
 // #endregion add1
 
 // #region add2
+// 实现远程相加
 async function add(...input) {
   const promiseList = []
 
@@ -164,6 +167,8 @@ async function add(...input) {
 // #endregion add2
 
 // #region bigNumAdd
+
+// 大数相加
 let a = '900719925474099'
 let b = '123456789999999999'
 
@@ -207,24 +212,10 @@ export const bigNumAdd = function (a, b) {
 bigNumAdd(a, b)
 
 // #endregion bigNumAdd
-// #region
-// #endregion
-// #region
-// #endregion
-// #region
-// #endregion
-const arr = [1, 2, 3, 4]
-const deleteIndex = 3
 
-const result = arr.reduce((acc, cur, i) => {
-  if (i !== deleteIndex) {
-    return acc.concat(cur)
-  }
-  return acc
-}, [])
 
-console.log('result', result)
-
+// #region urlParsing
+// 获取 url 参数
 const urlParsing = function (url) {
   const queryStr = url.split('?')[1] || ''
   if (!queryStr) {
@@ -247,7 +238,24 @@ const urlParsing = function (url) {
   return params
 }
 
-// console.log(urlParsing('http://www.baidu.com?a=aa&b=bb&c=cc&d&'));
+console.log(urlParsing('http://www.baidu.com?a=aa&b=bb&c=cc&d&'));
+// #endregion urlParsing
+// #region
+// #endregion
+// #region
+// #endregion
+const arr = [1, 2, 3, 4]
+const deleteIndex = 3
+
+const result = arr.reduce((acc, cur, i) => {
+  if (i !== deleteIndex) {
+    return acc.concat(cur)
+  }
+  return acc
+}, [])
+
+console.log('result', result)
+
 
 class EventBus {
   constructor() {
