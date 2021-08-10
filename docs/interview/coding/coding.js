@@ -238,10 +238,8 @@ const urlParsing = function (url) {
   return params
 }
 
-console.log(urlParsing('http://www.baidu.com?a=aa&b=bb&c=cc&d&'));
+console.log(urlParsing('http://www.baidu.com?a=aa&b=bb&c=cc&d&'))
 // #endregion urlParsing
-// #region
-// #endregion
 // #region
 // #endregion
 const arr = [1, 2, 3, 4]
@@ -256,12 +254,13 @@ const result = arr.reduce((acc, cur, i) => {
 
 console.log('result', result)
 
-
+// #region EventBus
 class EventBus {
   constructor() {
     this._events = {}
   }
 
+  // 订阅事件
   on(type, fn) {
     if (Array.isArray(type)) {
       for (let i = 0; i < type.length; i++) {
@@ -278,6 +277,7 @@ class EventBus {
     }
   }
 
+  // 只执行一次
   once(type, fn) {
     if (Array.isArray(type)) {
       for (let i = 0; i < type.length; i++) {
@@ -296,6 +296,7 @@ class EventBus {
     }
   }
 
+  // 触发事件
   emit(type, ...ars) {
     if (Array.isArray(type)) {
       for (let i = 0; i < type.length; i++) {
@@ -313,6 +314,16 @@ class EventBus {
     }
   }
 
+  // 删除事件
+  remove(type, fn) {
+    if (!this._events[type]) return
+
+    const events = this._events[type]
+    let index = events.findIndex(f => f === fn)
+    events.splice(index, 1)
+  }
+
+  // 关闭所有
   off(type, fn) {
     if (!type) {
       this._events = []
@@ -334,6 +345,43 @@ class EventBus {
     }
   }
 }
+// #endregion EventBus
+
+// #region format
+/**
+ * @param 正则版本
+ * 1、\d{1,3}(?=(\d{3})+$) 表示前面有1~3个数字，后面的至少由一组3个数字结尾
+ * 2、?= 表示正向引用，可以作为匹配的条件，但匹配到的内容不获取，并且作为下一次查询的开始
+ * 3、$& 表示与正则表达式相匹配的内容
+ */
+function format1(num) {
+  if (!num) return
+  const reg = /\d{1,3}(?=(\d{3})+$)/g
+
+  return (num + '').replace(reg, '$&,')
+}
+
+console.log(format1(1234556788))
+
+// reduce 版本
+function formatReduce(num) {
+  if (!num) return
+
+  const str = num + ''
+  // [9,8,7,6,5,4,3,2,1]
+  return str.split('').reverse().reduce((pre, next, i) => {
+    const acc = (i % 3)
+      ? next
+      : next + ','
+
+    return acc + pre
+  })
+}
+
+console.log(formatReduce(123456789))
+
+// #endregion format
+
 
 const _get = function (obj, path, defaultValue = '') {
   const paths = path.replace(/\[/g, '.').replace(/\]/g, '').split('.')
@@ -375,7 +423,7 @@ const _flat = function (arr) {
   foo(arr)
   return result
 }
-console.log(_flat([1, [2, [3, 4, [5, [7]]]]]));
+console.log(_flat([1, [2, [3, 4, [5, [7]]]]]))
 
 const tuofen = function (obj) {
   const transfer = function (str) {
@@ -460,7 +508,7 @@ const maxLength = function (str) {
   }
   return maxCount
 }
-console.log(maxLength('1011101101111110101'));
+console.log(maxLength('1011101101111110101'))
 
 const debounce1 = function (fn, delay) {
   let timer = null
@@ -562,4 +610,4 @@ function timeBitmapToRanges(bitmap) {
   return result
 }
 
-console.log(timeBitmapToRanges('000010100000000000000000000000000000000000000011'));
+console.log(timeBitmapToRanges('000010100000000000000000000000000000000000000011'))
