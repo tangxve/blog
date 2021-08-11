@@ -28,6 +28,7 @@ module.exports = {
       {text: 'Home', link: '/'},
       {
         text: '前端基础', link: '/fe/', items: [
+          {text: '前端基础', link: '/fe/'},
           {text: 'webpack 相关', link: '/fe/webpack/'},
           {text: '微前端 相关', link: '/fe/microFE/'}
         ]
@@ -74,6 +75,7 @@ module.exports = {
             '/fe/js/6-5-Set 和 Map 数据结构',
             // '/fe/js/6-6-JS 怎么实现 let 和 const 作用域的',
             // '/fe/js/6-7-JS Babel 和 polyfill',
+            '/fe/js/ESModule',
             '/fe/js/8-1-js执行过程',
             '/fe/js/8-2-js 垃圾回收',
             '/fe/js/8-3-内存泄露',

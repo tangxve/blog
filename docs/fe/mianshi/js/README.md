@@ -41,6 +41,57 @@ ES6 模块：
     - `import 'url' + a + b `会报错，可以使用 `import('url' + a + b)`
 - `commonJs` 的 `this` 是当前的模块，ES6 模块的 `this` 是 `undefined`
 
+### ESM 循环调用
+```javascript
+// bar.js
+import { foo } from './foo'
+console.log(foo);
+export let bar = 'bar'
+
+// foo.js
+import { bar } from './bar'
+console.log(bar);
+export let foo = 'foo'
+
+// main.js
+import { bar } from './bar'
+console.log(bar)
+```
+
+1. 执行 main.js -> 导入 bar.js
+2. bar.js -> 导入 foo.js
+3. foo.js -> 导入 bar.js -> bar.js 已经执行过直接返回 -> 输出 bar -> bar is not defined， bar 未定义报错
+
+**使用 function 的方式解决：**
+
+```javascript
+// bar.js
+import { foo } from './foo'
+console.log(foo());
+export function bar(){
+  return 'bar'
+}
+
+// foo.js
+import { bar } from './bar'
+console.log(bar());
+export function foo(){
+  return 'foo'
+}
+
+// main.js
+import { bar } from './bar'
+console.log(bar)
+```
+1. 因为函数声明会提示到文件顶部
+2. 所以就可以直接在 foo.js 调用还没执行完毕的bar.js的 bar 方法，
+3. 不要在函数内使用外部变量，因为变量还未声明(let,const)和赋值，var
+
+
+
+### CommonJS 循环调用
+
+
 
 ## JavaScript 中 Map 和 Object 的区别
 Map对象是一种有对应 键/值 对的对象， JS的Object也是 键/值 对的对象 ；
