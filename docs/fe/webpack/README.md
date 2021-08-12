@@ -84,10 +84,16 @@ __webpack_public_path__ = myRuntimePublicPath;
 - webpack 内部默认只能处理，js 模块代码，在打包过程中，它默认把所有遇到的文件当作 js 代码来解析
 - webpack 是使用 loader 来处理每个模块的，而内部的 loader 只能处理 js 模块，如果需要其他模块学院配置不同的 loader
 
-<img src="img/img1.png" width="600">
+<img src="./img/img1.png" width="600">
+
+### 关于配置loader的方式有三种：
+- 配置方式（推荐）：在 webpack.config.js文件中指定 loader
+- 内联方式：在每个 import 语句中显式指定 loader
+- CLI 方式：在 shell 命令中指定它们
 
 
 ### loader 使用方式
+
 
 在 module 中添加一个 rules 数组，这个数组就是针对资源模块的加载规则配置
 
@@ -126,13 +132,13 @@ module.exports = {
 
 `css 文件` ==> `css-loader` ==> `webpack` ==> `bundle.js`
 
-<img src="img/img3.png" width="600">
+<img src="./img/img3.png" width="600">
 
 #### 样式加载失败
 
 css-loader 只是把 css 编译成 一段 css 字符串模块，只会把css模块加载到js中，而并不会使用这个模块
 
-<img src="img/img2.png" width="600">
+<img src="./img/img2.png" width="600">
 
 
 - 使用 style-loader 把 css-loader 转换的结果通过 style 标签添加到页面上
@@ -204,7 +210,7 @@ Webpack 加载资源文件的过程类似于一个工作管道，你可以在这
 
 开发 markdown 加载器，作用 markdown 转 html 在呈现到页面上
 
-<img src="img/img4.png" width="600">
+<img src="./img/img4.png" width="600">
 
 
 1. 开发 markdown-loader
