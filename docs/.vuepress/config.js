@@ -42,7 +42,9 @@ module.exports = {
           {text: '在线编程', link: '/interview/coding/'}
         ]
       },
-      {text: '踩坑笔记', link: '/notes/'},
+      {
+        text: '踩坑笔记', link: '/notes/'
+      },
       {text: '常用软件', link: '/app/'},
       {text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'}
       // { text: 'GitHub', link: 'https://github.com/Tang1118' },
@@ -116,17 +118,18 @@ module.exports = {
         {
           title: 'coding',
           path: '/interview/coding/'
-        },
-        {
-          title: '面经',
-          path: '/interview/面试记录'
         }
+        // {
+        //   title: '面经',
+        //   path: '/interview/面试记录'
+        // }
       ],
       '/notes/': [
         {
-          title: '踩坑笔记',
+          title: '笔记',
           children: [
-            '/notes/WeChat/'
+            '/notes/WeChat/',
+            '/notes/git/'
           ]
         }
       ],
