@@ -1,8 +1,0 @@
-/* 三角形 */
-#sjx {
-    width: 0px;
-    height: 0px;
-    /* 其他设置成 透明色 */
-    border: 40px solid transparent;
-    border-bottom: 80px solid red;
-}
