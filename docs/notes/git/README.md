@@ -13,6 +13,13 @@ remote: Support for password authentication was removed on August 13, 2021.
 
 个人设置页面 => `Setting` => ` Developer settings` => `Personal access tokens` => `Generate new token`
 
+### 设置
+`git remote set-url origin https://<your_token>@github.com/<USERNAME>/<REPO>.git`
+
+- `<your_token>`：换成你自己得到的 token
+- `<USERNAME>`：是你自己 github 的用户名
+- `<REPO>`：是你的仓库名称
+
 ## 常用 Git 命令
 
 #### 1. 新建 git 仓库
