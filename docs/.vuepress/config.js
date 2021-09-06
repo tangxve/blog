@@ -1,9 +1,9 @@
 // console.log('process.env', process.env)
 
-// const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === 'development'
 
-console.log('process', process.cwd())
-const isDev = true
+// console.log('process', process.cwd())
+// const isDev = true
 
 module.exports = {
   base: '/blog/',
@@ -116,14 +116,19 @@ module.exports = {
           path: '/interview/http/'
         },
         {
+          title: '渲染页面过程',
+          path: '/interview/http/渲染页面过程'
+        },
+        {
           title: 'coding',
           path: '/interview/coding/'
         }
-        // {
-        //   title: '面经',
-        //   path: '/interview/面试记录'
-        // }
-      ],
+      ].concat(isDev
+        ? [{
+          title: '面经',
+          path: '/interview/面试记录'
+        }]
+        : []),
       '/notes/': [
         {
           title: '笔记',
