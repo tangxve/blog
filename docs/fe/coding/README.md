@@ -6,7 +6,7 @@
 
 ## flat 数组 扁平化/降纬
 ::: details 数组降维 flat 方法
-<<< @/docs/interview/coding/coding.js#flat
+<<< @/docs/fe/coding/coding.js#flat
 :::
 
 ## flatten 对象和数组 扁平化
@@ -36,17 +36,17 @@ const output = {
 ```
 
 ### 答案：
-<<< @/docs/interview/coding/coding.js#flatten
+<<< @/docs/fe/coding/coding.js#flatten
 :::
 
 ## 获取 url 参数
 ::: details 获取 url 参数
-<<< @/docs/interview/coding/coding.js#urlParsing
+<<< @/docs/fe/coding/coding.js#urlParsing
 :::
 
 ## new 关键词方法
 ::: details new 关键词方法
-<<< @/docs/interview/coding/coding.js#myNew
+<<< @/docs/fe/coding/coding.js#myNew
 :::
 
 ##  远程实现加减乘除运算
@@ -79,26 +79,26 @@ add(3, 5, 2)
 ```
 - 方法 1 `Promise.all` + `for` 循环
 
-<<< @/docs/interview/coding/coding.js#add1
+<<< @/docs/fe/coding/coding.js#add1
 
 - 方法 2 `Promise.all` + `while` 循环
 
-<<< @/docs/interview/coding/coding.js#add2
+<<< @/docs/fe/coding/coding.js#add2
 :::
 
 ## 大数相加
 ::: details 大数相加
-<<< @/docs/interview/coding/coding.js#bigNumAdd
+<<< @/docs/fe/coding/coding.js#bigNumAdd
 :::
 
 ## JS 发布订阅 EventBus
 ::: details JS 发布订阅 EventBus
-<<< @/docs/interview/coding/coding.js#EventBus
+<<< @/docs/fe/coding/coding.js#EventBus
 ::: 
 
 ## JS 实现千分位
 ::: details 实现千分位
-<<< @/docs/interview/coding/coding.js#format
+<<< @/docs/fe/coding/coding.js#format
 ::: 
 
 
