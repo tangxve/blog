@@ -34,15 +34,6 @@ module.exports = {
         ]
       },
       {
-        text: '面试', link: '/interview/', items: [
-          {text: 'css 相关', link: '/interview/css/'},
-          {text: 'vue 相关', link: '/interview/vue/'},
-          {text: 'js 相关', link: '/interview/js/'},
-          {text: 'http 相关', link: '/interview/http/'},
-          {text: '在线编程', link: '/interview/coding/'}
-        ]
-      },
-      {
         text: '踩坑笔记', link: '/notes/'
       },
       {text: '常用软件', link: '/app/'},
@@ -95,40 +86,33 @@ module.exports = {
         {
           title: '微前端',
           path: '/fe/microFE/'
-        }
-      ],
-      '/interview/': [
+        },
         {
           collapsable: true,
           title: 'Vue 系列',
-          path: '/interview/vue/'
+          path: '/fe/vue/'
         },
         {
           title: 'Css 系列',
-          path: '/interview/css/'
+          path: '/fe/css/'
         },
         {
           title: 'JavaScript 系列',
-          path: '/interview/js/'
+          path: '/fe/js/'
         },
         {
           title: 'Http 系列',
-          path: '/interview/http/'
+          path: '/fe/http/'
         },
         {
           title: '渲染页面过程',
-          path: '/interview/http/渲染页面过程'
+          path: '/fe/http/渲染页面过程'
         },
         {
           title: 'coding',
-          path: '/interview/coding/'
+          path: '/fe/coding/'
         }
-      ].concat(isDev
-        ? [{
-          title: '面经',
-          path: '/interview/面试记录'
-        }]
-        : []),
+      ],
       '/notes/': [
         {
           title: '笔记',
