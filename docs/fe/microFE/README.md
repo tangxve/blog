@@ -38,3 +38,36 @@ iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论�
 ## qiankun 源码分析
 
 [qiankun 源码分析](https://juejin.cn/post/6844904115999342600)
+
+## CSS 隔离
+
+### Shadow DOM
+- 缺点：
+  - 比如说你在使用一些弹窗组件的时候（弹窗很多情况下都是默认添加到了 document.body ）这个时候它就跳过了阴影边界，跑到了主应用里面，样式就丢了。
+  - React 技术栈，而 React 事件代理其实是挂在 document 上的，它也会出一些问题
+
+### scoped CSS
+- experimentalStyleIsolation = true
+
+```css
+// 假设应用名是 react16
+.app-main {
+  font-size: 14px;
+}
+
+div[data-qiankun-react16] .app-main {
+  font-size: 14px;
+}
+```
+
+注意事项: 目前 @keyframes, @font-face, @import, @page 等规则不会支持 (i.e. 不会被改写)
+
+### class 命名空间 （非官方）
+
+- 在子应用的盒子上加一个class，子应用的样式都在这个 class 下
+
+
+
+## JS 沙箱隔离
+
+- ES6 的 proxy，通过代理实现

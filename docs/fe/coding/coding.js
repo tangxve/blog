@@ -345,6 +345,7 @@ class EventBus {
     }
   }
 }
+
 // #endregion EventBus
 
 // #region format
@@ -381,7 +382,6 @@ function formatReduce(num) {
 console.log(formatReduce(123456789))
 
 // #endregion format
-
 
 const _get = function (obj, path, defaultValue = '') {
   const paths = path.replace(/\[/g, '.').replace(/\]/g, '').split('.')
@@ -611,3 +611,22 @@ function timeBitmapToRanges(bitmap) {
 }
 
 console.log(timeBitmapToRanges('000010100000000000000000000000000000000000000011'))
+
+
+const coding = {
+  // getValue
+  getValue(from, ...selectors) {
+    const r = selectors.map(s => {
+      return s
+        // target[xxx] => target.xxx
+        .replace(/\[(\w+)\]/g, '.$1')
+        .splice('.')
+        .reduce((prev, cur) => {
+          return prev && prev[cur]
+        }, from)
+    })
+
+  },
+}
+
+export default coding
