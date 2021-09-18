@@ -40,7 +40,7 @@
 - 说下 promise 和 async、await
 - 说下 webpack
 - instanceof 实现原理
-- ji 的类型，基本数据类型和引用数据类型有什么区别
+- js 的类型，基本数据类型和引用数据类型有什么区别
 - node 了解那些 ❌
 - ts 泛型什么 ❌
 
