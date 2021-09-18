@@ -555,4 +555,7 @@ get state () {
 
 3. 虚拟 DOM 有效的降低大面积真实 DOM 的重绘和排版，因为最后与真实 DOM 比较差异，可以只渲染局部
 
-## 说下 vue 对 diff 算法做了那些优化 todo
+## 说下 vue 优化
+
+- [Vue 项目性能优化 — 实践指南](https://juejin.cn/post/6844903913410314247#heading-2)
+- [黄老师的干货](https://juejin.cn/post/6922641008106668045#heading-8)
