@@ -80,15 +80,6 @@ module.exports = {
         },
         {
           collapsable: true,
-          title: 'webpack',
-          path: '/fe/webpack/'
-        },
-        {
-          title: '微前端',
-          path: '/fe/microFE/'
-        },
-        {
-          collapsable: true,
           title: 'Vue 系列',
           path: '/fe/vue/'
         },
@@ -97,12 +88,21 @@ module.exports = {
           path: '/fe/css/'
         },
         {
-          title: 'JavaScript 系列',
-          path: '/fe/js/'
-        },
-        {
           title: 'Http 系列',
           path: '/fe/http/'
+        },
+        {
+          collapsable: true,
+          title: 'webpack',
+          path: '/fe/webpack/'
+        },
+        {
+          title: 'TypeScript 系列',
+          path: '/fe/ts/'
+        },
+        {
+          title: '微前端',
+          path: '/fe/microFE/'
         },
         {
           title: '渲染页面过程',
