@@ -34,7 +34,7 @@ module.exports = {
         ]
       },
       {
-        text: '踩坑笔记', link: '/notes/'
+        text: '笔记', link: '/notes/'
       },
       {text: '常用软件', link: '/app/'},
       {text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'}
@@ -118,7 +118,8 @@ module.exports = {
           title: '笔记',
           children: [
             '/notes/WeChat/',
-            '/notes/git/'
+            '/notes/git/',
+            '/notes/react/'
           ]
         }
       ],
