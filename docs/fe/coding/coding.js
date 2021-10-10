@@ -13,7 +13,9 @@ export const flat = function (arr = [], depth = 1) {
 
   if (depth > 0) {
     result = arr.reduce((pre, cur) => {
-      return pre.concat(Array.isArray(cur) ? flat(cur, depth--) : cur)
+      return pre.concat(Array.isArray(cur)
+                        ? flat(cur, depth--)
+                        : cur)
     }, [])
 
   } else {
@@ -48,7 +50,7 @@ export const flatten = function (obj, deleteProps = [null, undefined]) {
 
       if (params.length) {
         params.forEach((param, index) => {
-          recurse(param, `${key}[${index}]`)
+          recurse(param, `${ key }[${ index }]`)
         })
       }
 
@@ -67,7 +69,9 @@ export const flatten = function (obj, deleteProps = [null, undefined]) {
           // 是否有可以删除的属性
           const isDeleteProp = deleteProps.some(v => v === params[itemKey])
           if (!isDeleteProp) {
-            recurse(params[itemKey], key ? `${key}.${itemKey}` : itemKey)
+            recurse(params[itemKey], key
+                                     ? `${ key }.${ itemKey }`
+                                     : itemKey)
           }
         }
       }
@@ -87,8 +91,8 @@ export const flatten = function (obj, deleteProps = [null, undefined]) {
 
 var input = {
   a: 1,
-  b: [1, 2, {c: true}, [3]],
-  d: {e: 2, f: 3},
+  b: [1, 2, { c: true }, [3]],
+  d: { e: 2, f: 3 },
   g: null
 }
 
@@ -98,7 +102,7 @@ flatten(input)
 
 // #region myNew
 // 实现一个 new
-function myNew() {
+export const myNew = function () {
 
   // 创建一个新的对象
   var obj = new Object()
@@ -113,7 +117,9 @@ function myNew() {
   var ret = Constructor.apply(obj, arguments)
 
   // 如果构造函数返回值是对象，就返回它，如果不是就返回 新对象
-  return typeof ret === 'object' ? ret || obj : obj
+  return typeof ret === 'object'
+         ? ret || obj
+         : obj
 
 }
 
@@ -166,9 +172,8 @@ async function add(...input) {
 
 // #endregion add2
 
+/* 大数相加 */
 // #region bigNumAdd
-
-// 大数相加
 let a = '900719925474099'
 let b = '123456789999999999'
 
@@ -210,7 +215,6 @@ export const bigNumAdd = function (a, b) {
 }
 
 bigNumAdd(a, b)
-
 // #endregion bigNumAdd
 
 
@@ -350,7 +354,7 @@ class EventBus {
 
 // #region format
 /**
- * @param 正则版本
+ * 千分位数
  * 1、\d{1,3}(?=(\d{3})+$) 表示前面有1~3个数字，后面的至少由一组3个数字结尾
  * 2、?= 表示正向引用，可以作为匹配的条件，但匹配到的内容不获取，并且作为下一次查询的开始
  * 3、$& 表示与正则表达式相匹配的内容
@@ -363,27 +367,33 @@ function format1(num) {
 }
 
 console.log(format1(1234556788))
+// #endregion format
 
-// reduce 版本
+// #region qianfenwei-reduce
+// 千分位数 - reduce 版本
 function formatReduce(num) {
   if (!num) return
 
   const str = num + ''
-  // [9,8,7,6,5,4,3,2,1]
-  return str.split('').reverse().reduce((pre, next, i) => {
-    const acc = (i % 3)
-      ? next
-      : next + ','
 
-    return acc + pre
-  })
+  // [9,8,7,6,5,4,3,2,1]
+  return str.split('')
+    .reverse()
+    .reduce((pre, next, i) => {
+      const acc = (i % 3) ? next : next + ','
+      return acc + pre
+    })
 }
 
 console.log(formatReduce(123456789))
+// #endregion qianfenwei-reduce
 
-// #endregion format
-
-const _get = function (obj, path, defaultValue = '') {
+// #region getValue
+// 实现 getValue 函数来获取path对应的值
+const getValue = function (obj, path, defaultValue = '') {
+  // 1、将[ 替换 .
+  // 2、将 ] 替换为空
+  // 3、然后更具 . 进行截取
   const paths = path.replace(/\[/g, '.').replace(/\]/g, '').split('.')
   let result = obj
   while (paths.length) {
@@ -397,12 +407,84 @@ const _get = function (obj, path, defaultValue = '') {
   }
   return result
 }
-// console.log(_get({ a: [{ b: [{c: 2}] }]}, 'a[0].b[0].c', 3));
-// console.log(_get({ a: [[{c: 4}] ]}, 'a[0][0].c', 3));
-const object = {'a': [{'b': {'c': 3}}]} // path: 'a[0].b.c'
-const array = [{'a': {b: [1]}}] // path: '[0].a.b[0]'
-console.log(_get(object, 'a[0].b.c', 'null'))
-console.log(_get(array, '[0].a.b[0]', 'null'))
+// #endregion getValue
+
+// #region getValue2
+// 字符串 + reduce
+const getValue = function (from, ...selectors) {
+  const r = selectors.map(s => {
+    return s
+      // target[xxx] => target.xxx
+      .replace(/\[(\w+)\]/g, '.$1')
+      .splice('.')
+      .reduce((prev, cur) => {
+        return prev && prev[cur]
+      }, from)
+  })
+}
+// #endregion getValue2
+
+// #region transferKey
+const transferKey = function (obj) {
+  const transfer = function (str) {
+    if (!str) {
+      return ''
+    }
+    if (typeof str !== 'string') {
+      return str
+    }
+    const strList = str.split('_')
+    return strList.reduce((pre, next) => {
+
+      // 把字符串的第一位转换成 大写，a => A, bbb => Bbb,
+      next = next.replace(next[0], next[0].toUpperCase())
+
+      return `${ pre }${ next }`
+    })
+  }
+
+  if (typeof obj === 'string') {
+    return transfer(obj)
+  }
+
+  const _getValue = function (o) {
+    const result = Array.isArray(o) ? [] : {}
+    for (const key in o) {
+      const value = o[key]
+      if (Array.isArray(o)) {
+        if (typeof value == 'object') {
+          result.push(_getValue(value))
+        } else {
+          result.push(transfer(value))
+        }
+      } else {
+        if (typeof value === 'object') {
+          result[transfer(key)] = _getValue(value)
+        } else {
+          result[transfer(key)] = value
+        }
+      }
+    }
+    return result
+  }
+
+  return _getValue(obj)
+}
+const testData = {
+  a_bbb: 123,
+  a_g: [1, 2, 3, 4],
+  a_d: {
+    s: 2,
+    s_d: 3
+  },
+  a_f: [1, 2, 3, {
+    a_g: 5
+  }, 'a_b_c'],
+  a_d_s: 1
+}
+console.log(transferKey(testData))
+// #endregion transferKey
+
 
 const _flat = function (arr) {
   // return arr.toString().split(',');
@@ -425,81 +507,13 @@ const _flat = function (arr) {
 }
 console.log(_flat([1, [2, [3, 4, [5, [7]]]]]))
 
-const tuofen = function (obj) {
-  const transfer = function (str) {
-    if (!str) {
-      return ''
-    }
-    if (typeof str !== 'string') {
-      return str
-    }
-    const strList = str.split('_')
-    return strList.reduce((pre, next) => {
-      next = next.replace(next[0], next[0].toUpperCase())
-      return `${pre}${next}`
-    })
-  }
-  if (typeof obj === 'string') {
-    return transfer(obj)
-  }
-  const _tuofen = function (o) {
-    const result = Array.isArray(o) ? [] : {}
-    for (const key in o) {
-      const value = o[key]
-      if (Array.isArray(o)) {
-        if (typeof value == 'object') {
-          result.push(_tuofen(value))
-        } else {
-          result.push(transfer(value))
-        }
-      } else {
-        if (typeof value === 'object') {
-          result[transfer(key)] = _tuofen(value)
-        } else {
-          result[transfer(key)] = value
-        }
-      }
-    }
-    return result
-  }
-  return _tuofen(obj)
-}
-const testData = {
-  a_bbb: 123,
-  a_g: [1, 2, 3, 4],
-  a_d: {
-    s: 2,
-    s_d: 3
-  },
-  a_f: [1, 2, 3, {
-    a_g: 5
-  }, 'a_b_c'],
-  a_d_s: 1
-}
-console.log(tuofen(testData))
-// console.log(tuofen(['a_b_c', 'bb_cc_dd', 'c']));
-// console.log(tuofen('aa_bb_cc_dd_ee_ff'));
-// console.log(tuofen(['aa_bb_cc', ['aaa_bbb_ccc', ['xxx_yyy_zzz']]]))
-// console.log(tuofen({
-//     aa_aa_aa: 'a',
-//     bb_bb_bb: 'b'
-// }));
-// console.log(tuofen({
-//     aa_aa_aa: {
-//         cc_cc_cc: {
-//             dd_dd_dd: 'b'
-//         }
-//     },
-//     bb_bb_bb: 'b'
-// }));
-
 const maxLength = function (str) {
   const result = []
   let maxCount = 0
   for (let i = 0; i < str.length; i++) {
     const s = str[i]
     result[i] = 0
-    if (s == 1) {
+    if (s === 1) {
       result[i] = (result[i - 1] || 0) + 1
       if (maxCount < result[i]) {
         maxCount = result[i]
@@ -509,6 +523,59 @@ const maxLength = function (str) {
   return maxCount
 }
 console.log(maxLength('1011101101111110101'))
+
+// 时间转换
+function timeBitmapToRanges(bitmap) {
+  function addZero(str) {
+    if (+str < 10) {
+      return `0${ str }`
+    }
+    return str
+  }
+
+  function arrayToDate(arr) {
+    return `${ addZero(arr[0]) }:${ addZero(arr[1]) }`
+  }
+
+  const result = []
+  let start = [0, 0]
+  let end = [0, 0]
+  let startIndex = 0
+  let endIndex = -1
+  for (let i = 0; i < bitmap.length; i++) {
+    const b = bitmap[i]
+    if (b == 1) {
+      if (endIndex < startIndex) {
+        endIndex = startIndex
+        end = [...start]
+      }
+      end[1] += 30
+      if (end[1] === 60) {
+        end[0] += 1
+        end[1] = 0
+      }
+      endIndex = i
+      if (i === bitmap.length - 1) {
+        result.push(`${ arrayToDate(start) }~${ arrayToDate(end) }`)
+      }
+    } else {
+      if (endIndex >= startIndex) {
+        result.push(`${ arrayToDate(start) }~${ arrayToDate(end) }`)
+        start = [...end]
+      }
+      start[1] += 30
+      if (start[1] === 60) {
+        start[0] += 1
+        start[1] = 0
+      }
+      startIndex = i
+    }
+  }
+  return result
+}
+
+console.log(timeBitmapToRanges('000010100000000000000000000000000000000000000011'))
+
 
 const debounce1 = function (fn, delay) {
   let timer = null
@@ -560,73 +627,115 @@ const throttle = function (fn, wait) {
   }
 }
 
-// 时间转换
-function timeBitmapToRanges(bitmap) {
-  function addZero(str) {
-    if (+str < 10) {
-      return `0${str}`
-    }
-    return str
+class validate {
+  constructor() {
+    this.inputValus = []
   }
 
-  function arrayToDate(arr) {
-    return `${addZero(arr[0])}:${addZero(arr[1])}`
+
+  add
+}
+
+const eleValue = {}
+
+function inputV(event, err) {
+  const value = event.target.value
+
+  const errMsg = validate(value)
+
+  err.innerHTML = errMsg
+
+  const className = event.target.className
+
+  delete eleValue[className]
+
+  if (Object.values(eleValue).some(otherV => otherV === value)) {
+    err.innerHTML = '存在重复的value'
   }
+
+  eleValue[className] = value
+}
+
+
+function validate(v) {
+  console.log(v)
+  if (!v.length) {
+    return '不能为空'
+  }
+
+  if (v.length > 10) {
+    return 'overlength'
+  }
+  return ''
+}
+
+const inputEle1 = document.getElementById(1)
+const inputEle2 = document.getElementById(2)
+const inputEle3 = document.getElementById(3)
+const spanEle1 = document.getElementById('span1')
+const spanEle2 = document.getElementById('span2')
+const spanEle3 = document.getElementById('span3')
+
+inputEle1.addEventListener('input', function (e) {
+  inputV(e, spanEle1)
+})
+
+const text = `
+- 章节一
+  - 标题一
+  - 标题二 
+    - 子标题三
+      - 子子标题一
+  - 标题三
+- 章节二
+  - 标题一
+  - 标题二
+`
+
+class Node {
+  constructor({ value, level }) {
+    this.value = value
+    this.level = level
+    this.children = []
+  }
+}
+
+function parseTree(text) {
+  const res = text.split('\n').filter(item => item !== '')
 
   const result = []
-  let start = [0, 0]
-  let end = [0, 0]
-  let startIndex = 0
-  let endIndex = -1
-  for (let i = 0; i < bitmap.length; i++) {
-    const b = bitmap[i]
-    if (b == 1) {
-      if (endIndex < startIndex) {
-        endIndex = startIndex
-        end = [...start]
-      }
-      end[1] += 30
-      if (end[1] === 60) {
-        end[0] += 1
-        end[1] = 0
-      }
-      endIndex = i
-      if (i === bitmap.length - 1) {
-        result.push(`${arrayToDate(start)}~${arrayToDate(end)}`)
-      }
+
+  const curNodeArr = []
+
+  let curParent = null
+
+  let curNode = null
+
+  for (let i = 0; i < res.length; i++) {
+    if (res[i][0] === '-') {
+      curParent = result
+      curNode = new Node({ value: res[i].split('- ')[1], level: 1 })
+      curParent.push(curNode)
+      curNodeArr[0] = curNode
     } else {
-      if (endIndex >= startIndex) {
-        result.push(`${arrayToDate(start)}~${arrayToDate(end)}`)
-        start = [...end]
+      const childArr = res[i].split('- ')
+      const level = childArr[0].length / 2 + 1
+      const value = childArr[1]
+      const nowNode = new Node({ value, level })
+      if (curNode.level < level) {
+        curNode.children.push(nowNode)
+        curParent = curNode
+        curNodeArr[level - 1] = curNode = nowNode
+      } else if (curNode.level === level) {
+        curParent.children.push(nowNode)
+        curNodeArr[level - 1] = curNode = nowNode
+      } else {
+        curNode = nowNode
+        curParent = curNodeArr[level - 2]
+        curParent.children.push(nowNode)
       }
-      start[1] += 30
-      if (start[1] === 60) {
-        start[0] += 1
-        start[1] = 0
-      }
-      startIndex = i
     }
   }
-  return result
 }
 
-console.log(timeBitmapToRanges('000010100000000000000000000000000000000000000011'))
-
-
-const coding = {
-  // getValue
-  getValue(from, ...selectors) {
-    const r = selectors.map(s => {
-      return s
-        // target[xxx] => target.xxx
-        .replace(/\[(\w+)\]/g, '.$1')
-        .splice('.')
-        .reduce((prev, cur) => {
-          return prev && prev[cur]
-        }, from)
-    })
-
-  },
-}
-
-export default coding
+console.log(result)

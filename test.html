@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div>
+  <input type="text" class="input1" id="1">
+  <span id="span1"></span>
+  <input type="text" class="input2" id="2">
+  <span id="span2"></span>
+  <input type="text" class="input3" id="3">
+  <span id="span3"></span>
+</div>
+</body>
+<script>
+  const eleValue = {}
+
+  function inputV(event, err) {
+    const value = event.target.value
+
+    const errMsg = validate(value)
+
+    err.innerHTML = errMsg
+
+    const className = event.target.className
+
+    delete eleValue[className]
+
+    if (Object.values(eleValue).some(otherV => otherV === value && value !== '')) {
+      err.innerHTML = '存在重复的value'
+    }
+
+    eleValue[className] = value
+  }
+
+
+  function validate(v) {
+    if (!v.length) {
+      return '不能为空'
+    }
+
+    if (v.length > 10) {
+      return 'overlength'
+    }
+    return ''
+  }
+
+  const inputEle1 = document.getElementById(1)
+  const inputEle2 = document.getElementById(2)
+  const inputEle3 = document.getElementById(3)
+  const spanEle1 = document.getElementById('span1')
+  const spanEle2 = document.getElementById('span2')
+  const spanEle3 = document.getElementById('span3')
+
+  inputEle1.addEventListener('input', function (e) {
+    inputV(e, spanEle1)
+  })
+  inputEle2.addEventListener('input', function (e) {
+    inputV(e, spanEle2)
+  })
+  inputEle3.addEventListener('input', function (e) {
+    inputV(e, spanEle3)
+  })
+
+</script>
+</html>
