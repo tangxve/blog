@@ -211,12 +211,12 @@ class App extends React {
 - 常用的钩子：useState、useEffect、useContext、useReducer
 - hooks 一律使用 use 前缀命名：useXxx
 
-### useEffect
+## useEffect 副作用
 
 不管什么情况，初始化阶段都会调用
 
 1. 如果第二参数没有，每次任意 state 状态发生改变都会调用，初始化会调用
-   1. 注意使用场景，不要这没有参数的情况下修改任意 state 有可能出现循环回调，系统卡死
+    1. 注意使用场景，不要这没有参数的情况下修改任意 state 有可能出现循环回调，系统卡死
 
 ```jsx {8}
 import React, { useState, useEffect } from 'react'
@@ -249,12 +249,173 @@ useEffect(() => {
 ```tsx {9}
 import React, { useState, useEffect } from 'react'
 
-const [count, setCount] = useState < number > (0)
-const [robotGallery, setRobotGallery] = useState < any[] > ([])
+const [count, setCount] = useState<number>(0)
+const [robotGallery, setRobotGallery] = useState<any[]>([])
 
 useEffect(() => {
   document.title = '点击' + count
   console.log('useEffect3333')
 }, [count])
 ```
+
+### useEffect 处理 异步
+
+useEffect 只支持返回一个函数，不能使用 async，async 返回一个 promise
+
+解决方法： 在声明一个 异步函数 fetchData
+
+```js
+  useEffect(() => {
+  const fetchData = async () => {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users')
+    const data = await res.json()
+    setRobotGallery(data)
+  }
+
+  fetchData()
+}, [])
+```
+
+## useContext 全局数据传递
+
+### 声明
+
+1. 通过 `React.createContext` 声明并导出,可以声明函数或对象
+2. 添加 `<xxxxx.Provider>` 关键标签 `value` 属性传递
+
+```jsx {4,5,12,13,15,16}
+// AppState.jsx 文件
+const defaultContextValue = { username: '德玛西亚' }
+
+export const appContext = React.createContext(defaultContextValue)
+export const appSetStateContext = React.createContext(undefined)
+
+export const AppStateProvider = (props) => {
+
+  const [state, setState] = useState(defaultContextValue)
+
+  return (
+    <appContext.Provider value={ state }>
+      <appSetStateContext.Provider value={ setState }>
+        { props.children }
+      </appSetStateContext.Provider>
+    </appContext.Provider>
+  )
+}
+```
+
+### 使用
+
+1. import 引入 数据
+2. 使用 `useContext`
+
+```jsx {2,6,8}
+import React, { useContext } from 'react'
+import { appContext, appSetStateContext } from '../AppState'
+
+export const withAddToCart = (ChildComponent) => {
+  return (props) => {
+    const defaultContext = useContext(appContext)   // => { username: '德玛西亚' }
+
+    const setState = useContext(appSetStateContext) // => undefined
+  }
+}
+
+```
+
+## 自定义 hooks
+
+- `hook` 是函数
+- 命名以 `use` 开头
+- 内部可调用其他 `hook` 函数
+- 并非 `React` 的特性
+
+
+```jsx
+export const useAddToCart = () => {
+  // 复用逻辑
+  const addToCart = () => {
+    console.log('加入购物车，我是复用逻辑')
+  }
+  return addToCart
+}
+```
+
+## 高阶组件 HOC
+
+**高阶组件是参数为组件，返回值为新组件的函数。**
+
+一般用来封装复用的逻辑
+
+业务场景： 1、普通商品卡片 2、打折商品卡片 3、拥有复用的页面逻辑：加入购物车
+
+- 编写高阶组件
+
+```jsx
+// AddToCart.jsx
+import React from 'react'
+
+export const withAddToCart = (ChildComponent) => {
+  // 复用逻辑
+  const addToCart = () => {
+    console.log('加入购物车，我是复用逻辑')
+  }
+  return (props) => { // props 是业务中默认传递
+    return <ChildComponent { ...props } addToCart={ addToCart } />
+  }
+}
+
+```
+
+- 使用高阶组件：
+
+普通商品组件：
+
+```jsx
+// Robot 组件
+import { withAddToCart } from './AddToCart'
+
+const Robot = ({ name, id, addToCart }) => {
+  const value = useContext(appContext)
+  return (
+    <div>
+      <h2>{ name }</h2>
+      <p>{ id }</p>
+    </div>
+  )
+}
+export default withAddToCart(Robot)
+```
+
+打折商品组件：
+```jsx
+// RobotDiscount 组件
+import { withAddToCart } from './AddToCart'
+
+const RobotDiscount = ({ name, id, addToCart }) => {
+  const value = useContext(appContext)
+  return (
+    <div>
+      <h2>打折商品</h2>
+      <h2>{ name }</h2>
+      <p>{ id }</p>
+    </div>
+  )
+}
+export default withAddToCart(RobotDiscount)
+```
+
+业务中使用：
+```jsx
+// 正常商品
+<Robot name={ 'name' } id={ 'id' } />
+// 打折商品
+<RobotDiscount name={ 'name' } id={ 'id' } />
+```
+
+### 命名规范
+
+一般以 with 开头
+
+`withXxxx` ==> `withAddToCart`  
 

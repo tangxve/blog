@@ -35,9 +35,9 @@
   ]
 }
 ```
-## 顶层属性
+### 顶层属性
 
 
-## compilerOptions 编译选项
+### compilerOptions 编译选项
 
-##
+## 接口 和 type 的区别
