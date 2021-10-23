@@ -41,10 +41,10 @@ class RemoveCommentsPlugin {
         if (name.endsWith('js')) {
           // 获取内容文本
           const contents = compilation.assets[name].source()
-          
+
           // 处理内容
           const noComments = contents.replace(/\/\*{2,}\/\s?/g, '')
-          
+
           // 覆盖原来的方法
           compilation.assets[name] = {
             source: () => noComments,
@@ -90,7 +90,7 @@ async function async1() {
   console.log('2async1 start')
   await async2()
   console.log('async1 end')
-  
+
 }
 
 async function async2() {
@@ -142,12 +142,12 @@ var outVar = '最外层变量'
 // 最外层函数
 function outFun() {
   var inVar = '内层变量'
-  
+
   // 内层函数 innerFun
   function innerFun() {
     console.log(inVar)
   }
-  
+
   innerFun()
 }
 
@@ -163,15 +163,15 @@ var a = 10
 
 function f1() {
   var b = 20
-  
+
   function f2() {
     var c = 30
-    
+
     console.log(a)  // 自由变量，顺着作用域链找
     console.log(b)  // 自由变量，顺着作用域链找
     console.log(c)  // 当前作用域变量
   }
-  
+
   f2()
 }
 
@@ -185,7 +185,7 @@ function fn() {
 
 function show(f) {
   var x = 20;
-  
+
   (function () {
     f() // 10, 而不是20
   })()
@@ -197,11 +197,11 @@ var a = 10
 
 function fn() {
   var b = 20
-  
+
   function bar() {
     console.log(a + b)  // 30
   }
-  
+
   return bar
 }
 
@@ -211,19 +211,19 @@ b = 200
 
 x() // bar() ==> 30
 
-(function (p) {
-  
-  let x = 1
-  
-  setTimeout(() => {
-    
-    console.log(x) // 1   实参
-    
-    console.log(p) // 20  形参
-    
-  }, 100)
-  
-})(10)
+  (function (p) {
+
+    let x = 1
+
+    setTimeout(() => {
+
+      console.log(x) // 1   实参
+
+      console.log(p) // 20  形参
+
+    }, 100)
+
+  })(10)
 
 function baz() {
   console.log('baz')
@@ -278,7 +278,7 @@ function superClass() {
 
 function subClass() {
   superClass.call(this)
-  
+
   this.func()
 }
 
@@ -300,7 +300,7 @@ p1.say() // name, undefined
 function Person(name) {
   this.name = name
   this.say = function () {
-    
+
     var self = this
     setTimeout(function () {
       console.log('name', self.name)
@@ -315,23 +315,23 @@ p1.say() // name shiba
 // 首页
 Function.prototype.bind = function (oThis) {
   var aArgs = Array.prototype.slice.call(arguments, 1)
-  
+
   var fToBind = this
-  
+
   var fNOP = function () {}
-  
+
   var fBound = function () {
     fBound.prototype = this instanceof fNOP ? new fNOP() : fBound.prototype
-    
+
     return fToBind.apply(this instanceof fNOP ? this : oThis || this, aArgs)
   }
-  
+
   if (this.prototype) {
     fNOP.prototype = this.prototype
   }
-  
+
   return fBound
-  
+
 }
 
 function Parent() {
@@ -352,9 +352,9 @@ console.log(c1.getName()) // 11
 
 function createObj(o) {
   function F() {}
-  
+
   F.prototype = o
-  
+
   return new F()
 }
 
@@ -378,13 +378,13 @@ console.log(person2.arrs) // ['11', '22', '33']
 
 function createObj(o) {
   var cloe = Object.create(o)
-  
+
   cloe.sayName = function () {
     console.log('hi')
   }
-  
+
   return cloe
-  
+
 }
 
 function Person(name) {
@@ -398,7 +398,7 @@ Person.prototype.getName = function () {
 
 function Child(name, age) {
   Person.call(this, name)
-  
+
   this.age = age
 }
 
@@ -435,18 +435,18 @@ console.log(child1)
 
 function obj(parent) {
   function F() {}
-  
+
   F.prototype = parent
-  
+
   return new F()
 }
 
 function inherit(child, parent) {
-  
+
   var proto = obj(parent.prototype)
-  
+
   proto.constructor = child
-  
+
   child.prototype = proto
 }
 
@@ -497,44 +497,44 @@ process.nextTick(function foo() {
 console.log('10')
 
 function myInstanceof(leftV, rightV) {
-  
+
   // 取右表达式的 prototype 的值
   let rigthProto = rightV.prototype
-  
+
   // 取左表达式的 __proto__ 值
   leftV = leftV.__proto__
-  
+
   while (true) {
     if (leftV === null) {
       return false
     }
-    
+
     // 严格相等时候 返回 true
     if (leftV === rigthProto) {
       return true
     }
-    
+
     leftV = leftV.__proto__
   }
 }
 
 function newOperator() {
-  
+
   var obj = new Object()
-  
+
   var Constructor = [].shift.call(arguments)
-  
+
   obj.__proto__ = Constructor.prototype
-  
+
   Constructor.apply(obj, arguments)
-  
+
   return obj
 }
 
 function Person(name, age) {
   this.name = name
   this.age = age
-  
+
   return '德玛西亚'
 }
 
@@ -550,76 +550,76 @@ console.log(p1.getName())
 
 function newOperator() {
   var obj = new Object()
-  
+
   var Constructor = [].shift.apply(arguments)
-  
+
   obj.__proto__ = Constructor.prototype
-  
+
   var ret = Constructor.apply(obj, arguments)
-  
+
   // 这里判断对象不是很严谨，重在理解 new 的过程
   return typeof ret === 'object' ? ret : obj
 }
 
 Function.prototype.myCallES3 = function (context) {
   context = context || window
-  
+
   context.fn = this
-  
+
   var args = []
-  
+
   for (var i = 1, len = arguments.length; i < len; i++) {
     args.push('arguments[' + i + ']')
   }
-  
+
   ['arguments[1]', 'arguments[2]', 'arguments[3]']
-  
+
   var result = eval('context.fn(' + args + ')')
-  
+
   delete context.fn
-  
+
   return result
 }
 
 Function.prototype.myCall = function (context, ...args) {
-  
+
   context = context || window
-  
+
   // 创建个不会重名的属性
   const fn = Symbol()
-  
+
   context[fn] = this
-  
+
   const result = context[fn](...args)
-  
+
   delete context[fn]
-  
+
   return result
 }
 
 // es3 myApply
 Function.prototype.myApply = function (context, arr) {
   var context = Object(context) || window
-  
+
   context.fn = this
-  
+
   var result
-  
+
   if (!arr) {
     // 没有传第二次参数，直接调用
     result = context.fn()
   } else {
     var args = []
-    
+
     for (var i = 0, len = arr.length; i < len; i++) {
       args.push('arr[' + i + ']')
     }
-    
+
     result = eval('context.fn(' + args + ')')
   }
-  
+
   delete context.fn
-  
+
   return result
 }
 
@@ -627,64 +627,64 @@ Function.prototype.myApply = function (context, arr) {
 
 Function.prototype.myApply = function (context, arr) {
   context = context || window
-  
+
   const fn = Symbol()
-  
+
   context[fn] = this
-  
+
   let result
-  
+
   if (Array.isArray(arr)) {
     result = context[fn](...arr)
   } else {
     result = context[fn]()
   }
-  
+
   delete context[fn]
-  
+
   return result
-  
+
 }
 
 // 普通版
 Function.prototype.myBind = function (context) {
-  
+
   // 判断是否是 函数
   if (typeof this !== 'function') {
     throw  new Error('Error')
   }
-  
+
   // 绑定函数的 this（调用 bind 的函数）
   var self = this
-  
+
   // 获取 myBind 函数的 第二个到最后一个的参数
   var args = Array.prototype.slice.call(arguments, 1)
-  
+
   // 作为构造函数使用时，声明空函数做中转，不要绑在 this 上
   var fNOP = function () {}
-  
+
   // 返回的函数
   var fBound = function () {
-    
+
     // 获取返回函数的参数
     var bindArgs = Array.prototype.slice.call(arguments)
-    
+
     // 改变 this 指向
     self.apply(this instanceof fBound ? this : context, args.concat(bindArgs))
   }
-  
+
   // 修改返回函数的 prototype 为绑定函数的 prototype，实例可以实例就可以访问原型的的值
   fNOP.prototype = this.prototype
   fBound.prototype = new fNOP()
-  
+
   return fBound
 }
 
 Object.create = function (o) {
   function f() {}
-  
+
   f.prototype = o
-  
+
   return new f
 }
 // es6 bind
@@ -693,15 +693,15 @@ Function.prototype.myBind = function (context, ...args1) {
   if (typeof this !== 'function') {
     throw  new Error('Error')
   }
-  
+
   const self = this
-  
+
   return function F(...args2) {
     // 判断是否构造函
     if (this instanceof F) {
       return new self(...args1, ...args2)
     }
-    
+
     return self.apply(context, args1.concat(args2))
   }
 }
@@ -747,35 +747,35 @@ obj1.name = 'wade'
 console.log('obj2', obj2) // obj2 { name: 'Kobe', address: { x: 200, y: 100 } }
 
 function deepClone(obj, hash = new WeakMap) {
-  
+
   // 如果是不存在就不拷贝了
   if (obj === null) return obj
-  
+
   // 时间格式处理
   if (obj instanceof Date) return new Date(obj)
-  
+
   // 正则格式处理
   if (obj instanceof RegExp) return new RegExp(obj)
-  
+
   // 如果对象是普通值的话就不需要拷贝
   if (typeof obj !== 'object') return obj
-  
+
   // 是对象的话就要进行 深拷贝
   if (hash.get(obj)) return hash.get(obj)
-  
+
   // 找到对象所属原型上的 constructor，而原型上的 constructor 指向的是当前类本身
   let cloneObj = new obj.constructor()
-  
+
   hash.set(obj, cloneObj)
-  
+
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      
+
       // 递归拷贝
       cloneObj[key] = deepClone(obj[key], hash)
     }
   }
-  
+
   return cloneObj
 }
 
@@ -873,12 +873,12 @@ function cloneOtherType(targe, type) {
 }
 
 function clone(target, map = new WeakMap()) {
-  
+
   // 克隆原始类型
   if (!isObject(target)) {
     return target
   }
-  
+
   // 初始化
   const type = getType(target)
   let cloneTarget
@@ -887,13 +887,13 @@ function clone(target, map = new WeakMap()) {
   } else {
     return cloneOtherType(target, type)
   }
-  
+
   // 防止循环引用
   if (map.get(target)) {
     return target
   }
   map.set(target, cloneTarget)
-  
+
   // 克隆set
   if (type === setTag) {
     target.forEach(value => {
@@ -901,7 +901,7 @@ function clone(target, map = new WeakMap()) {
     })
     return cloneTarget
   }
-  
+
   // 克隆map
   if (type === mapTag) {
     target.forEach((value, key) => {
@@ -909,7 +909,7 @@ function clone(target, map = new WeakMap()) {
     })
     return cloneTarget
   }
-  
+
   // 克隆对象和数组
   const keys = type === arrayTag ? undefined : Object.keys(target)
   forEach(keys || target, (value, key) => {
@@ -918,7 +918,7 @@ function clone(target, map = new WeakMap()) {
     }
     cloneTarget[key] = clone(target[key], map)
   })
-  
+
   return cloneTarget
 }
 
@@ -926,7 +926,7 @@ function clone(target, map = new WeakMap()) {
 
 function debounce(f, wait) {
   let timer
-  
+
   return (...args) => {
     clearTimeout(timer)
     timer = setTimeout(() => {
@@ -939,12 +939,12 @@ function debounce(f, wait) {
 
 function throttle(f, time) {
   let pre = 0
-  
+
   return function (...args) {
     if (Date.now() - pre > time) {
-      
+
       pre = Data.now()
-      
+
       f(...args)
     }
   }
@@ -952,7 +952,7 @@ function throttle(f, time) {
 
 function throttle(f, wait) {
   let timer = null
-  
+
   return function (...args) {
     if (!timer) {
       timer = setTimeout(() => {
@@ -1002,15 +1002,38 @@ function getValue(obj, path, defaultValue) {
   if (!Array.isArray(path)) {
     path = stringToPath(path)
   }
-  
+
   let i = 0
   while (obj != null && i < path.length) {
     obj = obj[path[i++]]
   }
-  
+
   return obj === void 0 ? defaultValue : obj
 }
 
 console.log(getValue(object, 'a[0].b.c', 0))
 console.log(getValue(array, '[0].a.b[0]', 12))
 console.log(getValue(array, '[0].a.b[0].c', 12))
+
+
+const arr = [{ a: 1 }, { b: 1 }, { c: 1 }, { a: 1 }]
+
+const result = []
+
+arr.reduce((pre, cur) => {
+  if (!pre || pre.length === 0) {
+    pre?.push(cur)
+
+    return pre
+  }
+
+  const isFlag = pre.some(preItem => preItem.a === cur.a)
+
+  if (!isFlag) {
+    pre?.push(cur)
+    return pre
+  }
+
+}, result)
+
+console.log(result)
