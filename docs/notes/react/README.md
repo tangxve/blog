@@ -332,7 +332,11 @@ export const withAddToCart = (ChildComponent) => {
 
 
 ```jsx
+import React, { useContext } from 'react'
+// 命名以 use 开头
 export const useAddToCart = () => {
+  // 内部可以调用其他 hook 函数
+  const setState = useContext(appSetStateContext)
   // 复用逻辑
   const addToCart = () => {
     console.log('加入购物车，我是复用逻辑')
