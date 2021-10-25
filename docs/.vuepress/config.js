@@ -16,7 +16,7 @@ module.exports = {
     }
   },
   head: [
-    ['link', {rel: 'icon', href: '/logo-2.jpeg'}]
+    ['link', { rel: 'icon', href: '/logo-2.jpeg' }]
   ],
   theme: '',
   port: 9000,
@@ -25,19 +25,19 @@ module.exports = {
   },
   themeConfig: {
     nav: [
-      {text: 'Home', link: '/'},
+      { text: 'Home', link: '/' },
       {
         text: '前端基础', link: '/fe/', items: [
-          {text: '前端基础', link: '/fe/'},
-          {text: 'webpack 相关', link: '/fe/webpack/'},
-          {text: '微前端 相关', link: '/fe/microFE/'}
+          { text: '前端基础', link: '/fe/' },
+          { text: 'webpack 相关', link: '/fe/webpack/' },
+          { text: '微前端 相关', link: '/fe/microFE/' }
         ]
       },
       {
         text: '笔记', link: '/notes/'
       },
-      {text: '常用软件', link: '/app/'},
-      {text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/'}
+      { text: '常用软件', link: '/app/' },
+      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' }
       // { text: 'GitHub', link: 'https://github.com/Tang1118' },
     ],
     // displayAllHeaders: true,
@@ -130,7 +130,8 @@ module.exports = {
             '/app/chrome/',
             '/app/homebrew/',
             '/app/nvm/',
-            '/app/sh/'
+            '/app/sh/',
+            '/app/webstrom/'
           ]
         }
       ]
