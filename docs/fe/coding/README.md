@@ -173,6 +173,13 @@ const testData = {
 :::
 
 
+## 将文字版本的目录，解析成树结构 parseTree
+
+::: details parseTree
+<<< @/docs/fe/coding/coding.js#parseTree
+:::
+
+
 
 
 

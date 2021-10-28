@@ -486,6 +486,80 @@ console.log(transferKey(testData))
 // #endregion transferKey
 
 
+// #region parseTree
+const text = `
+- 章节一
+  - 标题一
+  - 标题二 
+    - 子标题三
+      - 子子标题一
+  - 标题三
+- 章节二
+  - 标题一
+  - 标题二
+`
+
+class Node {
+  constructor({ value, level }) {
+    this.value = value
+    this.level = level
+    this.children = []
+  }
+}
+
+function parseTree(text) {
+  const res = text.split('\n').filter(item => item !== '')
+
+  const result = []
+
+  const curNodeArr = []
+
+  let curParent = null
+
+  let curNode = null
+
+  for (let i = 0; i < res.length; i++) {
+    if (res[i][0] === '-') {
+      curParent = result
+      curNode = new Node({ value: res[i].split('- ')[1], level: 1 })
+      curParent.push(curNode)
+      curNodeArr[0] = curNode
+    } else {
+      const childArr = res[i].split('- ')
+      const level = childArr[0].length / 2 + 1
+      const value = childArr[1]
+      const nowNode = new Node({ value, level })
+      if (curNode.level < level) {
+        curNode.children.push(nowNode)
+        curParent = curNode
+        curNodeArr[level - 1] = curNode = nowNode
+      } else if (curNode.level === level) {
+        curParent.children.push(nowNode)
+        curNodeArr[level - 1] = curNode = nowNode
+      } else {
+        curNode = nowNode
+        curParent = curNodeArr[level - 2]
+        curParent.children.push(nowNode)
+      }
+    }
+  }
+
+  console.log(result)
+
+  return result
+}
+
+parseTree(text)
+// #endregion parseTree
+
+
+
+
+
+
+
+/* 下面是待整理的  */
+
 const _flat = function (arr) {
   // return arr.toString().split(',');
   // while (arr.some(i => Array.isArray(i))) {
@@ -679,63 +753,3 @@ const spanEle3 = document.getElementById('span3')
 inputEle1.addEventListener('input', function (e) {
   inputV(e, spanEle1)
 })
-
-const text = `
-- 章节一
-  - 标题一
-  - 标题二 
-    - 子标题三
-      - 子子标题一
-  - 标题三
-- 章节二
-  - 标题一
-  - 标题二
-`
-
-class Node {
-  constructor({ value, level }) {
-    this.value = value
-    this.level = level
-    this.children = []
-  }
-}
-
-function parseTree(text) {
-  const res = text.split('\n').filter(item => item !== '')
-
-  const result = []
-
-  const curNodeArr = []
-
-  let curParent = null
-
-  let curNode = null
-
-  for (let i = 0; i < res.length; i++) {
-    if (res[i][0] === '-') {
-      curParent = result
-      curNode = new Node({ value: res[i].split('- ')[1], level: 1 })
-      curParent.push(curNode)
-      curNodeArr[0] = curNode
-    } else {
-      const childArr = res[i].split('- ')
-      const level = childArr[0].length / 2 + 1
-      const value = childArr[1]
-      const nowNode = new Node({ value, level })
-      if (curNode.level < level) {
-        curNode.children.push(nowNode)
-        curParent = curNode
-        curNodeArr[level - 1] = curNode = nowNode
-      } else if (curNode.level === level) {
-        curParent.children.push(nowNode)
-        curNodeArr[level - 1] = curNode = nowNode
-      } else {
-        curNode = nowNode
-        curParent = curNodeArr[level - 2]
-        curParent.children.push(nowNode)
-      }
-    }
-  }
-}
-
-console.log(result)
