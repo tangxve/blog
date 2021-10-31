@@ -330,7 +330,6 @@ export const withAddToCart = (ChildComponent) => {
 - 内部可调用其他 `hook` 函数
 - 并非 `React` 的特性
 
-
 ```jsx
 import React, { useContext } from 'react'
 // 命名以 use 开头
@@ -392,6 +391,7 @@ export default withAddToCart(Robot)
 ```
 
 打折商品组件：
+
 ```jsx
 // RobotDiscount 组件
 import { withAddToCart } from './AddToCart'
@@ -410,6 +410,7 @@ export default withAddToCart(RobotDiscount)
 ```
 
 业务中使用：
+
 ```jsx
 // 正常商品
 <Robot name={ 'name' } id={ 'id' } />
@@ -421,8 +422,7 @@ export default withAddToCart(RobotDiscount)
 
 一般以 with 开头
 
-`withXxxx` ==> `withAddToCart`  
-
+`withXxxx` ==> `withAddToCart`
 
 ## 遇到的问题
 
@@ -462,7 +462,6 @@ export const SideMenu: React.FC = () => {
 
 1.1.1 三级 subSubMenu: key = mIndex_smIndex_smsIndex
 
-
 ```tsx
 export const SideMenu: React.FC = () => {
   return (
@@ -484,4 +483,108 @@ export const SideMenu: React.FC = () => {
 
 ```
 
+## 路由 react-router
 
+其实安装是 react-router-dom
+
+`npm install react-router-dom`
+
+提供了 `BrowserRouter`、`HashRouter`、`Route`、`Switch`、`Link` 等组件
+
+- `<Link />` 组件可以渲染出 `<a/>` 标签
+- `<BrowserRouter />` 组件利用 H5 API 实现路由切换
+- `<HashRouter/ >` 组件利用原生 js 中的 `window.location.hash` 来实现路由切换
+- `Route` 路径组件，会页面堆叠，从上到下匹配路径并渲染页面。没有匹配到就是空页面（可以用来做404页面）
+- `Switch` 切换页面，会对路径做短路处理，每次只渲染一个单独页面，消除页面堆叠影响
+
+### 添加 types 文件
+
+::: tip
+
+只参与开发过程中使用依赖安装到 devDependencies 下，这些打包后不会影响代码的体积变大
+
+:::
+
+`@types/react-router-dom` 只会在开发环境使用，实际运行并不需要，要安装在 devDependencies 下
+
+不会参与最后的发布，这样打包后的体积会缩小，如果体积变大，用户打开网站时间也会变长
+
+### Route 组件
+
+匹配页面
+
+下面这种场景 会吧2个 路径的组件，同时渲染到一个页面上
+
+```tsx
+<BrowserRouter>
+  <Route path={'/'} component={HomePage} />
+  <Route path="/signIn" render={() => <h1>登录</h1>} />
+</BrowserRouter>
+```
+
+添加 exact 属性，精准匹配
+
+exact：告诉 route 组件，有且仅有以 **路径** 一模一样的时候才做页面的匹配，负责继续执行下面的代码
+
+```tsx {2}
+<BrowserRouter>
+  <Route exact path={'/'} component={HomePage} />
+  <Route path="/signIn" render={() => <h1>登录</h1>} />
+</BrowserRouter>
+```
+
+### Switch 组件
+
+会优先渲染匹配到路径，如果配置了 `根路径 '/'` ，会优先渲染到 `根路径 '/'` 上
+
+根路径：`'/'`
+
+路径a：`'/a'`
+
+路径b：`'/b'`
+
+url：`'xxx.com/b'` 这种情况也会匹配到 `根路径 '/'`
+
+配合 exact 使用：
+
+```tsx{4,8}
+<BrowserRouter>
+  <Switch>
+    {/* 匹配顺序 从上到下 一次匹配 */}
+    <Route exact path={'/'} component={HomePage} />
+    <Route path="/signIn" render={() => <h1>登录</h1>} />
+    <Route path="/test" render={() => <h1>test</h1>} />
+    {/* 404 页面 什么路径都没有匹配到 */}
+    <Route render={() => <h1> 404 页面没有找到</h1>} />
+  </Switch>
+</BrowserRouter>
+```
+
+### 完整路由
+
+```tsx
+import React from 'react'
+import styles from './App.module.css'
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
+import { HomePage } from './pages'
+
+function App() {
+  return (
+    <div className={styles.App}>
+      <BrowserRouter>
+        <Switch>
+          {/* 匹配顺序 从上到下 一次匹配 */}
+          <Route exact path={'/'} component={HomePage} />
+          <Route path="/signIn" render={() => <h1>登录</h1>} />
+          <Route path="/test" render={() => <h1>test</h1>} />
+          {/* 404 页面 什么路径都没有匹配到 */}
+          <Route render={() => <h1> 404 页面没有找到</h1>} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  )
+}
+
+export default App
+
+```
