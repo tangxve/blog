@@ -493,9 +493,18 @@ export const SideMenu: React.FC = () => {
 
 - `<Link />` 组件可以渲染出 `<a/>` 标签
 - `<BrowserRouter />` 组件利用 H5 API 实现路由切换
-- `<HashRouter/ >` 组件利用原生 js 中的 `window.location.hash` 来实现路由切换
-- `Route` 路径组件，会页面堆叠，从上到下匹配路径并渲染页面。没有匹配到就是空页面（可以用来做404页面）
 - `Switch` 切换页面，会对路径做短路处理，每次只渲染一个单独页面，消除页面堆叠影响
+- `Route` 路径组件，会页面堆叠，从上到下匹配路径并渲染页面。没有匹配到就是空页面（可以用来做404页面）
+- `<HashRouter/ >` 组件利用原生 js 中的 `window.location.hash` 来实现路由切换
+
+网站系统的要求
+
+- 路由导航与原生浏览器操作一样：使用 `<BrowserRouter />`
+- 路由的路径解析原来与原生浏览器一样，可以自动识别 url 路径：使用 `<Route />`
+- 路径的切换以页面为单位，不要页面堆叠：使用 `<Switch />`
+
+基础路由组成：`<BrowserRouter />` + `<Switch />` + `<Route />`
+
 
 ### 添加 types 文件
 
@@ -531,6 +540,28 @@ exact：告诉 route 组件，有且仅有以 **路径** 一模一样的时候�
   <Route exact path={'/'} component={HomePage} />
   <Route path="/signIn" render={() => <h1>登录</h1>} />
 </BrowserRouter>
+```
+
+Route 组件会给 component 的 props 属性 传递 路由信息：history、location、match 等
+
+路由文件
+
+```tsx {2}
+<BrowserRouter>
+  <Route exact path={'/'} component={HomePage} />
+</BrowserRouter>
+```
+HomePage 文件：
+
+```tsx{3}
+import React from 'react'
+export const HomePage: React.FC = (props) => {
+  console.log(props) // history、location、match 等路由信息
+  return (
+    <h1>HomePage</h1>
+  )
+}
+
 ```
 
 ### Switch 组件
