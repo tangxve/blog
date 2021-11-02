@@ -505,7 +505,6 @@ export const SideMenu: React.FC = () => {
 
 基础路由组成：`<BrowserRouter />` + `<Switch />` + `<Route />`
 
-
 ### 添加 types 文件
 
 ::: tip
@@ -551,6 +550,7 @@ Route 组件会给 component 的 props 属性 传递 路由信息：history、lo
   <Route exact path={'/'} component={HomePage} />
 </BrowserRouter>
 ```
+
 HomePage 文件：
 
 ```tsx{3}
@@ -619,3 +619,106 @@ function App() {
 export default App
 
 ```
+
+## 路由直接的跳转方法
+
+- 高阶组件 `withRouter`
+- Hooks 的方法：`useHistory`, `useParams`, `useRouteMatch`, `useLocation`
+- Link 组件
+
+### 高阶组件方法
+
+高阶组件方法：`react-router-dom` 自己提供的 高阶组件 `withRouter`
+
+`withRouter` 会向组件的 props 提供 `history`, `match`, `location` 等属性
+
+利用 `history.push()` 可以跳转
+
+```tsx{10,13,17}
+import { withRouter, RouteComponentProps } from 'react-router-dom'
+
+interface PropsType extends RouteComponentProps {
+  imageSrc: string
+  title: string
+}
+
+export const ProductImageCompoent: React.FC<PropsType> = ({
+  imageSrc, title, // 业务本身的 props
+  history, match, location  // withRouter 提供的 props
+}) => {
+  return (
+    <div onClick={() => history.push(`/detail/${id}`)}></div>
+  )
+}
+
+export const ProductImage = withRouter(ProductImageCompoent)
+```
+
+### Hooks 的方法
+
+Hooks 的方法：`react-router-dom` 自己提供的hooks方法：`useHistory`, `useParams`, `useRouteMatch`, `useLocation`
+
+利用 `history.push()` 可以跳转
+
+```tsx{4-7,11-12}
+import { useHistory, useParams, useRouteMatch, useLocation } from 'react-router-dom'
+
+export const Header: React.FC = () => {
+  const match = useRouteMatch()
+  const history = useHistory()
+  const params = useParams()
+  const location = useLocation()
+
+  return (
+    <div className={styles['app-header']}>
+      <Button onClick={() => history.push('/register')}>注册</Button>
+      <Button onClick={() => history.push('signIn')}>登陆</Button>
+    </div>
+  )
+}
+```
+
+### Link 组件
+
+使用 Link 组件：
+
+1. 节省代码，避免手动对导航栈进行处理
+2. 会别 a 标签包裹，可以使用a标签的一些特性，比如右击打开新的页面
+
+```tsx{1,5,7}
+import { Link } from 'react-router-dom'
+
+export const ProductImageCompoent: React.FC<PropsType> = ({ id, imageSrc, }) => {
+  return (
+    <Link to={`/detail/${id}`}>
+      <Image src={imageSrc} height={285} width={490} />
+    </Link>
+  )
+}
+```
+
+**Link 组件的原理：**
+
+- 组件 props 接受  `children` , `to` 2个属性
+- 使用 a 标签包裹 `children`
+- 引入 `useHistory` hooks
+- a 标签 使用 `useHistory` 的 push 方法
+```tsx
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+
+interface LinkProps {
+  to: string
+}
+
+const Link: React.FC<LinkProps> = ({ children, to }) => {
+  const history = useHistory()
+  return (
+    <a href={to} onClick={() => history.push(to)}>
+      {children}
+    </a>
+  )
+} 
+```
+
+

@@ -119,8 +119,8 @@ module.exports = {
           children: [
             '/notes/WeChat/',
             '/notes/git/',
-            '/notes/react/',
             '/notes/vue-property-decorator 引入路由钩子函数',
+            '/notes/react/',
           ]
         }
       ],
