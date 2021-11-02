@@ -499,6 +499,7 @@ const text = `
   - 标题二
 `
 
+// 每个节点的内容
 class Node {
   constructor({ value, level }) {
     this.value = value
@@ -508,6 +509,7 @@ class Node {
 }
 
 function parseTree(text) {
+  // 根据关键字分割
   const res = text.split('\n').filter(item => item !== '')
 
   const result = []
