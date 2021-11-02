@@ -1,12 +1,15 @@
 # git / github
 
 ## github 为什么要把密码换成 token
+
 git 提交 报错如下：
+
 ```shell script
 remote: Support for password authentication was removed on August 13, 2021.
 ```
 
 ### github 为什么要把密码换成 token
+
 [官方解释](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/)
 
 ### 如何生成自己的 token
@@ -14,7 +17,10 @@ remote: Support for password authentication was removed on August 13, 2021.
 个人设置页面 => `Setting` => ` Developer settings` => `Personal access tokens` => `Generate new token`
 
 ### 设置
-`git remote set-url origin https://<your_token>@github.com/<USERNAME>/<REPO>.git`
+
+```shell
+git remote set-url origin https://<your_token>@github.com/<USERNAME>/<REPO>.git
+```
 
 - `<your_token>`：换成你自己得到的 token
 - `<USERNAME>`：是你自己 github 的用户名
@@ -270,8 +276,7 @@ yarn deploy
 
 ## 删除 Git 中的所有提交历史记录
 
-::: tip 提示
-以 `master` 分支为例
+::: tip 提示 以 `master` 分支为例
 :::
 
 ```sh
