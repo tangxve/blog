@@ -37,8 +37,8 @@ module.exports = {
         text: '笔记', link: '/notes/'
       },
       { text: '常用软件', link: '/app/' },
-      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' }
-      // { text: 'GitHub', link: 'https://github.com/Tang1118' },
+      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
+      { text: 'GitHub', link: 'https://github.com/tangxve' }
     ],
     // displayAllHeaders: true,
     sidebar: {
@@ -119,7 +119,8 @@ module.exports = {
           children: [
             '/notes/WeChat/',
             '/notes/git/',
-            '/notes/react/'
+            '/notes/react/',
+            '/notes/vue-property-decorator 引入路由钩子函数',
           ]
         }
       ],
