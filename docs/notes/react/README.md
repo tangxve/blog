@@ -620,7 +620,7 @@ export default App
 
 ```
 
-## 路由直接的跳转方法
+## 路由之间的跳转方法
 
 - 高阶组件 `withRouter`
 - Hooks 的方法：`useHistory`, `useParams`, `useRouteMatch`, `useLocation`
