@@ -1,4 +1,4 @@
-# 学习 webpack 
+# 学习 webpack
 
 前端模块化打包工具
 
@@ -24,6 +24,7 @@ module.exports = {
 ```
 
 - 多个入口打包
+
 ```javascript
 // webpack.config.js  
 module.exports = {
@@ -34,7 +35,6 @@ module.exports = {
 ## output 输出
 
 > 可以通过配置 output 选项，告知 webpack 如何向硬盘写入编译文件。注意，即使可以存在多个 entry 起点，但只能指定一个 output 配置。
-
 
 ```javascript
 const path = require('path')
@@ -52,7 +52,8 @@ module.exports = {
 }
 ```
 
-### outpu.publicPath 
+### outpu.publicPath
+
 配置项目的公共路径 一般是cnd路径
 
 ```javascript
@@ -66,16 +67,16 @@ module.exports = {
     // 输出的文件的路径名称
     path: path.join(__dirname, 'dist'),
     // 项目的公共路径 
-    publicPath:'/CDN/apps'
+    publicPath: '/CDN/apps'
   },
 }
 ```
 
 也可以在入口文件中通过 `__webpack_public_path__` 动态配置 (微前端中配置过)
+
 ```javascript
 __webpack_public_path__ = myRuntimePublicPath;
 ```
- 
 
 ## Loader
 
@@ -87,13 +88,12 @@ __webpack_public_path__ = myRuntimePublicPath;
 <img src="./img/img1.png" width="600">
 
 ### 关于配置loader的方式有三种：
+
 - 配置方式（推荐）：在 webpack.config.js文件中指定 loader
 - 内联方式：在每个 import 语句中显式指定 loader
 - CLI 方式：在 shell 命令中指定它们
 
-
 ### loader 使用方式
-
 
 在 module 中添加一个 rules 数组，这个数组就是针对资源模块的加载规则配置
 
@@ -101,7 +101,6 @@ __webpack_public_path__ = myRuntimePublicPath;
 
 - test 属性：它是一个正则表达式，用来匹配打包过程遇到的文件路径
 - use 属性：它用来中的指定文件使用的 loader
-
 
 ```javascript
 const path = require('path')
@@ -140,7 +139,6 @@ css-loader 只是把 css 编译成 一段 css 字符串模块，只会把css模�
 
 <img src="./img/img2.png" width="600">
 
-
 - 使用 style-loader 把 css-loader 转换的结果通过 style 标签添加到页面上
 
 - 多个 loader 的执行顺序，从后往前执行
@@ -176,19 +174,11 @@ module.exports = {
 }
 ```
 
-
 ### 常用的 loader
 
-| 名称       | 说明 |
-| --------  | --- | --- |
-|file-loader	| 将一个文件中的 import/require() 解析为 url，并且将文件发送到输出文件夹。|
-|url-loader	| 用于将文件转换为 base64 URI 的 loader。|
-|babel-loader| 编译 js 文件 | 
-|css-loader| 处理 css 文件，并对 @import 和 url() 进行处理|
-|style-loader| 把 CSS 插入到 DOM 中|
-|eslint-loader| lint 检查 | 
-|vue-loader | 处理 .vue 文件| 
-
+| 名称 | 说明 | | -------- | --- | --- | |file-loader | 将一个文件中的 import/require() 解析为 url，并且将文件发送到输出文件夹。| |url-loader |
+用于将文件转换为 base64 URI 的 loader。| |babel-loader| 编译 js 文件 | |css-loader| 处理 css 文件，并对 @import 和 url() 进行处理| |style-loader|
+把 CSS 插入到 DOM 中| |eslint-loader| lint 检查 | |vue-loader | 处理 .vue 文件|
 
 ### loader 的工作流程
 
@@ -212,7 +202,6 @@ Webpack 加载资源文件的过程类似于一个工作管道，你可以在这
 
 <img src="./img/img4.png" width="600">
 
-
 1. 开发 markdown-loader
 
 ```javascript
@@ -224,24 +213,24 @@ const marked = require('marked')
 module.exports = source => {
   // 加载到文件到模块内容
   console.log('source:', source)
- 
+
   //  1. 将 markdown 转换为 html 字符串
   const html = marked(source)
-  
+
   // 2. 将 html 字符串拼接为一段导出字符串的 JS 代码 
   // const code = `module.exports = ${JSON.stringify(html)}`
-  const code = `export default ${JSON.stringify(html)}`
+  const code = `export default ${ JSON.stringify(html) }`
 
-  return code 
+  return code
 }
 ```
 
 webpack 也可以通过 ES Modules 的方式导出，webppack 内部会自己转换
-               
 
 2. 使用
 
 在 module.rules 使用 就可以了
+
 ```javascript
 // ./webpack.config.js
 module.exports = {
@@ -273,16 +262,16 @@ const marked = require('marked')
 module.exports = source => {
   // 加载到文件到模块内容
   console.log('source:', source)
- 
+
   //  1. 将 markdown 转换为 html 字符串
   const html = marked(source)
-  
+
   // 2. 返回处理后的结果
   return html
 }
 ```
 
-- 引入 html-loader 处理 
+- 引入 html-loader 处理
 
 ```javascript
 // ./webpack.config.js
@@ -306,13 +295,11 @@ module.exports = {
 }
 ```
 
-
 ## plugin
 
 - webpake 插件机制的目的是为了增强 webpack 在项目自动化构建方面的能力
 - loader 是负责完成项目中各种各样的资源模块加载，从而实现整体项目模块化
 - plugin 是解决项目除了资源模块打包以外的自动化工作，plugin 能力范围更广、用途也更多
-
 
 常用的插件场景：
 
@@ -322,7 +309,6 @@ module.exports = {
 - 拷贝不需要参与打包的资源文件到输出目录
 - 压缩 webpack 打包完后输出的文件
 - 自动发布打包结果到服务器实现自动部署
-
 
 ### 自动清理上次打包的结果 （CleanWebpackPlugin）
 
@@ -347,7 +333,7 @@ module.exports = {
 - html 也输出到 dist 目录中，上线只需要把 dist 目录发布出去就行
 - HTML 中的 script 标签是自动引入的，所以可以确保资源文件的路径是正常的。
 - 可以动态生成 模版 以及模版里面 title、 meta标签的信息
- 
+
 ```javascript
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -368,7 +354,7 @@ module.exports = {
 }
 ```
 
-### 用于复制文件的插件 copy-webpack-plugin 
+### 用于复制文件的插件 copy-webpack-plugin
 
 不需要参与构建的静态文件，复制到输出目录下面
 
@@ -394,16 +380,15 @@ module.exports = {
     }),
     // 复制文件
     new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: 'public', to: 'public'
-          },
-        ]
+      patterns: [
+        {
+          from: 'public', to: 'public'
+        },
+      ]
     })
   ]
 }
 ```
-
 
 ### 手写一个 插件
 
@@ -418,11 +403,12 @@ module.exports = {
 - webpack 启动的时候会调用这个函数，这个函数会接受一个 compiler 的对象参数
 - compiler 参数是 webpack 构建过程最核心的对象，这个对象可以使用
 
-1. compiler 对象 
+1. compiler 对象
+
 ```javascript
 // 手写插件
 class RemoveCommentsPlugin {
-  apply (compiler) {
+  apply(compiler) {
     // compiler => 包含了我们此次构建的所有配置信息
     console.log('RemoveCommentsPlugin 启动')
   }
@@ -436,7 +422,6 @@ class RemoveCommentsPlugin {
 - 插件的名字
 - 挂载到钩子上函数，函数可以接收一个 compilation 参数，这个参数是此次允许打包的上下文
 
-
 简单流程
 
 1. 通过 compilation.assets 属性回去资源文件信息，它是一个对象，其中对象的 key 是每一个文件的名称
@@ -447,20 +432,16 @@ class RemoveCommentsPlugin {
 
 ```javascript
 class RemoveCommentsPlugin {
-  apply (compiler) {
+  apply(compiler) {
     compiler.hooks.emit.tap('RemoveCommentsPlugin', compilation => {
       // compilation => 可以理解为此次打包的上下文
       for (const name in compilation.assets) {
         if ()
-      }
+          }
     })
   }
 }
 ```
-
-
-
-
 
 ## webpack 打包流程工作原理
 
@@ -471,9 +452,8 @@ class RemoveCommentsPlugin {
 5. 递归依赖树，将每个模块交给对应的 Loader 处理；
 6. 合并 Loader 处理完的结果，将打包结果输出到 dist 目录。
 
-
-
 ## webpack 工作流程
+
 1. 参数解析
 2. 找到入口文件
 3. 调用 Loader 编译文件
@@ -482,12 +462,13 @@ class RemoveCommentsPlugin {
 6. 输出文件
 
 ## 打包加速的方法
+
 - 多线程编译，加快编译速度：thread-loader（四软特）、happypack
 - 第三方依赖外链 script 引入：vue、ui组件、JQuery等
-- Tree Shaking（谁给ing）摇树：基于es6 提供的模块系统，对代码惊喜静态分析，
-并在压缩阶段将代码中死代码（dead code）移除，减少代码体积
+- Tree Shaking（谁给ing）摇树：基于es6 提供的模块系统，对代码惊喜静态分析， 并在压缩阶段将代码中死代码（dead code）移除，减少代码体积
 
 ## webpack 常用的插件
+
 - TerserPlugin（特si）（老版本用UglifyJsPlugin）：压缩代码，删除 log 日志
 - CopyWebpackPlugin：复制文件，dist 目录下 复制到 /nginx/dist/ 目录
 - webpack-bundle-analyzer（ban dou）（安的来ze儿）：webpack打包出来的各个文件体积大小，以便我们定位大文件，进行体积优化
@@ -495,14 +476,64 @@ class RemoveCommentsPlugin {
 - HotModuleReplacementPlugin：页面热更新插件
 
 ## 常用的 loader
+
 - babel-loader：转换es6语法，打补丁
 - style-loader：将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的js文件中
 - css-loader：加载 import 进来的css
 
+## webpack 性能优化
+
+### 打包分析
+
+打包分析
+
+::: tip 提示
+
+webpack 性能优化之前，可以通过 `webpack-bundle-analyzer` 插件，知道每个包的文件大小，打包的时间多少，这些对我们进行性能优化很有帮助
+:::
+
+安装：
+
+```shell
+npm install webpack-bundle-analyzer --save-dev
+```
+
+webpack.prod.js 使用这个插件：
+
+```js
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const prodConfig = {
+  // 其它配置项
+  mode: 'production',
+  plugins: [
+    new BundleAnalyzerPlugin()
+  ]
+}
+```
+
+配置完毕后，运行npm run build命令来查看打包分析结果，会在浏览器提供一个静态的页面
+
+### 缩小文件的搜索范围
+
+:::tip 
+
+webpack 的一个配置参数 `Resolve` 的作用：它告诉 webpack 怎么去搜索文件。
+
+它同样有几个属性需要我们理解：
+
+- `extension`（扩展）：它告诉 webpack 当我们在导入模块，**但没有写模块的后缀**时应该如果去查找模块。
+- `mainFileds`：它告诉 webpack 当我们导入模块，**但没有写模块的具体名字时**，应该如何查找这个模块
+- `alias`（别名）：当我们有一些不得引用的第三方库或模版的时候，可以通过设置别名，直接引入它的 `.min.js` 文件，执行可以在库内的直接解析
+- 其他 `include`、`exclude`、`test` 来配合loader 进行限制文件的搜索范围
+  :::
+
+todo:[Webpack 构建速度优化](https://www.cxyzjd.com/article/sinat_17775997/88716768)
 
 
+- 优化 loader 配置
+- 优化 resolve.modules 配置
+- 优化 resolve.extension 配置
 
 
-
-
+### 使用 DllPlugin 优化
 
