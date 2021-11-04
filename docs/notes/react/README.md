@@ -24,7 +24,6 @@
 - 构建函数 constructor 是唯一可以初始化 state 的地方
 
 ```js
-
 class ShoppingCart extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
@@ -60,28 +59,22 @@ props 就是传入函数的参数，是传入组件内部的数据。
 
 ## Css 样式使用方式
 
-- 直接引入整个 css 文件
+1、直接引入整个 css 文件：
 
-```js
-import './index.css'
+```jsx
+import './index.css';
 
-<
-div
-className = "app" / >
+<div className="app">< /div>
 ```
 
 容易造成全区污染
 
 - css in js 模块化引入组件
 
-```js
-import styleEffects
+```jsx
+import style from './index.css';
 
-'./index.css'
-
-< div
-className = { styles.app }
-/>
+<div className={ styles.app }></div>
 ```
 
 标签的 class 名称是动态生产的，可能对调试造成麻烦
@@ -93,21 +86,27 @@ className = { styles.app }
 
 ### 1、setState 同步执行，异步更新视图
 
-```js
-// this.state.count = 0
+dom 视图上会显示 count = 1, 视图会异步更新
 
-this.setState({ count: this.state.count + 1 })
+```js{6,8}
+// state 伪代码 
+this.state.count = 0;
 
-console.log('count:', this.state.count) // this.state.count = 0 
+this.setState({ count: this.state.count + 1 });
 
-// dom 视图上会显示 count = 1
+console.log('count:', this.state.count); // this.state.count = 0 
+
+// dom 视图上会显示 count = 1, 视图会异步更新
 ```
 
 ### 2、setState 第二个参数，异步回调
 
 使用第二个参数，可以获取更新后的数据
 
-```js
+```jsx{5}
+// state 伪代码 
+this.state.count = 0;
+
 this.setState({ count: this.state.count + 1 }, () => {
   console.log('count:', this.state.count) // this.state.count = 1
 })
@@ -119,9 +118,13 @@ this.setState({ count: this.state.count + 1 }, () => {
 
 下面 2 个 setState 执行，最后也是以增量为 1 添加的
 
-页面的只会增量加1
+**视图页面的只会增量加 1**
 
-```jsx
+```jsx{7,11}
+// state 伪代码 
+this.state.count = 0;
+
+// 业务 伪代码
 <button onClick={ () => {
   this.setState({ count: this.state.count + 1 }, () => {
     console.log('count:', this.state.count) // this.state.count = 1
@@ -135,24 +138,28 @@ this.setState({ count: this.state.count + 1 }, () => {
 
 解决方法：第一个参数接受一个函数，获取上一个生命周期的 state
 
-**第一个参数可以获取上一个生命周期的 state 和 Props**
+**第一个参数可以获取上一个生命周期的 state 和 Props**：`preState`, `preProps`
 
-```jsx
-// this.state.count = 0
+`每次点击执行 2 个 setState，最后的结果 this.state.count 每次会 + 2`
 
+```jsx{4,8,11,15,17}
+// state 伪代码 
+this.state.count = 0;
+
+// 每点击一次 this.state.count + 2，拿到的结果会是 2 / 4 / 6
 <button
   onClick={ () => {
     // 第一个参数可以获取上一个生命周期的 state 和 Props
     this.setState((preState, preProps) => {
       return { count: preState.count + 1 }
     }, () => {
-      console.log('count:', this.state.count) // this.state.count = 2
+      console.log('count:', this.state.count) // this.state.count = 2 / 4 / 6
     })
 
     this.setState((preState, preProps) => {
       return { count: preState.count + 1 }
     }, () => {
-      console.log('count:', this.state.count) // this.state.count = 2
+      console.log('count:', this.state.count) // this.state.count = 2 / 4 / 6
     })
   } }></button>
 ```
@@ -703,6 +710,7 @@ export const ProductImageCompoent: React.FC<PropsType> = ({ id, imageSrc, }) => 
 - 使用 a 标签包裹 `children`
 - 引入 `useHistory` hooks
 - a 标签 使用 `useHistory` 的 push 方法
+
 ```tsx
 import React from 'react'
 import { useHistory } from 'react-router-dom'
