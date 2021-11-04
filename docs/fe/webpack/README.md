@@ -558,11 +558,30 @@ module.exports = {
 }
 ```
 
-2、优化 resolve.modules 配置
+**2、优化 resolve.modules 配置**
 
-- resolve.modules 用于配置 webpack 去哪些目录上
--
-- 优化 resolve.extension 配置
+`resolve.modules` 用于配置 webpack 去那先目录下查处第三方的依赖
 
+默认为：`['node_modules']`， 但是它会先当前目录的 `./node_modules`查找
+
+如果没有的话再去 `../node_modules` 最后到根目录
+
+解决：安装的第三方依赖都在当前目录下，就没有必要一层一层的往上查找，直接明确明确存放的绝对位置
+
+```js
+module.exports = {
+  resolve: {
+    modules: [path.resolve(__dirname, 'node_modules')]
+  }
+}
+```
+
+**3、优化 resolve.extension 配置**
+
+`extensions` 它告诉了 Webpack 当我们在导入模块，但没有写模块的后缀时，应该如何去查找模块。
+
+默认为 extensions: `['js','json']`;
+
+- 当遇到 `require('./data')`
 ### 使用 DllPlugin 优化
 
