@@ -176,9 +176,13 @@ module.exports = {
 
 ### 常用的 loader
 
-| 名称 | 说明 | | -------- | --- | --- | |file-loader | 将一个文件中的 import/require() 解析为 url，并且将文件发送到输出文件夹。| |url-loader |
-用于将文件转换为 base64 URI 的 loader。| |babel-loader| 编译 js 文件 | |css-loader| 处理 css 文件，并对 @import 和 url() 进行处理| |style-loader|
-把 CSS 插入到 DOM 中| |eslint-loader| lint 检查 | |vue-loader | 处理 .vue 文件|
+- file-loader：将一个文件中的 import/require() 解析为 url，并且将文件发送到输出文件夹
+- url-loader：用于将文件转换为 base64 URI 的 loader。
+- babel-loader：编译 js 文件
+- css-loader：处理 css 文件，并对 @import 和 url() 进行处理
+- style-loader：把 CSS 插入到 DOM 中
+- eslint-loader：lint 检查
+- vue-loader：处理 .vue 文件
 
 ### loader 的工作流程
 
@@ -430,14 +434,14 @@ class RemoveCommentsPlugin {
 4. 暴露一个新的 source 方法来返回新文本内容，和一个 size方法，用来返回内容的大小
 5. 最后覆盖掉 compilation.assets[key] 对应的属性，webpack 内部要求的格式
 
-```javascript
+```js
 class RemoveCommentsPlugin {
   apply(compiler) {
     compiler.hooks.emit.tap('RemoveCommentsPlugin', compilation => {
       // compilation => 可以理解为此次打包的上下文
       for (const name in compilation.assets) {
-        if ()
-          }
+        // compilation[name]
+      }
     })
   }
 }
@@ -483,10 +487,14 @@ class RemoveCommentsPlugin {
 
 ## webpack 性能优化
 
+- 打包分析：使用 `webpack-bundle-analyzer` 插件
+- 缩小文件的搜索范围
+- Tree Shaking去掉冗余的代码
+- DllPlugin减少第三方库的编译次数
+
 ### 打包分析
 
 打包分析
-
 ::: tip 提示
 
 webpack 性能优化之前，可以通过 `webpack-bundle-analyzer` 插件，知道每个包的文件大小，打包的时间多少，这些对我们进行性能优化很有帮助
@@ -515,25 +523,46 @@ const prodConfig = {
 
 ### 缩小文件的搜索范围
 
-:::tip 
+:::tip
 
 webpack 的一个配置参数 `Resolve` 的作用：它告诉 webpack 怎么去搜索文件。
 
-它同样有几个属性需要我们理解：
-
-- `extension`（扩展）：它告诉 webpack 当我们在导入模块，**但没有写模块的后缀**时应该如果去查找模块。
-- `mainFileds`：它告诉 webpack 当我们导入模块，**但没有写模块的具体名字时**，应该如何查找这个模块
-- `alias`（别名）：当我们有一些不得引用的第三方库或模版的时候，可以通过设置别名，直接引入它的 `.min.js` 文件，执行可以在库内的直接解析
-- 其他 `include`、`exclude`、`test` 来配合loader 进行限制文件的搜索范围
+- `resolve.extension`（扩展）：它告诉 webpack 当我们在导入模块，**但没有写模块的后缀**时应该如果去查找模块。
+- `resolve.mainFileds`：它告诉 webpack 当我们导入模块，**但没有写模块的具体名字时**，应该如何查找这个模块
+- `resolve.alias`（别名）：当我们有一些不得引用的第三方库或模版的时候，可以通过设置别名，直接引入它的 `.min.js` 文件，执行可以在库内的直接解析
+- Loader 使用`include`、`exclude`、`test` 属性 来配合 loader 进行限制文件的搜索范围
   :::
 
-todo:[Webpack 构建速度优化](https://www.cxyzjd.com/article/sinat_17775997/88716768)
+**1、优化 loader 配置**
 
+Loader 处理文件的转换操作是很耗时的，所以需要让尽可能少的文件被 Loader 处理
 
-- 优化 loader 配置
-- 优化 resolve.modules 配置
+`include`、`exclude`、`test` 来配合loader 进行限制文件的搜索范围
+
+`babel-loader?cacheDirectory`：开启转换结果缓存
+
+```js{7,9,10}
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          'babel-loader?cacheDirectory',  // 开启转换结果缓存
+        ],
+        include: path.resolve(__dirname, 'src'),    // 只对src目录中文件采用babel-loader
+        exclude: path.resolve(__dirname, ' ./node_modules'),    // 排除node_modules目录下的文件
+      },
+    ]
+  }
+}
+```
+
+2、优化 resolve.modules 配置
+
+- resolve.modules 用于配置 webpack 去哪些目录上
+-
 - 优化 resolve.extension 配置
-
 
 ### 使用 DllPlugin 优化
 
