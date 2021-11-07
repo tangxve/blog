@@ -750,3 +750,6 @@ Redux 统一保存数据，在隔离了数据与UI的同时，负责处理数据
 
 
 ### 简单的 Redux 工作流
+
+- 根据 redux 的定义，任何 store 中的 state 都是 immutable 状态（不可修改的）
+- 通过新的对象来代替原有你的数据: `const newState = { ...state, language: action.payload }`
