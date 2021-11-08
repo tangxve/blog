@@ -489,8 +489,17 @@ class RemoveCommentsPlugin {
 
 - 打包分析：使用 `webpack-bundle-analyzer` 插件
 - 缩小文件的搜索范围
+    - `resolve.extension`（扩展）：它告诉 webpack 当我们在导入模块，**但没有写模块的后缀**时应该如果去查找模块。
+    - `resolve.mainFileds`：它告诉 webpack 当我们导入模块，**但没有写模块的具体名字时**，应该如何查找这个模块
+    - `resolve.alias`（别名）：当我们有一些不得引用的第三方库或模版的时候，可以通过设置别名，直接引入它的 `.min.js` 文件，执行可以在库内的直接解析
+    - Loader 使用`include`、`exclude`、`test` 属性 来配合 loader 进行限制文件的搜索范围
 - Tree Shaking去掉冗余的代码
 - DllPlugin减少第三方库的编译次数
+- HappyPack并行构建优化
+
+[Webpack 构建速度优化](https://www.cxyzjd.com/article/sinat_17775997/88716768)
+
+[Webpack性能优化](https://wangtunan.github.io/blog/webpack/webpack/optimization.html#%E6%89%93%E5%8C%85%E5%88%86%E6%9E%90)
 
 ### 打包分析
 
@@ -578,10 +587,23 @@ module.exports = {
 
 **3、优化 resolve.extension 配置**
 
-`extensions` 它告诉了 Webpack 当我们在导入模块，但没有写模块的后缀时，应该如何去查找模块。
+`extensions （扩展）` 它告诉了 Webpack 当我们在导入模块，但没有写模块的后缀时，应该如何去查找模块。
 
 默认为 extensions: `['js','json']`;
 
-- 当遇到 `require('./data')`
+- 当遇到 `require('./data')` 时 webpack 会尝试寻找data.js，没有找到再去找 data.json； 如果列表越长，或者正确的后缀越往后，尝试的次数就越多
+- 提升构建优化需要最守
+    - 频率出现高的文件后缀优先放在前面
+    - 列表尽可能小
+    - 书写导入语句时，尽量写上后缀
+
 ### 使用 DllPlugin 优化
+
+DllPlugin减少第三方库的编译次数
+
+### 使用 HappyPack 并行构建优化
+
+核心原理：将 webpack 中最耗时的loader 文件转换操作任务，分解到多个进程并行处理，从而减少构建
+
+
 

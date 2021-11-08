@@ -27,8 +27,8 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       {
-        text: '前端基础', link: '/fe/', items: [
-          { text: '前端基础', link: '/fe/' },
+        text: '前端相关', link: '/fe/', items: [
+          { text: 'JS 基础', link: '/fe/' },
           { text: 'webpack 相关', link: '/fe/webpack/' },
           { text: '微前端 相关', link: '/fe/microFE/' }
         ]
@@ -84,6 +84,11 @@ module.exports = {
           path: '/fe/vue/'
         },
         {
+          collapsable: true,
+          title: 'React 系列',
+          path: '/fe/react/'
+        },
+        {
           title: 'Css 系列',
           path: '/fe/css/'
         },
@@ -120,7 +125,6 @@ module.exports = {
             '/notes/WeChat/',
             '/notes/git/',
             '/notes/vue-property-decorator 引入路由钩子函数',
-            '/notes/react/',
           ]
         }
       ],
