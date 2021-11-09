@@ -84,6 +84,11 @@ module.exports = {
           path: '/fe/vue/'
         },
         {
+          collapsable: true,
+          title: 'React 系列',
+          path: '/fe/react/'
+        },
+        {
           title: 'Css 系列',
           path: '/fe/css/'
         },
@@ -120,7 +125,6 @@ module.exports = {
             '/notes/WeChat/',
             '/notes/git/',
             '/notes/vue-property-decorator 引入路由钩子函数',
-            '/notes/react/',
           ]
         }
       ],
