@@ -123,6 +123,7 @@ module.exports = {
           title: '笔记',
           children: [
             '/notes/WeChat/',
+            '/notes/WeChat/微信支付',
             '/notes/git/',
             '/notes/vue-property-decorator 引入路由钩子函数',
           ]
