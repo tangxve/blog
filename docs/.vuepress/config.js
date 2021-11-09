@@ -27,8 +27,8 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       {
-        text: '前端基础', link: '/fe/', items: [
-          { text: '前端基础', link: '/fe/' },
+        text: '前端相关', link: '/fe/', items: [
+          { text: 'JS 基础', link: '/fe/' },
           { text: 'webpack 相关', link: '/fe/webpack/' },
           { text: '微前端 相关', link: '/fe/microFE/' }
         ]
