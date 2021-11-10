@@ -67,6 +67,18 @@ div[data-qiankun-react16] .app-main {
 - 在子应用的盒子上加一个class，子应用的样式都在这个 class 下
 
 
+## 公共组件的处理
+
+1、通过方法的形式传给子应用
+
+2、npm 包
+
+3、cdn 的方式引入，配置 webpack externals
+
+4、webpack5 联邦模块：[微前端实践--webpack5模块联邦](https://juejin.cn/post/6963326546606030856)
+
+
+
 
 ## JS 沙箱隔离
 
