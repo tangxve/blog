@@ -137,8 +137,8 @@
 </template>
 
 <script>
-import exif from 'exif-js'
-
+// import exif from 'exif-js'
+const exif = {}
 export default {
   data() {
     return {
