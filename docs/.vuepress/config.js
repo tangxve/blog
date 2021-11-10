@@ -126,6 +126,7 @@ module.exports = {
             '/notes/WeChat/微信支付',
             '/notes/git/',
             '/notes/vue-property-decorator 引入路由钩子函数',
+            '/notes/高性能渲染十万条数据',
           ]
         }
       ],
