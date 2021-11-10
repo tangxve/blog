@@ -165,6 +165,7 @@ last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**
 ##  http 安全
 [参考](https://github.com/dwqs/blog/issues/68)
 
+[web常见的攻击方式有哪些？如何防御？](https://vue3js.cn/interview/JavaScript/security.html#%E4%B8%80%E3%80%81%E6%98%AF%E4%BB%80%E4%B9%88)
 
 ### XSS 跨站脚本攻击
 恶意将代码注入到客户端攻击
