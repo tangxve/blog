@@ -1,6 +1,7 @@
 # generatir 原理
 
 todo
+[你是怎么理解ES6中 Generator的？使用场景？](https://vue3js.cn/interview/es6/generator.html#%E4%B8%80%E3%80%81%E4%BB%8B%E7%BB%8D)
 
 ## 区别
 
