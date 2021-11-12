@@ -52,6 +52,16 @@
 }
 ```
 
+## position 定位
+
+- static：默认属性，static 定位所导致的元素位置，是浏览器自主决定的，所以这时top、bottom、left、right这四个属性无效。 
+- relative：相对定位，
+- fixed
+- absolute 
+- sticky
+
+元素相对最近的 position 为 absolute / relative / fixed 的祖先元素
+
 ## 重绘和回流
 
 **回流：**
