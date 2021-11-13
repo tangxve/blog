@@ -114,6 +114,10 @@ module.exports = {
           path: '/fe/http/渲染页面过程'
         },
         {
+          title: '前端性能优化与解决方案',
+          path: '/notes/前端性能优化与解决方案'
+        },
+        {
           title: 'coding',
           path: '/fe/coding/'
         }
