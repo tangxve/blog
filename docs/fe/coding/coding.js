@@ -13,9 +13,7 @@ export const flat = function (arr = [], depth = 1) {
 
   if (depth > 0) {
     result = arr.reduce((pre, cur) => {
-      return pre.concat(Array.isArray(cur)
-                        ? flat(cur, depth--)
-                        : cur)
+      return pre.concat(Array.isArray(cur) ? flat(cur, depth--) : cur)
     }, [])
 
   } else {
@@ -69,9 +67,7 @@ export const flatten = function (obj, deleteProps = [null, undefined]) {
           // 是否有可以删除的属性
           const isDeleteProp = deleteProps.some(v => v === params[itemKey])
           if (!isDeleteProp) {
-            recurse(params[itemKey], key
-                                     ? `${ key }.${ itemKey }`
-                                     : itemKey)
+            recurse(params[itemKey], key ? `${ key }.${ itemKey }` : itemKey)
           }
         }
       }
@@ -90,10 +86,7 @@ export const flatten = function (obj, deleteProps = [null, undefined]) {
 }
 
 var input = {
-  a: 1,
-  b: [1, 2, { c: true }, [3]],
-  d: { e: 2, f: 3 },
-  g: null
+  a: 1, b: [1, 2, { c: true }, [3]], d: { e: 2, f: 3 }, g: null
 }
 
 flatten(input)
@@ -117,9 +110,7 @@ export const myNew = function () {
   var ret = Constructor.apply(obj, arguments)
 
   // 如果构造函数返回值是对象，就返回它，如果不是就返回 新对象
-  return typeof ret === 'object'
-         ? ret || obj
-         : obj
+  return typeof ret === 'object' ? ret || obj : obj
 
 }
 
@@ -378,11 +369,11 @@ function formatReduce(num) {
 
   // [9,8,7,6,5,4,3,2,1]
   return str.split('')
-    .reverse()
-    .reduce((pre, next, i) => {
-      const acc = (i % 3) ? next : next + ','
-      return acc + pre
-    })
+            .reverse()
+            .reduce((pre, next, i) => {
+              const acc = (i % 3) ? next : next + ','
+              return acc + pre
+            })
 }
 
 console.log(formatReduce(123456789))
@@ -471,16 +462,11 @@ const transferKey = function (obj) {
   return _getValue(obj)
 }
 const testData = {
-  a_bbb: 123,
-  a_g: [1, 2, 3, 4],
-  a_d: {
-    s: 2,
-    s_d: 3
-  },
-  a_f: [1, 2, 3, {
+  a_bbb: 123, a_g: [1, 2, 3, 4], a_d: {
+    s: 2, s_d: 3
+  }, a_f: [1, 2, 3, {
     a_g: 5
-  }, 'a_b_c'],
-  a_d_s: 1
+  }, 'a_b_c'], a_d_s: 1
 }
 console.log(transferKey(testData))
 // #endregion transferKey
@@ -553,11 +539,6 @@ function parseTree(text) {
 
 parseTree(text)
 // #endregion parseTree
-
-
-
-
-
 
 
 /* 下面是待整理的  */
@@ -755,3 +736,172 @@ const spanEle3 = document.getElementById('span3')
 inputEle1.addEventListener('input', function (e) {
   inputV(e, spanEle1)
 })
+
+
+/*
+实现一个带井发控制的 Promise.allSettled
+
+Tips:
+
+1.相比于 Promise.all()，Promise.allSettled()
+当遇到 promise reject 时，会收集错误信息而不是直接 reject。
+
+2. 因为需要控制并发，所以要实现的方法接受的参数不是 promise 数组，
+而是 async function 数组（或者一个返回 promise 的普通方法）
+*/
+
+function allSettledWithConcurrency(tasks, concurrency) {
+  let index = 0
+  const stack = []
+  const resultArr = []
+  const operatePromise = (i, promise, lastest) => {
+    if (i >= stack.length) {
+      return
+    }
+
+    promise()
+      .then((res) => {
+        resultArr[i] = { status: 'fulfilled', value: res }
+        stack.push(1)
+
+        if (stack.length === tasks.length) {
+          lastest(resultArr)
+          return
+        }
+
+        operatePromise(index, tasks[index], lastest)
+
+        index++
+      })
+      .catch((err) => {
+        resultArr[i] = { status: 'rejected', value: err }
+        stack.push(1)
+
+        if (stack.length === tasks.length) {
+          lastest(resultArr)
+          return
+        }
+
+        operatePromise(index, tasks[index], lastest)
+
+        index++
+      })
+  }
+
+  return new Promise((res) => {
+    const arr = new Array(tasks.length > concurrency ? concurrency : tasks.length)
+
+    Array.from(arr).forEach(() => {
+      operatePromise(index, tasks[index], res)
+      index++
+    })
+  })
+}
+
+function successTask(input) {
+  return () => new Promise(resolve => {
+    setTimeout(() => resolve(input), 1000)
+  })
+}
+
+function errorTask(input) {
+  return () => new Promise((_, reject) => {
+    setTimeout(() => reject(input), 1000)
+  })
+}
+
+console.time('test')
+
+allSettledWithConcurrency([
+  successTask(1),
+  successTask(2),
+  errorTask(3),
+  errorTask(4),
+  successTask(5)
+]).then(res => {
+  console.time('test')
+  console.log(res)
+})
+
+
+class InputOperator {
+  static inputNodeArray = []
+
+  constructor(inputNode, spanNode) {
+    this.inputNode = inputNode
+    this.spanNode = spanNode
+    InputOperator.inputNodeArray.push(this)
+  }
+
+  listen() {
+    this.inputNode.addEventListener('input', () => {
+      InputOperator.inputNodeArray.forEach((item) => {
+        item.verify()
+      })
+    })
+  }
+
+  clearSpanText() {
+    this.spanNode.innerText = ''
+  }
+
+  getInputValue() {
+    return this.inputNode.value
+  }
+
+  appendMsgToSpan(text) {
+    this.spanNode.innerText = text
+  }
+
+  verify() {
+    this.clearSpanText()
+
+    const value = this.getInputValue()
+    if (!value) {
+      this.appendMsgToSpan('empty')
+    }
+
+    const isInputValue = InputOperator.inputNodeArray
+                                      .map(({ inputNode }) => inputNode.value)
+                                      .filter(v => v === value).length > 1
+    if (isInputValue) {
+      this.appendMsgToSpan('有相同的值')
+    }
+
+    if (value.length > 10) {
+      this.appendMsgToSpan('长度超出')
+    }
+  }
+
+}
+
+
+const inputEle1 = document.getElementById(1)
+const inputEle2 = document.getElementById(2)
+const inputEle3 = document.getElementById(3)
+const spanEle1 = document.getElementById('span1')
+const spanEle2 = document.getElementById('span2')
+const spanEle3 = document.getElementById('span3')
+
+const inputOperator1 = new InputOperator(inputEle1, spanEle1)
+const inputOperator2 = new InputOperator(inputEle2, spanEle2)
+const inputOperator3 = new InputOperator(inputEle3, spanEle3)
+
+inputOperator1.listen()
+inputOperator2.listen()
+inputOperator3.listen()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
