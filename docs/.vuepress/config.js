@@ -7,8 +7,8 @@ const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
   base: '/blog/',
-  title: '知食',
-  description: '大明湖畔-王翠花',
+  title: 'TangXve',
+  description: '一些记录和沉淀',
   dest: './dist',
   locales: {
     '/': {
@@ -24,6 +24,11 @@ module.exports = {
     lineNumbers: true
   },
   themeConfig: {
+    repo: 'https://github.com/tangxve/blog',
+    repoLabel: 'Github',
+    smoothScroll: true,
+    // displayAllHeaders: true,
+    lastUpdated: '最后更新时间',
     nav: [
       { text: 'Home', link: '/' },
       {
@@ -38,9 +43,8 @@ module.exports = {
       },
       { text: '常用软件', link: '/app/' },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
-      { text: 'GitHub', link: 'https://github.com/tangxve' }
+      // { text: 'GitHub', link: 'https://github.com/tangxve' }
     ],
-    // displayAllHeaders: true,
     sidebar: {
       '/fe/': [
         {
@@ -147,7 +151,6 @@ module.exports = {
         }
       ]
     },
-    lastUpdated: '上次更新'
   },
   plugins: [
     '@vuepress/back-to-top',
