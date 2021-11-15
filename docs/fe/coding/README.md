@@ -149,7 +149,7 @@ console.log(getValue(array, '[0].a.b[0].c', 12));  // 输出 12
 方法3：根据下划线截取
 :::
 
-## 数据的 KEY 从下划线改为驼峰
+## 数据的 key 从下划线改为驼峰
 
 key 下划线转驼峰：a_d_s => aDS
 
@@ -178,6 +178,42 @@ const testData = {
 ::: details parseTree
 <<< @/docs/fe/coding/coding.js#parseTree
 :::
+
+## 实现一个带井发控制的 Promise.allSettled
+
+Tips:
+
+1. 相比于 Promise.all()，Promise.allSettled()
+当遇到 promise reject 时，会收集错误信息而不是直接 reject。
+
+2. 因为需要控制并发，所以要实现的方法接受的参数不是 promise 数组，
+   而是 async function 数组（或者一个返回 promise 的普通方法）
+
+::: details 实现一个带井发控制的 Promise.allSettled
+<<< @/docs/fe/coding/coding.js#allSettledWithConcurrency
+:::
+
+
+## 多表单错误联动
+有多个 input 输入框，需要通过 Javascript 实现错误检测逻辑，实时监控 input 的输入，
+
+当出现错误时输出错误提示。需要检测如下 3 种错误信息：
+
+1. 输入内容为空，输出错误信息 empty
+2. 输入内容和其他输入框内容重复，所有重复的输入框都输出错误信
+   息 duplicate
+3. 输入内容长度超过 10，输出错误信息 overlength
+
+::: details 实现一个 多表单错误联动
+<<< @/docs/fe/coding/coding.js#InputOperator
+:::
+
+## 实现一个reduce
+
+::: details 实现一个 reduce
+<<< @/docs/fe/coding/coding.js#reduce
+:::
+
 
 
 
