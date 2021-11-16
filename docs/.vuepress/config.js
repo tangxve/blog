@@ -117,11 +117,10 @@ module.exports = {
           title: '前端性能优化与解决方案',
           path: '/notes/前端性能优化与解决方案'
         },
-        {
-          title: 'coding',
-          path: '/fe/coding/'
-        }
-      ],
+      ].concat(isDev ? {
+        title: 'coding',
+        path: '/fe/coding/'
+      } : []),
       '/notes/': [
         {
           title: '笔记',
