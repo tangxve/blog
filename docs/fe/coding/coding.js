@@ -684,60 +684,7 @@ const throttle = function (fn, wait) {
   }
 }
 
-class validate {
-  constructor() {
-    this.inputValus = []
-  }
-
-
-  add
-}
-
-const eleValue = {}
-
-function inputV(event, err) {
-  const value = event.target.value
-
-  const errMsg = validate(value)
-
-  err.innerHTML = errMsg
-
-  const className = event.target.className
-
-  delete eleValue[className]
-
-  if (Object.values(eleValue).some(otherV => otherV === value)) {
-    err.innerHTML = '存在重复的value'
-  }
-
-  eleValue[className] = value
-}
-
-
-function validate(v) {
-  console.log(v)
-  if (!v.length) {
-    return '不能为空'
-  }
-
-  if (v.length > 10) {
-    return 'overlength'
-  }
-  return ''
-}
-
-const inputEle1 = document.getElementById(1)
-const inputEle2 = document.getElementById(2)
-const inputEle3 = document.getElementById(3)
-const spanEle1 = document.getElementById('span1')
-const spanEle2 = document.getElementById('span2')
-const spanEle3 = document.getElementById('span3')
-
-inputEle1.addEventListener('input', function (e) {
-  inputV(e, spanEle1)
-})
-
-
+// #region allSettledWithConcurrency
 /*
 实现一个带井发控制的 Promise.allSettled
 
@@ -752,24 +699,29 @@ Tips:
 
 function allSettledWithConcurrency(tasks, concurrency) {
   let index = 0
+  // 实现一个栈结构，用来标记
   const stack = []
   const resultArr = []
   const operatePromise = (i, promise, lastest) => {
-    if (i >= stack.length) {
+    // 如果超出
+    if (i >= tasks.length) {
       return
     }
 
     promise()
       .then((res) => {
+        // 记录结果下标
         resultArr[i] = { status: 'fulfilled', value: res }
         stack.push(1)
 
+        // 最后一个
         if (stack.length === tasks.length) {
           lastest(resultArr)
           return
         }
 
-        operatePromise(index, tasks[index], lastest)
+        // 递归调用
+        // operatePromise(index, tasks[index], lastest)
 
         index++
       })
@@ -782,15 +734,20 @@ function allSettledWithConcurrency(tasks, concurrency) {
           return
         }
 
-        operatePromise(index, tasks[index], lastest)
+        // operatePromise(index, tasks[index], lastest)
 
         index++
       })
   }
 
   return new Promise((res) => {
-    const arr = new Array(tasks.length > concurrency ? concurrency : tasks.length)
 
+    // 判断并发多少个
+    const arr = new Array(tasks.length > concurrency
+                          ? concurrency
+                          : tasks.length)
+
+    // 循环执行么每个异步，并且记录个数 index++
     Array.from(arr).forEach(() => {
       operatePromise(index, tasks[index], res)
       index++
@@ -798,12 +755,14 @@ function allSettledWithConcurrency(tasks, concurrency) {
   })
 }
 
+// 测试成功任务
 function successTask(input) {
   return () => new Promise(resolve => {
     setTimeout(() => resolve(input), 1000)
   })
 }
 
+// 测试失败任务
 function errorTask(input) {
   return () => new Promise((_, reject) => {
     setTimeout(() => reject(input), 1000)
@@ -821,9 +780,29 @@ allSettledWithConcurrency([
 ]).then(res => {
   console.time('test')
   console.log(res)
+  assert.deepEqual(res, [
+    { status: 'fulfilled', value: 1 },
+    { status: 'fulfilled', value: 2 },
+    { status: 'fulfilled', value: 3 },
+  ])
 })
 
+// #endregion allSettledWithConcurrency
 
+// #region reduce
+Array.prototype.reduce || function (reducer, initialValue) {
+  const hasInitial = this.length > 1 // arguments.length > 1;
+  let ret = hasInitial ? initialValue : this[0]
+
+  for (let i = hasInitial ? 0 : 1; i < this.length; i++) {
+    ret = reducer.call(undefined, ret, this[i], i, this)
+  }
+
+  return ret
+}
+// #endregion reduce
+
+// #region InputOperator
 class InputOperator {
   static inputNodeArray = []
 
@@ -890,6 +869,8 @@ const inputOperator3 = new InputOperator(inputEle3, spanEle3)
 inputOperator1.listen()
 inputOperator2.listen()
 inputOperator3.listen()
+
+// #endregion InputOperator
 
 
 
