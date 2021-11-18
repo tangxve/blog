@@ -740,7 +740,6 @@ const Link: React.FC<LinkProps> = ({ children, to }) => {
 
 Redux 统一保存数据，在隔离了数据与UI的同时，负责处理数据的绑定
 
-
 ### 什么时候需要使用 Redux
 
 - 组件需要共享数据（状态 state）的时候
@@ -748,8 +747,217 @@ Redux 统一保存数据，在隔离了数据与UI的同时，负责处理数据
 - 某个组件需要改变另外一个组件状态的时候
 - 场景：语言切换、黑暗模式切换、用户登录数据全局共享
 
-
 ### 简单的 Redux 工作流
 
 - 根据 redux 的定义，任何 store 中的 state 都是 immutable 状态（不可修改的）
 - 通过新的对象来代替原有你的数据: `const newState = { ...state, language: action.payload }`
+
+## I18n 国际化
+
+下载依赖 底层框架：i18next， react的插件：react-i18next
+
+```shell
+npm install react-i18next i18next --save
+```
+
+```ts
+import { initReactI18next } from 'react-i18next'
+```
+
+在引用 initReactI18next 这个实例的时候，会自动 context api 的注入
+
+### 添加语言包文件
+
+以 json 数据结构
+
+英文包 en.json：
+::: details json 语言包
+```json
+{
+  "header": {
+    "slogan": "Make travel happier",
+    "add_new_language": "add new language",
+    "title": "Listen to Baibai Travel",
+    "register": "Register",
+    "signin": "Sign In"
+  },
+  "footer": {
+    "detail": "All rights reserved @ 花果水帘洞齐天大圣"
+  },
+  "home_page": {
+    "hot_recommended": "Hot Recommended",
+    "new_arrival": "New arrival",
+    "domestic_travel": "Domestic travel",
+    "joint_venture": "Joint Venture",
+    "start_from": "(start from)"
+  }
+}
+```
+:::
+
+中文 zh.json
+::: details json 语言包
+
+```json
+{
+  "header": {
+    "slogan": "让旅行更幸福",
+    "add_new_language": "添加新语言",
+    "title": "Listen to Baibai 旅游网",
+    "register": "注册",
+    "signin": "登陆"
+  },
+  "footer": {
+    "detail": "版权所以 ©️ 花果水帘洞齐天大圣"
+  },
+  "home_page": {
+    "hot_recommended": "爆款推荐",
+    "new_arrival": "新品上市",
+    "domestic_travel": "国内游推荐",
+    "joint_venture": "合作企业",
+    "start_from": "(起)"
+  }
+}
+```
+:::
+
+### 添加 config 配置文件
+
+```ts
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+
+
+import translation_en from './en.json'  // json 语言包 
+import translation_zh from './zh.json'  // json 语言包
+
+const resources = {
+  en: { translation: translation_en },
+  zh: { translation: translation_zh }
+}
+
+i18n.use(initReactI18next)  // 使用 插件
+    .init({
+      resources,
+      lng: 'zh', // 默认语言
+      // 关闭后可以使用链式调用：header.slogan 可以使用链式调用
+      // keySeparator: false, // we do not use keys in form messages.welcome
+      interpolation: {
+        // 不会为强行转换字符串
+        escapeValue: false, // react already safes from xss，react本身会处理xss攻击
+      },
+    })
+
+export default i18n
+
+```
+
+### 项目中使用 高阶函数 和 hooks
+
+`react-i18next` 插件会提供 `t` 函数，可以通过 `t(xxx.xxx)` 来访问到 json 语言包 里面的数据
+
+### 高阶函数方式使用：
+
+json 语言包：
+
+::: details json 语言包
+
+```json
+{
+  "header": {
+    "slogan": "让旅行更幸福",
+    "register": "注册",
+    "signin": "登陆"
+  }
+}
+```
+
+```json
+{
+  "header": {
+    "slogan": "Make travel happier",
+    "register": "Register",
+    "signin": "Sign In"
+  }
+}
+```
+
+:::
+
+1. 引如高阶函数：`withTranslation`，以及类型 `WithTranslation`，注意大小写
+2. 传入类型 `React.Component<RouteComponentProps & WithTranslation, State> `
+3. 直接从 props 引用 t 函数：`const { t } = this.props`
+4. 倒出 `export const Header = withTranslation()(HeaderComponent)`
+
+::: tip
+
+注意：**`withTranslation()()`** 有2个括号，可以理解成高阶函数的高阶函数
+
+:::
+
+```tsx{2,4,6,9,11,12,19}
+import React from 'react'
+import { withTranslation, WithTranslation } from 'react-i18next'
+
+class HeaderComponent extends React.Component<RouteComponentProps & WithTranslation, State> {
+  render() {
+    const { t } = this.props
+    return (
+      <div>
+        <div>{t('header.slogan')}</div> {/* 让旅行更幸福  */}
+        <Button.Group>
+          <Button>{t('header.register')}</Button> {/* 注册 */}
+          <Button>{t('header.signin')}</Button> {/* 登录 */}
+        </Button.Group>
+      </div>
+    )
+  }
+}
+
+export const Header = withTranslation()(HeaderComponent)
+```
+
+### Hooks 方式使用：
+
+json 语言包：
+
+::: details json 语言包
+
+```json
+{
+  "footer": {
+    "detail": "版权所以 ©️ 花果水帘洞齐天大圣"
+  }
+}
+```
+
+```json
+{
+  "footer": {
+    "detail": "All rights reserved @ 花果水帘洞齐天大圣"
+  }
+}
+```
+
+:::
+
+1. 引入 hooks 方法：`useTranslation`
+2. 在函数组件里面使用：`const { t } = useTranslation()`
+3. 使用：`t('footer.detail')`
+
+还是 hooks 方式简单
+
+```tsx{2,5,9}
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+
+export const Footer: React.FC = () => {
+  const { t } = useTranslation()
+  return (
+    <div>
+      {/*版权所以 ©️ 花果水帘洞齐天大圣*/}
+      {t('footer.detail')}
+    </div>
+  )
+}
+```
