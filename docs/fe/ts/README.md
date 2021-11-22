@@ -42,6 +42,8 @@
 
 ## interface 接口 和 type 的区别
 
+[type 和 interface 区别](https://zhuanlan.zhihu.com/p/351213183)
+
 > 首先我们从官方的定义中可以看出，对 type 的定义叫 `type alias` (类型别名) 而非直接就叫 type
 
 
@@ -52,11 +54,20 @@
 - 接口是通过继承的方式 `extends` 来扩展，类型别名是通过 `&` 来扩展。
 - 接口可以自动合并，而类型别名不行
 
-希望定义一个变量类型，就用 `type`
+希望定义一个变量类型，就用 `type`，更像类型的一个别名
 
-如果希望能够继承并约束，就用 `interface`
+```ts
+// 定义一个类型 Age，她的真正类型是 number
+type Age = number
 
-如果你不知道该用那个，说明你只是想定义一个类型而非接口，或是是 type
+let age: number = 10
+let age: Age
+```
+
+如果希望能够继承并约束，就用 `interface`，**约束**
+
+
+如果你不知道该用那个，说明你只是想定义一个类型而非接口，所以应该用type。
 
 ### 扩展方式
 
