@@ -66,8 +66,7 @@ let age: Age
 
 如果希望能够继承并约束，就用 `interface`，**约束**
 
-
-如果你不知道该用那个，说明你只是想定义一个类型而非接口，所以应该用type。
+如果你不知道该用那个，说明你只是想定义一个类型而非接口，所以应该用 type。
 
 ### 扩展方式
 
@@ -116,7 +115,6 @@ interface User {
 }
  */
 
-
 // 同名类型会报错（重复定义）
 type User = {
   age: number
@@ -125,7 +123,6 @@ type User = {
 type User = {
   name: string
 }
-
 // Error: Duplicate identifier 'User'
 ```
 
