@@ -42,6 +42,9 @@ module.exports = {
         text: '笔记', link: '/notes/'
       },
       { text: '常用软件', link: '/app/' },
+      {
+        text: '知识体系', link: '/frontEnd/'
+      },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
       // { text: 'GitHub', link: 'https://github.com/tangxve' }
     ],
@@ -148,6 +151,12 @@ module.exports = {
             '/app/webstrom/'
           ]
         }
+      ],
+      '/frontEnd/': [
+        '/frontEnd/Javascript/',
+        '/frontEnd/CSS/',
+        '/frontEnd/HTML/',
+        '/frontEnd/性能优化/',
       ]
     },
   },
