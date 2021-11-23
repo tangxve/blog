@@ -49,6 +49,23 @@ const output = {
 <<< @/docs/fe/coding/coding.js#urlParsing
 :::
 
+## 对象转 url 参数
+
+```js
+const param = { a: '1', b: '2' }
+const url = 'www.xxx.com'
+
+function objToUrl(url, param) {
+  const paramStr = Object.keys(param).map(k => `${ k }=${ param[k] }`).join('&')
+  url = url.includes('?')
+        ? `${ url }${ paramStr }`
+        : `${ url }?${ paramStr }`
+  return url
+}
+
+objToUrl(url, param)
+```
+
 ## new 关键词方法
 
 ::: details new 关键词方法
@@ -154,6 +171,7 @@ console.log(getValue(array, '[0].a.b[0].c', 12));  // 输出 12
 key 下划线转驼峰：a_d_s => aDS
 
 ::: details 下划线转驼峰
+
 ```js
 const testData = {
   a_bbb: 123,
@@ -172,7 +190,6 @@ const testData = {
 <<< @/docs/fe/coding/coding.js#transferKey
 :::
 
-
 ## 将文字版本的目录，解析成树结构 parseTree
 
 ::: details parseTree
@@ -184,24 +201,22 @@ const testData = {
 Tips:
 
 1. 相比于 Promise.all()，Promise.allSettled()
-当遇到 promise reject 时，会收集错误信息而不是直接 reject。
+   当遇到 promise reject 时，会收集错误信息而不是直接 reject。
 
-2. 因为需要控制并发，所以要实现的方法接受的参数不是 promise 数组，
-   而是 async function 数组（或者一个返回 promise 的普通方法）
+2. 因为需要控制并发，所以要实现的方法接受的参数不是 promise 数组， 而是 async function 数组（或者一个返回 promise 的普通方法）
 
 ::: details 实现一个带井发控制的 Promise.allSettled
 <<< @/docs/fe/coding/coding.js#allSettledWithConcurrency
 :::
 
-
 ## 多表单错误联动
+
 有多个 input 输入框，需要通过 Javascript 实现错误检测逻辑，实时监控 input 的输入，
 
 当出现错误时输出错误提示。需要检测如下 3 种错误信息：
 
 1. 输入内容为空，输出错误信息 empty
-2. 输入内容和其他输入框内容重复，所有重复的输入框都输出错误信
-   息 duplicate
+2. 输入内容和其他输入框内容重复，所有重复的输入框都输出错误信 息 duplicate
 3. 输入内容长度超过 10，输出错误信息 overlength
 
 ::: details 实现一个 多表单错误联动
