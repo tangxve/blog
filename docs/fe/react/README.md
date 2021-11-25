@@ -283,6 +283,24 @@ useEffect 只支持返回一个函数，不能使用 async，async 返回一个 
 }, [])
 ```
 
+### useEffect 利用 实现防抖 useDebounce
+
+```js
+export const useDebounce = (value, delay) => {
+  // 定义内部变量
+  const [debounceValue, setDebounceValue] = useState(value)
+
+  useEffect(() => {
+    // 每次在 value 或 delay 变化后，设置一个新的定时器
+    const timeout = setTimeout(() => setDebounceValue(value), delay)
+    // 每次在上一个 useEffect 处理完后以后在运行
+    return () => clearTimeout(timeout)
+  }, [value, delay])
+
+  return debounceValue
+}
+```
+
 ## useContext 全局数据传递
 
 ### 声明
@@ -751,10 +769,8 @@ Redux 统一保存数据，在隔离了数据与UI的同时，负责处理数据
 
 - 根据 redux 的定义，任何 store 中的 state 都是 immutable 状态（不可修改的）
 - 通过新的对象来代替原有你的数据: `const ne wState = { ...state, language: action.payload }`
- 
+
 ### action 分发
-
-
 
 ## I18n 国际化
 
@@ -776,6 +792,7 @@ import { initReactI18next } from 'react-i18next'
 
 英文包 en.json：
 ::: details json 语言包
+
 ```json
 {
   "header": {
@@ -797,6 +814,7 @@ import { initReactI18next } from 'react-i18next'
   }
 }
 ```
+
 :::
 
 中文 zh.json
@@ -823,6 +841,7 @@ import { initReactI18next } from 'react-i18next'
   }
 }
 ```
+
 :::
 
 ### 添加 config 配置文件
