@@ -42,7 +42,7 @@ module.exports = {
         text: '笔记', link: '/notes/'
       },
       { text: '常用软件', link: '/app/' },
-      {
+      isDev && {
         text: '知识体系', link: '/frontEnd/'
       },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
