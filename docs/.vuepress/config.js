@@ -136,6 +136,7 @@ module.exports = {
             '/notes/git/',
             '/notes/vue-property-decorator 引入路由钩子函数',
             '/notes/高性能渲染十万条数据',
+            '/notes/Mac 前端开发环境',
           ]
         }
       ],
