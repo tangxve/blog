@@ -74,7 +74,7 @@ import './index.css';
 ```jsx
 import style from './index.css';
 
-<div className={ styles.app }></div>
+<div className={styles.app}></div>
 ```
 
 标签的 class 名称是动态生产的，可能对调试造成麻烦
@@ -283,6 +283,64 @@ useEffect 只支持返回一个函数，不能使用 async，async 返回一个 
 }, [])
 ```
 
+## 自定义 hooks
+
+自定义 hooks 一般是需要依赖状态，或者修改状态，又或者使用其他的 hooks。
+
+如果上面不符合，就直接用一个函数就行
+
+## useMount 默认挂载一次
+
+之前：
+
+```js
+import { useEffect } from 'react'
+
+useEffect(() => {
+  // 初始化挂载逻辑...
+}, [])  // componentDidMount
+```
+
+封装后：
+
+```jsx
+import { useEffect } from 'react'
+// 默认挂载一次
+export const useMount = cb => {
+  useEffect(() => {
+    cb()
+  }, [])
+}
+
+useMount(() => {
+  function fetchData() {
+    // ... 
+  }
+})
+
+```
+
+## useDebounce （利用 useEffect 实现防抖）
+
+```jsx
+import { useEffect, useState } from 'react'
+
+export const useDebounce = (value, delay) => {
+  // 定义内部变量
+  const [debounceValue, setDebounceValue] = useState(value)
+
+  useEffect(() => {
+    // 每次在 value 或 delay 变化后，设置一个新的定时器
+    const timeout = setTimeout(() => setDebounceValue(value), delay)
+    // 每次在上一个 useEffect 处理完后以后在运行
+    // 第二 useEffect 清理 第一setTimeout，一次类推，最后一个没有清理
+    return () => clearTimeout(timeout)
+  }, [value, delay])
+
+  return debounceValue
+}
+```
+
 ## useContext 全局数据传递
 
 ### 声明
@@ -302,9 +360,9 @@ export const AppStateProvider = (props) => {
   const [state, setState] = useState(defaultContextValue)
 
   return (
-    <appContext.Provider value={ state }>
-      <appSetStateContext.Provider value={ setState }>
-        { props.children }
+    <appContext.Provider value={state}>
+      <appSetStateContext.Provider value={setState}>
+        {props.children}
       </appSetStateContext.Provider>
     </appContext.Provider>
   )
@@ -371,7 +429,7 @@ export const withAddToCart = (ChildComponent) => {
     console.log('加入购物车，我是复用逻辑')
   }
   return (props) => { // props 是业务中默认传递
-    return <ChildComponent { ...props } addToCart={ addToCart } />
+    return <ChildComponent {...props} addToCart={addToCart} />
   }
 }
 
@@ -389,8 +447,8 @@ const Robot = ({ name, id, addToCart }) => {
   const value = useContext(appContext)
   return (
     <div>
-      <h2>{ name }</h2>
-      <p>{ id }</p>
+      <h2>{name}</h2>
+      <p>{id}</p>
     </div>
   )
 }
@@ -408,8 +466,8 @@ const RobotDiscount = ({ name, id, addToCart }) => {
   return (
     <div>
       <h2>打折商品</h2>
-      <h2>{ name }</h2>
-      <p>{ id }</p>
+      <h2>{name}</h2>
+      <p>{id}</p>
     </div>
   )
 }
@@ -420,9 +478,9 @@ export default withAddToCart(RobotDiscount)
 
 ```jsx
 // 正常商品
-<Robot name={ 'name' } id={ 'id' } />
+<Robot name={'name'} id={'id'} />
 // 打折商品
-<RobotDiscount name={ 'name' } id={ 'id' } />
+<RobotDiscount name={'name'} id={'id'} />
 ```
 
 ### 命名规范
@@ -751,10 +809,8 @@ Redux 统一保存数据，在隔离了数据与UI的同时，负责处理数据
 
 - 根据 redux 的定义，任何 store 中的 state 都是 immutable 状态（不可修改的）
 - 通过新的对象来代替原有你的数据: `const ne wState = { ...state, language: action.payload }`
- 
+
 ### action 分发
-
-
 
 ## I18n 国际化
 
@@ -776,6 +832,7 @@ import { initReactI18next } from 'react-i18next'
 
 英文包 en.json：
 ::: details json 语言包
+
 ```json
 {
   "header": {
@@ -797,6 +854,7 @@ import { initReactI18next } from 'react-i18next'
   }
 }
 ```
+
 :::
 
 中文 zh.json
@@ -823,6 +881,7 @@ import { initReactI18next } from 'react-i18next'
   }
 }
 ```
+
 :::
 
 ### 添加 config 配置文件
