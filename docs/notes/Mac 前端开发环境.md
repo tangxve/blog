@@ -152,7 +152,7 @@ proxy-off
 
 ## Zsh 插件配置
 
-::: tip 
+::: tip
 
 1、查看已经安装的插件
 
@@ -170,9 +170,11 @@ plugins=(git zsh-autosuggestions z ...other plugin)
 ```
 
 3、重新加载 zsh 的配置
+
 ```shell
 source ~/.zshrc
 ```
+
 :::
 
 参考：[zsh oh-my-zsh 插件推荐](https://hufangyun.com/2017/zsh-plugin/)
@@ -219,6 +221,7 @@ cd ~/.oh-my-zsh/plugins
 ```
 
 2、只需要在(~/.zshrc)中的插件列表中添加
+
 ```shell
 vim ~/.zshrc
 # 再插件列表中添加
@@ -230,6 +233,116 @@ plugins=(其他插件 z)
 ```shell
 source ~/.zshrc
 ```
+
+## Nvm
+
+Nvm 是一个管理 Node 版本的工具
+
+github：[nvm](https://github.com/nvm-sh/nvm)
+
+### 安装：
+
+curl:
+
+```shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+wget:
+
+```shell
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+Homebrew 安装 Nvm（不是很推荐，会有依赖 path 问题）
+
+```shell
+brew install nvm
+```
+
+### 常用的命令
+
+#### 安装 node
+```shell
+# 安装最新版本 Node
+nvm install node 
+
+# 安装指定版本 Node
+nvm install version
+
+# 安装最新LTS(Long-term Support)版本Node
+nvm install --lts
+```
+
+#### 查看 node
+```shell
+# 查看本地 Node 版本
+nvm ls 
+
+# 查看远程 Node 所有版本
+nvm ls-remote
+ 
+# 查看远程 Node 所有 LTS 版本
+nvm ls-remote --lts 
+
+# 查看当前使用 Node 版本
+nvm current 
+
+# 查看 node 安装位置
+nvm which <version>
+```
+
+#### 使用 node
+```shell
+# 当前 shell 下使用某个 Node 版本
+nvm use <version>
+
+# 指定全局默认版本
+nvm alias default <version> 
+```
+
+#### 删除
+```shell
+# 卸载指定的版本
+nvm uninstall <version>
+
+# 解除当前版本绑定
+nvm deactivate` 
+```
+### 如何在 M1 下安装 v14 及以下的老版本 Node
+
+> 安装 Node 的部分写的很简单，因为按这个步骤，一般不会出问题。
+> 而当你用 nvm 尝试去安装 v14 及以下的 Node 版本时，大概率会报错
+>
+> 而我们在工作中恰恰又可能依赖 v14 及以下的 lts 版本。那么为什么会报错呢？
+>
+> 究其原因还是因为低版本的 node 并不是基于 arm64 架构的，所以不适配 M1 芯片。
+> 在这里教大家两个方法，就能成功安装上低版本 Node。
+
+### 方法一
+
+终端输入：
+
+```shell
+arch -x86_64 zsh
+```
+
+通过这个命令可以让 shell 运行在 Rosetta2 下。 之后你可以通过 `nvm install v12` 来安装低版本 Node。
+
+在此之后，您可以不用在 Rosetta2 中就可以使用安装的可执行文件，也就是说，您可以将 Node v15与其他节点版本互换使用
+
+### 方法二
+
+通过 Rosetta2 来启动终端，这样通过 Rosetta2 转译到 x86 架构中执行安装，也一样可以安装成功。
+
+- 在 finder 中，点击应用程序，并在实用工具中找到终端 (Terminal)
+- 右键终端，点击获取信息
+- 选择 使用Rosetta 打开
+- 重启终端，并执行 nvm install v12 命令
+
+<img src="./img/img1.png" width="600">
+
+<img src="./img/img2.png" width="600">
 
 ## WebStrom
 
