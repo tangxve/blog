@@ -61,14 +61,14 @@ wget:
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-### 支持翻墙
+### 终端代理
 
 :::tip
 
 首先得有梯子
 :::
 
-1、添加配置
+1、添加 zshrc 配置
 
 ```shell
 # 查看当前 IP 
@@ -319,7 +319,7 @@ nvm deactivate`
 > 究其原因还是因为低版本的 node 并不是基于 arm64 架构的，所以不适配 M1 芯片。
 > 在这里教大家两个方法，就能成功安装上低版本 Node。
 
-### 方法一
+#### 方法一
 
 终端输入：
 
@@ -331,7 +331,7 @@ arch -x86_64 zsh
 
 在此之后，您可以不用在 Rosetta2 中就可以使用安装的可执行文件，也就是说，您可以将 Node v15与其他节点版本互换使用
 
-### 方法二
+#### 方法二
 
 通过 Rosetta2 来启动终端，这样通过 Rosetta2 转译到 x86 架构中执行安装，也一样可以安装成功。
 
