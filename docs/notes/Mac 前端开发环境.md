@@ -234,7 +234,7 @@ plugins=(其他插件 z)
 source ~/.zshrc
 ```
 
-## Nvm
+## nvm
 
 Nvm 是一个管理 Node 版本的工具
 
@@ -344,8 +344,9 @@ arch -x86_64 zsh
 
 <img src="./img/img2.png" width="600">
 
+## git 配置
 
-## Npm
+## npm 配置
 
 ## WebStrom
 
