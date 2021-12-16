@@ -344,6 +344,9 @@ arch -x86_64 zsh
 
 <img src="./img/img2.png" width="600">
 
+
+## Npm
+
 ## WebStrom
 
 下载地址：[https://www.jetbrains.com/zh-cn/webstorm/download/#section=mac](https://www.jetbrains.com/zh-cn/webstorm/download/#section=mac)
