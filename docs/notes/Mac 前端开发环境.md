@@ -346,6 +346,10 @@ arch -x86_64 zsh
 
 ## git 配置
 
+### git cz Commitizen 使用方法
+
+参考：[优雅的提交你的 Git Commit Message](https://juejin.cn/post/6844903606815064077#heading-3)
+
 ## npm 配置
 
 ## WebStrom
