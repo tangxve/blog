@@ -7,6 +7,7 @@
 - [WebStrom](https://www.jetbrains.com/zh-cn/webstorm/download/#section=mac)
 - [Sourcetree](https://www.sourcetreeapp.com/)
 - [ShadowsocksX-NG-R8](http://3.112.62.253:65534/shiyong/dy-mac.html)
+- [Thor 应用之间快速切换](https://github.com/gbammc/Thor/releases)
 
 ## Chrome
 

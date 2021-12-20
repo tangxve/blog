@@ -812,6 +812,9 @@ Redux 统一保存数据，在隔离了数据与UI的同时，负责处理数据
 
 ### action 分发
 
+
+## react-redux
+
 ## I18n 国际化
 
 下载依赖 底层框架：i18next， react的插件：react-i18next
