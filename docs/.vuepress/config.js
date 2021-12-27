@@ -44,7 +44,9 @@ module.exports = {
       { text: '常用软件', link: '/app/' },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
       // { text: 'GitHub', link: 'https://github.com/tangxve' }
-    ],
+    ].concat(isDev ? [{
+      text: '知识体系', link: '/frontEnd/'
+    }] : []),
     sidebar: {
       '/fe/': [
         {
@@ -134,6 +136,7 @@ module.exports = {
             '/notes/git/',
             '/notes/vue-property-decorator 引入路由钩子函数',
             '/notes/高性能渲染十万条数据',
+            '/notes/Mac 前端开发环境',
           ]
         }
       ],
@@ -148,6 +151,12 @@ module.exports = {
             '/app/webstrom/'
           ]
         }
+      ],
+      '/frontEnd/': [
+        '/frontEnd/Javascript/',
+        '/frontEnd/CSS/',
+        '/frontEnd/HTML/',
+        '/frontEnd/性能优化/',
       ]
     },
   },
