@@ -38,9 +38,8 @@ module.exports = {
           { text: '微前端 相关', link: '/fe/microFE/' }
         ]
       },
-      {
-        text: '笔记', link: '/notes/'
-      },
+      { text: '笔记', link: '/notes/' },
+      { text: '设计模式', link: '/designPattern/' },
       { text: '常用软件', link: '/app/' },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
       // { text: 'GitHub', link: 'https://github.com/tangxve' }
