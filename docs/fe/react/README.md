@@ -283,11 +283,6 @@ useEffect 只支持返回一个函数，不能使用 async，async 返回一个 
 }, [])
 ```
 
-<<<<<<< HEAD
-### useEffect 利用 实现防抖 useDebounce
-
-```js
-=======
 ## 自定义 hooks
 
 自定义 hooks 一般是需要依赖状态，或者修改状态，又或者使用其他的 hooks。
@@ -330,7 +325,6 @@ useMount(() => {
 ```jsx
 import { useEffect, useState } from 'react'
 
->>>>>>> bcd13f7b9bc34dbcfd2c009dd6298072e5ef3f70
 export const useDebounce = (value, delay) => {
   // 定义内部变量
   const [debounceValue, setDebounceValue] = useState(value)
@@ -815,16 +809,10 @@ Redux 统一保存数据，在隔离了数据与UI的同时，负责处理数据
 
 - 根据 redux 的定义，任何 store 中的 state 都是 immutable 状态（不可修改的）
 - 通过新的对象来代替原有你的数据: `const ne wState = { ...state, language: action.payload }`
-<<<<<<< HEAD
 
 ### action 分发
-=======
-
-### action 分发
-
 
 ## react-redux
->>>>>>> bcd13f7b9bc34dbcfd2c009dd6298072e5ef3f70
 
 ## I18n 国际化
 

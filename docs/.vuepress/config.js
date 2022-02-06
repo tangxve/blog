@@ -41,8 +41,8 @@ module.exports = {
       { text: '笔记', link: '/notes/' },
       { text: '设计模式', link: '/designPattern/' },
       { text: '常用软件', link: '/app/' },
-      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
-      // { text: 'GitHub', link: 'https://github.com/tangxve' }
+      // { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
+      { text: 'GitHub', link: 'https://github.com/tangxve' }
     ].concat(isDev ? [{
       text: '知识体系', link: '/frontEnd/'
     }] : []),
@@ -130,12 +130,12 @@ module.exports = {
         {
           title: '笔记',
           children: [
+            '/notes/Mac 前端开发环境',
             '/notes/WeChat/',
             '/notes/WeChat/微信支付',
             '/notes/git/',
             '/notes/vue-property-decorator 引入路由钩子函数',
             '/notes/高性能渲染十万条数据',
-            '/notes/Mac 前端开发环境',
           ]
         }
       ],
