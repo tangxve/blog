@@ -1,4 +1,4 @@
-# vue-property-decorator 引入路由钩子函数不生效
+# vue2+ts 路由钩子函数不生效
 
 ## 解决方法
 

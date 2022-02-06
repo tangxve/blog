@@ -7,7 +7,9 @@
 - [WebStrom](https://www.jetbrains.com/zh-cn/webstorm/download/#section=mac)
 - [Sourcetree](https://www.sourcetreeapp.com/)
 - [ShadowsocksX-NG-R8](http://3.112.62.253:65534/shiyong/dy-mac.html)
-- [Thor 应用之间快速切换](https://github.com/gbammc/Thor/releases)
+- [Thor：应用之间快速切换](https://github.com/gbammc/Thor/releases)
+- [SwitchHosts：管理 hosts 文件的应用](https://github.com/oldj/SwitchHosts/releases)
+- [Carbon：Mac风格代码图片生](https://carbon.now.sh/)
 
 ## Chrome
 
@@ -264,6 +266,7 @@ brew install nvm
 ### 常用的命令
 
 #### 安装 node
+
 ```shell
 # 安装最新版本 Node
 nvm install node 
@@ -276,6 +279,7 @@ nvm install --lts
 ```
 
 #### 查看 node
+
 ```shell
 # 查看本地 Node 版本
 nvm ls 
@@ -294,6 +298,7 @@ nvm which <version>
 ```
 
 #### 使用 node
+
 ```shell
 # 当前 shell 下使用某个 Node 版本
 nvm use <version>
@@ -303,6 +308,7 @@ nvm alias default <version>
 ```
 
 #### 删除
+
 ```shell
 # 卸载指定的版本
 nvm uninstall <version>
@@ -310,6 +316,7 @@ nvm uninstall <version>
 # 解除当前版本绑定
 nvm deactivate` 
 ```
+
 ### 如何在 M1 下安装 v14 及以下的老版本 Node
 
 > 安装 Node 的部分写的很简单，因为按这个步骤，一般不会出问题。
