@@ -43,6 +43,7 @@ export default class page extends Vue {
 ::: tip
 
 使用路由钩子函数 需要保证你的 使用钩子函数的组件 是通过路由加载的
+
 :::
 
 方法2：普通组件中使用
