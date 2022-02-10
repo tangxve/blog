@@ -31,18 +31,11 @@ module.exports = {
     lastUpdated: '最后更新时间',
     nav: [
       { text: 'Home', link: '/' },
-      {
-        text: '前端相关', link: '/fe/', items: [
-          { text: 'JS 基础', link: '/fe/' },
-          { text: 'webpack 相关', link: '/fe/webpack/' },
-          { text: '微前端 相关', link: '/fe/microFE/' }
-        ]
-      },
+      { text: '前端相关', link: '/fe/' },
       { text: '笔记', link: '/notes/' },
       { text: '设计模式', link: '/designPattern/' },
       { text: '常用软件', link: '/app/' },
-      // { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
-      { text: 'GitHub', link: 'https://github.com/tangxve' }
+      { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
     ].concat(isDev ? [{
       text: '知识体系', link: '/frontEnd/'
     }] : []),
