@@ -44,7 +44,7 @@ module.exports = {
       '/fe/': [
         {
           title: '前端基础',
-          collapsable: true,
+          collapsable: false,
           path: '/fe/',
           children: [
             '/fe/js/1-1-数据类型',
@@ -78,12 +78,12 @@ module.exports = {
           ]
         },
         {
-          collapsable: true,
+          collapsable: false,
           title: 'Vue 系列',
           path: '/fe/vue/'
         },
         {
-          collapsable: true,
+          collapsable: false,
           title: 'React 系列',
           path: '/fe/react/'
         },
@@ -96,7 +96,7 @@ module.exports = {
           path: '/fe/http/'
         },
         {
-          collapsable: true,
+          collapsable: false,
           title: 'webpack',
           path: '/fe/webpack/'
         },
@@ -137,6 +137,7 @@ module.exports = {
       '/app/': [
         {
           title: '常用软件',
+          collapsable: false,
           children: [
             '/app/chrome/',
             '/app/homebrew/',
