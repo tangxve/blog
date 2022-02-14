@@ -39,6 +39,7 @@ module.exports = {
     ].concat(isDev ? [{
       text: '知识体系', link: '/frontEnd/'
     }] : []),
+    subSidebar: 'auto',
     sidebar: {
       '/fe/': [
         {
@@ -111,26 +112,27 @@ module.exports = {
           title: '渲染页面过程',
           path: '/fe/http/渲染页面过程'
         },
-        {
-          title: '前端性能优化与解决方案',
-          path: '/notes/前端性能优化与解决方案'
-        },
+        // {
+        //   title: '前端性能优化与解决方案',
+        //   path: '/notes/前端性能优化与解决方案'
+        // },
       ].concat(isDev ? {
         title: 'coding',
         path: '/fe/coding/'
       } : []),
       '/notes/': [
         {
-          title: '笔记',
+          title: '日常笔记',
+          collapsable: false,
+          path: '/notes/',
           children: [
-            '/notes/Mac 前端开发环境',
-            '/notes/WeChat/',
-            '/notes/WeChat/微信支付',
-            '/notes/git/',
-            '/notes/vue-property-decorator 引入路由钩子函数',
-            '/notes/高性能渲染十万条数据',
+            'src/Mac前端开发环境',
+            'src/高性能渲染十万条数据',
+            'src/微信支付开发流程',
+            'src/vue2+ts路由钩子函数不生效',
+            'src/微信公众号开发流程',
           ]
-        }
+        },
       ],
       '/app/': [
         {

@@ -2,7 +2,7 @@
 
 ## 最全的手写JS面试题
 
-[最全的手写JS面试题](https://juejin.cn/post/6968713283884974088#heading-2)
+[最全的手写JS面试题](https://juejin.cn/post/6968713283884974088)
 
 ## flat 数组 扁平化/降纬
 
