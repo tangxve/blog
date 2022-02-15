@@ -130,6 +130,7 @@ module.exports = {
             'src/高性能渲染十万条数据',
             'src/微信支付开发流程',
             'src/vue2+ts路由钩子函数不生效',
+            'src/git',
             'src/微信公众号开发流程',
           ]
         },
