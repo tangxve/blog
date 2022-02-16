@@ -1,5 +1,9 @@
 # git 相关的
 
+## git rebase和git merge有什么区别？
+
+参考文章：[https://joyohub.com/2020/04/06/git-rebase/](https://joyohub.com/2020/04/06/git-rebase/)
+
 ## github 为什么要把密码换成 token
 
 git 提交 报错如下：
