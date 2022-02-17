@@ -348,9 +348,9 @@ arch -x86_64 zsh
 - 选择 使用Rosetta 打开
 - 重启终端，并执行 nvm install v12 命令
 
-<img src="img/img1.png" width="600">
+![image](./img/img1.png)
 
-<img src="img/img2.png" width="600">
+![image](./img/img2.png)
 
 ## git 配置
 
