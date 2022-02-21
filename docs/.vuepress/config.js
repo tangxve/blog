@@ -112,10 +112,6 @@ module.exports = {
           title: '渲染页面过程',
           path: '/fe/http/渲染页面过程'
         },
-        // {
-        //   title: '前端性能优化与解决方案',
-        //   path: '/notes/前端性能优化与解决方案'
-        // },
       ].concat(isDev ? {
         title: 'coding',
         path: '/fe/coding/'
@@ -126,6 +122,7 @@ module.exports = {
           collapsable: false,
           path: '/notes/',
           children: [
+            'src/electron',
             'src/Mac前端开发环境',
             'src/高性能渲染十万条数据',
             'src/微信支付开发流程',
