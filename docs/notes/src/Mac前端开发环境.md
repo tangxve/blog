@@ -1,7 +1,6 @@
 # Mac 前端开发环境
 
 软件：
-
 - [Chrome](https://www.google.cn/chrome/)
 - [iTerm2](https://iterm2.com/)
 - [WebStrom](https://www.jetbrains.com/zh-cn/webstorm/download/#section=mac)
@@ -10,6 +9,12 @@
 - [Thor：应用之间快速切换](https://github.com/gbammc/Thor/releases)
 - [SwitchHosts：管理 hosts 文件的应用](https://github.com/oldj/SwitchHosts/releases)
 - [Carbon：Mac风格代码图片生](https://carbon.now.sh/)
+
+常用的网站：
+- [excalidraw 素描手绘风格的流程图](https://excalidraw.com/)
+- [draw.io 流程图绘制](https://app.diagrams.net/?src=about)
+  - [draw.io electron 桌面版本](https://github.com/excalidraw/excalidraw)
+- [Tinypng 图片压缩](https://tinypng.com/)
 
 ## Chrome
 
