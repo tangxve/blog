@@ -123,6 +123,7 @@ module.exports = {
           path: '/notes/',
           children: [
             'src/electron',
+            'src/富文本内容样式问题',
             'src/Mac前端开发环境',
             'src/高性能渲染十万条数据',
             'src/微信支付开发流程',
