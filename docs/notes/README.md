@@ -8,7 +8,8 @@
 
 ## 2022年
 
-1. 2022-02-14：[canvas 工具方法](https://github.com/tangxve/canvasUtils)
+1. 2022-02-23：[富文本行内元素显示问题](src/富文本内容样式问题.md)
+2. 2022-02-14：[canvas 工具方法](https://github.com/tangxve/canvasUtils)
 
 ## 2021年
 
