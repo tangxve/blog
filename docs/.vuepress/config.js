@@ -41,6 +41,10 @@ module.exports = {
     }] : []),
     subSidebar: 'auto',
     sidebar: {
+      '/designPattern/': [{
+        title: '设计模式',
+        path: '/designPattern/'
+      }],
       '/fe/': [
         {
           title: '前端基础',
