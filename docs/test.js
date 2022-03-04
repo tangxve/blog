@@ -89,3 +89,55 @@ const list = [
 
 console.log(JSON.stringify(arrayToTree(list)))
 
+
+// setTimeout(() => {
+//   console.log(1)
+//   setTimeout(() => {
+//     console.log(2)
+//   })
+//   new Promise((resolve, reject) => {
+//     console.log(3)
+//     resolve(4)
+//   }).then((s) => {
+//     console.log(s)
+//   })
+// })
+//
+// setTimeout(() => {
+//   console.log(5)
+// })
+//
+// console.log(6)
+
+console.log('=======')
+
+console.log('1');
+
+setTimeout(() => {
+  console.log(2)
+  Promise.resolve().then(() => {
+    console.log(3);
+    process.nextTick(function foo() {
+      console.log(4);
+    });
+  })
+})
+
+Promise.resolve().then(() => {
+  console.log(5);
+  setTimeout(() => {
+    console.log(6)
+  })
+  Promise.resolve().then(() => {
+    console.log(7);
+  })
+})
+
+process.nextTick(function foo() {
+  console.log(8);
+  process.nextTick(function foo() {
+    console.log(9);
+  });
+});
+
+console.log('10')
