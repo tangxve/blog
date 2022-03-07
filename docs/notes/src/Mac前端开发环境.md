@@ -6,15 +6,16 @@
 - [WebStrom](https://www.jetbrains.com/zh-cn/webstorm/download/#section=mac)
 - [Sourcetree](https://www.sourcetreeapp.com/)
 - [ShadowsocksX-NG-R8](http://3.112.62.253:65534/shiyong/dy-mac.html)
-- [Thor：应用之间快速切换](https://github.com/gbammc/Thor/releases)
-- [SwitchHosts：管理 hosts 文件的应用](https://github.com/oldj/SwitchHosts/releases)
-- [Carbon：Mac风格代码图片生](https://carbon.now.sh/)
+- [Thor](https://github.com/gbammc/Thor/releases) 应用之间快速切换
+- [SwitchHosts](https://github.com/oldj/SwitchHosts/releases) 管理 hosts 文件的应用
+- [Carbon](https://carbon.now.sh/) Mac风格代码图片生
+- [Hidden Bar](https://github.com/dwarvesf/hidden) 隐藏 macOS 菜单栏不常用的应用图
 
 常用的网站：
-- [excalidraw 素描手绘风格的流程图](https://excalidraw.com/)
-- [draw.io 流程图绘制](https://app.diagrams.net/?src=about)
-  - [draw.io electron 桌面版本](https://github.com/excalidraw/excalidraw)
-- [Tinypng 图片压缩](https://tinypng.com/)
+- [excalidraw](https://excalidraw.com/) 素描手绘风格的流程图
+- [draw.io](https://app.diagrams.net/?src=about) 流程图绘制
+  - [draw.io](https://github.com/excalidraw/excalidraw) electron 桌面版本
+- [Tinypng](https://tinypng.com/) 图片压缩
 
 ## Chrome
 
