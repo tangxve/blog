@@ -157,7 +157,7 @@ Storage.instance = function () {
 
 
 
-**闭包方式 实现 Storage：**
+**Modal 闭包方式实现全局弹窗：**
 
 <details><summary>点击查看</summary>
 

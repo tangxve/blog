@@ -24,7 +24,7 @@ module.exports = {
     lineNumbers: true
   },
   themeConfig: {
-    repo: 'https://github.com/tangxve/blog',
+    repo: 'https://github.com/tangxve',
     repoLabel: 'Github',
     smoothScroll: true,
     // displayAllHeaders: true,
