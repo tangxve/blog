@@ -116,8 +116,8 @@ const _get = function (obj, path, defaultValue = '') {
 }
 // console.log(_get({ a: [{ b: [{c: 2}] }]}, 'a[0].b[0].c', 3));
 // console.log(_get({ a: [[{c: 4}] ]}, 'a[0][0].c', 3));
-const object = {'a': [{'b': {'c': 3}}]} // path: 'a[0].b.c'
-const array = [{'a': {b: [1]}}] // path: '[0].a.b[0]'
+const object = { 'a': [{ 'b': { 'c': 3 } }] } // path: 'a[0].b.c'
+const array = [{ 'a': { b: [1] } }] // path: '[0].a.b[0]'
 console.log(_get(object, 'a[0].b.c', 'null'))
 console.log(_get(array, '[0].a.b[0]', 'null'))
 
@@ -328,3 +328,34 @@ function timeBitmapToRanges(bitmap) {
 }
 
 console.log(timeBitmapToRanges('000010100000000000000000000000000000000000000011'));
+
+
+var compareVersion = function (version1, version2) {
+  const n = version1.length
+  const m = version2.length
+
+  let i = 0
+  let j = 0
+
+  while (i < n || j < m) {
+    let x = 0
+    for (i < n && version1[i] !== '.'; i++;) {
+      // charCodeAt() 方法返回 0 到 65535 之间的整数，表示给定索引处的 UTF-16 代码单元
+      x = x * 10 + version1[i].charCodeAt() - '0'.charCodeAt()
+    }
+
+    ++i; // 跳过点号
+
+    let y = 0;
+    for (; j < m && version2.charAt(j) !== '.'; ++j) {
+      y = y * 10 + version2[j].charCodeAt() - '0'.charCodeAt();
+    }
+
+    ++j; // 跳过点号
+
+    if (x !== y) {
+      return x > y ? 1 : -1;
+    }
+  }
+  return 0
+}
