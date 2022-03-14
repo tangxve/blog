@@ -84,3 +84,13 @@ div[data-qiankun-react16] .app-main {
 ## JS 沙箱隔离
 
 - ES6 的 proxy，通过代理实现
+
+## qiankun 的使用总结
+
+1. js 沙箱并不能解决所有的 `js` 污染问题，例如使用 `onclick` 或 `addEventListener` 给 `<body>` 添加一个点击事件，js 沙箱并不能消除它的影响
+2. `qiankun` 框架不太好实现 `keep-alive` 需求，因为解决 css/js 污染的办法就是删除子项目插入的 css 标签和劫持 window 对象， 卸载时还原成子项目加载前的样子，这与 keep-alive 相悖： keep-alive 要求保留这些，仅仅是样式上的隐藏。
+3. 安全问题：
+    1. qiankun 将每个子项目的 js/css 文件内容都记录在一个全局变量中，如果子项目过多，或者文件体积很大，可能会导致内存占用过多，导致页面卡顿。
+    2. 另外，qiankun 运行子项目的 js，并不是通过 script 标签插入的，而是通过 eval 函数实现的，eval 函数的安全和性能是有一些争议的
+4. 多页应用改造成功高
+    1. 虽然 qiankun 支持 jQuery 老项目，但是似乎对多页应用没有很好的解决办法。每个页面都去修改，成本很大也很麻烦，但是使用 iframe 嵌入这些老项目就比较方便。
