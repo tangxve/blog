@@ -56,11 +56,14 @@ const param = { a: '1', b: '2' }
 const url = 'www.xxx.com'
 
 function objToUrl(url, param) {
+  const _url = url.split('?')[0]
+  let _paramStr = url.split('?')[1]
+
+  _paramStr = _paramStr ? `&${_paramStr}` : ''
+
   const paramStr = Object.keys(param).map(k => `${k}=${param[k]}`).join('&')
-  url = url.includes('?')
-        ? `${url}${paramStr}`
-        : `${url}?${paramStr}`
-  return url
+
+  return `${url}?${paramStr}${_paramStr}`
 }
 
 objToUrl(url, param)

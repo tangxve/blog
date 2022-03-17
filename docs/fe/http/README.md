@@ -1,6 +1,7 @@
 # http 相关
 
 [HTTP 协议和前端开发有什么关系](https://kaiwu.lagou.com/course/courseInfo.htm?courseId=822#/detail/pc?id=7203)
+
 ## Http 协议的演变
 
 ### 1、HTTP/1.0 到 HTTP/1.1 ：主要实现了对 TCP 连接的复用
@@ -17,7 +18,6 @@ HTTP/2 通过将 HTTP 消息拆分为独立的帧，进行交错发送，实现�
 
 除此之外，HTTP2 还实现了 **Header 压缩**、**服务端主动推动**、**流优先级**等能力。
 
-
 ### 3、HTTP/2 到 HTTP/3：主要实现了基于 UDP 协议、更快的传输。
 
 HTTP/3 使用了基于 UDP 的 QUIC 协议，实现了又快又可靠的传输。
@@ -28,12 +28,9 @@ HTTP/3 使用了基于 UDP 的 QUIC 协议，实现了又快又可靠的传输�
 
 使用场景：游戏、直播
 
-
-
 ## http 缓存
 
 [https://www.cnblogs.com/wonyun/p/5524617.html](https://www.cnblogs.com/wonyun/p/5524617.html)
-
 
 强缓存与协商缓存的区别，可以用下表来进行描述：
 
@@ -69,11 +66,9 @@ HTTP/3 使用了基于 UDP 的 QUIC 协议，实现了又快又可靠的传输�
     - 浏览器第一次 请求服务器资源，服务器返回资源，并且在 `响应头 respone header` 加上
       `last-modified` 的 header，这个表示资源在服务器上最后修改的时间
 
-    - 浏览器再次 请求服务器资源，`请求头 request header` 添加 `If-Modified-Since` 的 header，
-      这个 header 的值是上一次请求返回的 `last-modified` 的值
+    - 浏览器再次 请求服务器资源，`请求头 request header` 添加 `If-Modified-Since` 的 header， 这个 header 的值是上一次请求返回的 `last-modified` 的值
 
-    - 服务器再次收到资源请求时候，根据 if-modified-since 和 资源在服务器上最后的修改时间判断
-      资源是否有变化。
+    - 服务器再次收到资源请求时候，根据 if-modified-since 和 资源在服务器上最后的修改时间判断 资源是否有变化。
         - 没有变化 返回 304 not modified 的同时，返回响应头的 last-modified 不会改变
         - 有变化就正常返回资源
 
@@ -86,9 +81,7 @@ HTTP/3 使用了基于 UDP 的 QUIC 协议，实现了又快又可靠的传输�
 
     - 判断过程和 Last-Modified / If-Modified-Since 类似
 
-    - 与 Last-Modified 不同是 服务器返回的 304 not modified 响应时，由于 ETag 重新生成过，
-      响应头(response header) 也会把 ETag 返回，即使这个 ETag 更之前的没有变化
-
+    - 与 Last-Modified 不同是 服务器返回的 304 not modified 响应时，由于 ETag 重新生成过， 响应头(response header) 也会把 ETag 返回，即使这个 ETag 更之前的没有变化
 
 ### 既生 Last-Modified 何生 Etag
 
@@ -96,15 +89,13 @@ Etag 主要是为了解决几个 last-modified 比较难解决的问题
 
 - 一些资源也许会周期性的修改，但是他的内容并不改变（仅仅改变的是修改时间），这时候我们并不希望客户端认为这个文件被修改来，而重新 get
 
-- 某些文件修改频繁，比如在秒一下的时间进行修改，（比如 1s 内修改来N次），if-modified-since 能检查到颗粒度是 s(秒)级的，
-  这种修改无法判断（或者说 UNIX记录MTIME只能精确到秒）
+- 某些文件修改频繁，比如在秒一下的时间进行修改，（比如 1s 内修改来N次），if-modified-since 能检查到颗粒度是 s(秒)级的， 这种修改无法判断（或者说 UNIX记录MTIME只能精确到秒）
 
 - 某些服务器不能精确到文件的最后修改时间
 
 这时候 利用 Etag 能够更加准确的控制缓存，因为 Etag 是服务器自动生成或者开发者生成，对应资源在服务器端的唯一标示符
 
 last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**，一致的情况下，才会继续对比 last-modified，最后决定是否返回 304
-
 
 ### 用户行为对缓存的影响
 
@@ -135,16 +126,16 @@ last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**
     - 503：服务器端暂时无法处理请求（可能是过载或维护）
 
 ## http、https 区别
+
 [http、https 区别](https://vue3js.cn/interview/http/HTTP_HTTPS.html#%E4%B8%89%E3%80%81%E5%8C%BA%E5%88%AB)
 
--HTTPS是HTTP协议的安全版本，HTTP协议的数据传输是明文的，是不安全的，HTTPS使用了SSL/TLS协议进行了加密处理，相对更安全
--HTTP 和 HTTPS 使用连接方式不同，默认端口也不一样，HTTP是80，HTTPS是443
--HTTPS 由于需要设计加密以及多次握手，性能方面不如 HTTP
--HTTPS需要SSL，SSL 证书需要钱，功能越强大的证书费用越高
+- HTTPS是HTTP协议的安全版本，HTTP协议的数据传输是明文的，是不安全的，HTTPS使用了SSL/TLS协议进行了加密处理，相对更安全
+- HTTP 和 HTTPS 使用连接方式不同，默认端口也不一样，HTTP是80，HTTPS是443
+- HTTPS 由于需要设计加密以及多次握手，性能方面不如 HTTP
+- HTTPS需要SSL，SSL 证书需要钱，功能越强大的证书费用越高
 
 - http：IP => TCP => HTTP(应用层)
 - https：IP => TCP => SSL => HTTP(应用层)
-
 
 ## https 请求过程（ssl握手，加密过程）
 
@@ -158,17 +149,21 @@ last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**
 6. 通过会话密钥加密进行通信
 
 ## https 的缺点
+
 - https 协议多次握手，导致页面加载时间过程
 - https 链接缓存不如 http 高效，会增加数据开销和功耗
 - 申请 SSL 证书需要钱，功能越强大证书费用越高
 
-##  http 安全
+## http 安全
+
 [参考](https://github.com/dwqs/blog/issues/68)
 
 [web常见的攻击方式有哪些？如何防御？](https://vue3js.cn/interview/JavaScript/security.html#%E4%B8%80%E3%80%81%E6%98%AF%E4%BB%80%E4%B9%88)
 
 ### XSS 跨站脚本攻击
+
 恶意将代码注入到客户端攻击
+
 - 攻击模式：
     - 基于 DOM：恶意修改页面的 dom 结构，是纯粹的客户端攻击
     - 存储型：例如写文章的平台，用户恶意写了一段js代码，保存文章，那么以后打开这篇文章的人都会遭到恶意代码的攻击
@@ -199,6 +194,7 @@ last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**
 - 浏览器渲染页面，创建渲染树
 
 ## 渲染页面的过程以及遇到的问题
+
 **流程：**
 
 1. 浏览器从上到下解析 html 文档，创建 dom 树
@@ -208,11 +204,10 @@ last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**
 5. 遍历渲染树所有节点，绘制页面
 
 **浏览器在创建 dom 树过程：**
-- 遇到 css 的时候：会异步下载，生成异步的 css 规则树，不会堵塞 dom 树的出构建，但是会影响渲染树的最终生成，
-因为渲染树有 dom 树和 css 规则树组成
 
-- 遇到 js的时候：dom 树构建会停止，会先去加载和执行 js 代码，会中断构建 dom 树，
-如果这时候 js 操作页面样式，还有可能造成，重绘或回流
+- 遇到 css 的时候：会异步下载，生成异步的 css 规则树，不会堵塞 dom 树的出构建，但是会影响渲染树的最终生成， 因为渲染树有 dom 树和 css 规则树组成
+
+- 遇到 js的时候：dom 树构建会停止，会先去加载和执行 js 代码，会中断构建 dom 树， 如果这时候 js 操作页面样式，还有可能造成，重绘或回流
 
 **这时候产生的优化问题：**
 
@@ -221,7 +216,6 @@ last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**
 - JS 优化：在页面的最下面引入 js，或者使用 defer 属性，这样页面在渲染会在渲染完成后加载
     - async：异步加载，下载过程中不会影响到 html 的解析，但是下载完成后会立即执行，对堵塞 html 解析
     - defer：异步加载，下载过程中不会影响到 html 的解析，会在所有的元素解析完成后，DOMContentLoaded 事件之前触发完成
-
 
 ## tcp 的三次握手
 
@@ -232,10 +226,12 @@ last-modified 和 Etag 可以一起是使用，**服务器会优先验证 ETag**
 - 客户端：可以的，那我们开始聊正事把
 
 1. 为啥是3次：
+
 - 三次是最少的安全次数，两次不安全，四次浪费资源。
 - 避免历史链接，确定客户端发的请求是这次通讯的人
 
 2. 为啥不是4次：
+
 - 四次浪费资源
 
 ## tcp 协议 四次挥手
@@ -246,7 +242,6 @@ TCP是全双工信道，何为全双工就是客户端与服务端建立两条�
 - 通道2：客户端的输入链接服务端的输出
 
 两个通道可以同时工作：客户端向服务端发送信号的同时服务端也可以向客户端发送信号。
-
 
 关闭通道：
 
@@ -261,6 +256,5 @@ TCP是全双工信道，何为全双工就是客户端与服务端建立两条�
 
 2. 为什么不能是三次
     - 三次情况服务端接收到断开消息，向客户端发送确认接受消息，客户端未给最后确认断开的回复。
-
 
 <img src="./img4.png" width="600">
