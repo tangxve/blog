@@ -31,10 +31,10 @@ module.exports = {
     lastUpdated: '最后更新时间',
     nav: [
       { text: 'Home', link: '/' },
-      { text: '前端相关', link: '/fe/' },
       { text: '笔记', link: '/notes/' },
       { text: '设计模式', link: '/designPattern/' },
       { text: '常用软件', link: '/app/' },
+      { text: '前端相关', link: '/fe/' },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
     ].concat(isDev ? [{
       text: '知识体系', link: '/frontEnd/'
