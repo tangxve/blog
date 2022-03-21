@@ -1,6 +1,5 @@
 # 项目中依赖同一个库多个版本问题
 
-
 ## 场景
 
 项目中需要使用 echarts 折线图的一个新功能，新的功能只有在 echarts v5版本存在，
@@ -28,6 +27,7 @@ ECharts.init() // ...
 ### v5 版本使用cdn 的方式引入，配合 webpack.externals
 
 ```html
+
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
 ```
 
@@ -61,18 +61,15 @@ import echarts from './echarts5.3.1.min.js' // 本地文件路径
 echarts.init() //...
 ```
 
-## 方法三 使用 npm package aliases  自定义安装包别名
+## 方法三  自定义安装包别名
 
-重头戏：
+使用 npm package aliases 自定义安装包别名
 
 有时候在一个项目中可能需要同时依赖同一个库的两个版本。
 
 npm 6.9.0 添加了 package aliases 功能可以用来解决这个问题。
 
-这个用法在npm的官网文档中没有说明，但在其rfc文档中有详细介绍，可参考:
-
-[官方地址](https://github.com/npm/rfcs/blob/main/implemented/0001-package-aliases.md)
-
+这个用法在npm的官网文档中没有说明，但在其rfc文档中有详细介绍，可参考:[官方地址](https://github.com/npm/rfcs/blob/main/implemented/0001-package-aliases.md)
 
 语法：
 
@@ -89,19 +86,22 @@ npm i echarts4@npm:echarts@4.9.0 echarts5@npm:echarts@5.3.1 -S
 可以看到 package.json 中依赖项声明为：
 
 ```json
-"dependencies": {
-  "echarts4": "npm:echarts@^4.9.0",
-  "echarts5": "npm:echarts@^5.3.1",
+{
+  "dependencies": {
+    "echarts4": "npm:echarts@^4.9.0",
+    "echarts5": "npm:echarts@^5.3.1"
+  }
 }
 ```
-
 
 使用：
 
 ```js
-import echarts from 'echarts5' // 等于 echarts@5.3.1
+import echarts4 from 'echarts4' // 等于 echarts@4.9.0
+import echarts5 from 'echarts5' // 等于 echarts@5.3.1
 
-echarts.init() //...
+echarts4.init() //...
+echarts5.init() //...
 ```
 
 
