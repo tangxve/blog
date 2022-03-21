@@ -223,7 +223,7 @@ module.exports = source => {
 
   // 2. 将 html 字符串拼接为一段导出字符串的 JS 代码 
   // const code = `module.exports = ${JSON.stringify(html)}`
-  const code = `export default ${ JSON.stringify(html) }`
+  const code = `export default ${JSON.stringify(html)}`
 
   return code
 }
@@ -486,6 +486,17 @@ class RemoveCommentsPlugin {
 - css-loader：加载 import 进来的css
 
 ## webpack 性能优化
+
+总结一句话： 新版本 加缓存 搞并行 提前做 少执行
+
+- 新版本：使用新的 webpack5 版本
+- 加缓存：babel-loader cache cache-loader等方法
+- 并行有：thread-loader
+- 提前做 缩小范围：`resolve.extension`（扩展）、
+- 少执行：exclude 和 include
+
+
+具体方法：
 
 - 打包分析：使用 `webpack-bundle-analyzer` 插件
 - 缩小文件的搜索范围

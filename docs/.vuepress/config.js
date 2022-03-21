@@ -127,6 +127,8 @@ module.exports = {
           collapsable: false,
           path: '/notes/',
           children: [
+            'src/引用多个版本npm包.md',
+            'src/zsh更新.md',
             'src/electron',
             'src/富文本内容样式问题',
             'src/Mac前端开发环境',
