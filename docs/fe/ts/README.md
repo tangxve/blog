@@ -126,3 +126,11 @@ type User = {
 // Error: Duplicate identifier 'User'
 ```
 
+
+## d.ts 文件是什么
+
+d.ts 文件来标记某个 js 库里面对象的类型
+
+我们不免会引入外部的 js 库，这时ts就对引入的js文件里变量的具体类型不明确了，为了告诉ts变量的类型，因此就有了.d.ts (d即declare)，ts的声明文件。
+
+[.d.ts文件的作用](https://blog.csdn.net/TL18382950497/article/details/112859523)
