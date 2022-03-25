@@ -56,17 +56,7 @@
   - `flex: auto;` ：(1 1 auto) 
   - `flex: none;` (0 0 auto)。
 
-
-
-
-
-
-
-
-
-
-
-
+    
 
 ## 绘制三角形
 
@@ -93,7 +83,7 @@
   margin: 0 auto;
   position: relative;
   top: 50%;
-  margin-top: -50% 元素高度;
+  margin-top: -50%; // 元素高度
 }
 ```
 
