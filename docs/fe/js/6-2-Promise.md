@@ -6,6 +6,11 @@
 - [中文翻译-图灵社区](https://www.ituring.com.cn/article/66566)
 - [英文文档](https://promisesaplus.com/)
 
+## 使用 Promise 实现串行
+
+[使用Promise实现串行](https://github.com/logan70/Blog/issues/36)
+
+
 ## 基础版本
 
 - `Promise` 是一个类（构造函数），在执行这个类的时候回传入一个函数（执行器），这个函数回立即执行
