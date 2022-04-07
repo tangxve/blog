@@ -7,14 +7,14 @@
 - [前端性能优化与解决方案](src/前端性能优化与解决方案.md)
 - [高性能渲染十万数据](src/高性能渲染十万条数据.md)
 - postMessage 传递 promise 失败
-- `quill-editor` 编辑自动获取焦点和页面滚动问题
 
 ## 2022年
 
-1. 2022-03-21：[项目中依赖同一个库多个版本问题](src/引用多个版本npm包.md)
-2. 2022-03-20：[oh my zsh 更新失败问题](src/zsh更新.md)
-3. 2022-02-23：[富文本行内元素显示问题](src/富文本内容样式问题.md)
-4. 2022-02-14：[canvas 工具方法](https://github.com/tangxve/canvasUtils)
+1. 2022-04-07：[quill-editor 编辑自动获取焦点和页面滚动问题](src/quillEditor自动获取焦点问题.md)
+2. 2022-03-21：[项目中依赖同一个库多个版本问题](src/引用多个版本npm包.md)
+3. 2022-03-20：[oh my zsh 更新失败问题](src/zsh更新.md)
+4. 2022-02-23：[富文本行内元素显示问题](src/富文本内容样式问题.md)
+5. 2022-02-14：[canvas 工具方法](https://github.com/tangxve/canvasUtils)
 
 ## 2021年
 
