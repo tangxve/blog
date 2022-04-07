@@ -127,6 +127,7 @@ module.exports = {
           collapsable: false,
           path: '/notes/',
           children: [
+            'src/quillEditor自动获取焦点问题.md',
             'src/引用多个版本npm包.md',
             'src/zsh更新.md',
             'src/electron',
