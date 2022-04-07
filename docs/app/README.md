@@ -10,6 +10,7 @@
 - [Thor](https://github.com/gbammc/Thor/releases) 应用之间快速切换
 - [SwitchHosts](https://github.com/oldj/SwitchHosts/releases) 管理 hosts 文件的应用
 - [Hidden Bar](https://github.com/dwarvesf/hidden) 隐藏 macOS 菜单栏不常用的应用图
+- [腾讯柠檬](https://lemon.qq.com/) Mac 清理垃圾工具
 
 常用网站：
 
