@@ -10,6 +10,8 @@
 - 大文件上传
   - 计算分片数据 webwork
   - 批量上传并发控制 promise.allotted
+- fullPage 同步动画问题
+  - afterLoad钩子执行
 
 ## 2022年
 
