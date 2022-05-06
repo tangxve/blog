@@ -1,4 +1,4 @@
-# fullPage 插件 afterLoad 钩子执行时机问题
+# fullPage 插件 afterLoad 钩子执行时机
 
 [fullPage.js 全屏滚动插件](https://alvarotrigo.com/fullPage/zh/)
 
