@@ -127,6 +127,7 @@ module.exports = {
           collapsable: false,
           path: '/notes/',
           children: [
+            'src/fullPagejs同步动画问题.md',
             'src/quillEditor自动获取焦点问题.md',
             'src/引用多个版本npm包.md',
             'src/zsh更新.md',
