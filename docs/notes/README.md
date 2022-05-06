@@ -14,7 +14,7 @@
 
 ## 2022年
 
-1. 2022-05-06：[fullPage.js afterLoad 钩子执行时机问题](src/fullPagejs同步动画问题.md)
+1. 2022-05-06：[fullPage 插件 afterLoad 钩子执行时机问题](src/fullPagejs同步动画问题.md)
 2. 2022-04-07：[quill-editor 编辑自动获取焦点和页面滚动问题](src/quillEditor自动获取焦点问题.md)
 3. 2022-03-21：[项目中依赖同一个库多个版本问题](src/引用多个版本npm包.md)
 4. 2022-03-20：[oh my zsh 更新失败问题](src/zsh更新.md)
