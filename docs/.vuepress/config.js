@@ -1,9 +1,6 @@
-// console.log('process.env', process.env)
-
 const isDev = process.env.NODE_ENV === 'development'
 
-// console.log('process', process.cwd())
-// const isDev = true
+const path = require('path')
 
 module.exports = {
   base: '/blog/',
@@ -18,7 +15,7 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/logo-2.jpeg' }]
   ],
-  theme: '',
+  theme: path.resolve(__dirname, 'theme'),
   port: 9000,
   markdown: {
     lineNumbers: true
@@ -32,8 +29,8 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: '笔记', link: '/notes/' },
-      { text: '设计模式', link: '/designPattern/' },
       { text: '常用软件', link: '/app/' },
+      { text: '设计模式', link: '/designPattern/' },
       { text: '前端相关', link: '/fe/' },
       { text: 'VuePress', link: 'https://vuepress.vuejs.org/zh/' },
     ].concat(isDev ? [{
