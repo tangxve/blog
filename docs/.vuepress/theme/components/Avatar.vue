@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 48px; height: 48px" class="avatar" v-html="preview">222222</div>
+  <div style="width: 48px; height: 48px" class="avatar" v-html="preview"></div>
 </template>
 
 <script>

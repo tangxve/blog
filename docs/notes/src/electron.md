@@ -1,5 +1,12 @@
 # 学习 electron
 
+electron当时出来的一个重要原因就是解决不同平台不同版本系统下不同浏览器的问题，结果tauri又开历史的倒车用回系统webview了。
+
+## 常用方法
+
+- 判断是否生产环境（是否打包）
+    - `app.isPackaged`：应用是否打包
+
 ## 遇到的问题
 
 ### electron 渲染进程报错 'Require' is not defined
@@ -77,10 +84,10 @@ const win = new BrowserWindow({
 ## Native 能力以及原生 GUI
 
 - Native API
-  - notification 原生通知能力
-  - Dock 任务栏
+    - notification 原生通知能力
+    - Dock 任务栏
 - node.js 能力
-  - API：可以通过 fs 读写文件、加解密文件
-  - 通过 node 调用原生的 C++ 来获取一定的能力（系统层面的截图）
-  - 通过 child_process（子进程）调用系统底层能力（shell、等）
+    - API：可以通过 fs 读写文件、加解密文件
+    - 通过 node 调用原生的 C++ 来获取一定的能力（系统层面的截图）
+    - 通过 child_process（子进程）调用系统底层能力（shell、等）
 
