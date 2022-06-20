@@ -15,7 +15,8 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/logo-2.jpeg' }]
   ],
-  theme: path.resolve(__dirname, 'theme'),
+  // theme: path.resolve(__dirname, 'theme'),
+  theme: '',
   port: 9000,
   markdown: {
     lineNumbers: true

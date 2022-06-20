@@ -12,7 +12,7 @@ export default {
 
   props: ['sidebarItems'],
   async created() {
-
+    console.log(2222)
   },
   async mounted() {
     // const url = await downloadAvatar()

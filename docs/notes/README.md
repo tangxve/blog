@@ -6,6 +6,8 @@
 
 ## todo
 
+- canvas 工具方法完善
+- electron 开发 日历app
 - [前端性能优化与解决方案](src/前端性能优化与解决方案.md)
 - [高性能渲染十万数据](src/高性能渲染十万条数据.md)
 - postMessage 传递 promise 失败
