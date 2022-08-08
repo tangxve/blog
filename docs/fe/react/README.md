@@ -1,5 +1,7 @@
 # 学习 React 笔记
 
+- [有哪些值得学习的大型 React 开源项目？](https://mp.weixin.qq.com/s/k1kDqffdABiJKnUdm1W_mA)
+
 **react 17 的一些变化**
 
 - 支持渐进式升级，逐步升级
