@@ -5,6 +5,15 @@
 - [qiankun 源码分析](https://juejin.cn/post/6844904115999342600)
 - [qiankun 技术圆桌](https://www.yuque.com/kuitos/gky7yw)
 
+
+## qiankun 与 Vite 问题
+- 开发模式：在开发环境下，如果我们使用 `vite` 来构建 `vue3` 子应用，基于 vite 的构建机制，会在子应用的 `html` 的入口文件的 script 标签上携带 `type=module`。
+而我们知道 `qiankun` 父应用引入子应用，本质上是将html做为入口文件，并通过 `import-html-entry` 这个库去加载子应用所需要的资源列表Js、css，然后通过 `eval` 直接执行，而基于 `vite` 构建的 js 中 `import、export` 并没有被转码，会导致直接报错（不允许在非 type=module 的 script 里面使用 import）
+
+- 生产模式：生产模式下，因为没有诸如 webpack 中支持运行时 `publicPath` ,也就是 `__webpack_public_path__` ，换句话说就是 vite 不支持运行时 `publicPath`，其主要作用是用来解决微应用动态载入的脚本、样式、图片等地址不正确的问题。
+
+- vite 默认打包出来是 ESM 格式，目前 qiankun 需要拿到子应用的声明周期，采用的是 umd 格式
+
 ## 为什么不用 iframe
 
 [为什么不用 iframe](https://www.yuque.com/kuitos/gky7yw/gesexv)
