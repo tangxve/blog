@@ -12,6 +12,11 @@
 
 - 生产模式：生产模式下，因为没有诸如 webpack 中支持运行时 `publicPath` ,也就是 `__webpack_public_path__` ，换句话说就是 vite 不支持运行时 `publicPath`，其主要作用是用来解决微应用动态载入的脚本、样式、图片等地址不正确的问题。
 
+-  public 静态资源
+  - 主应用：publicPath：/main
+  - 子应用A：publicPath：/A
+  - 正常子应用的访问的静态资源是 `/A` 路径下，当被主应用加载后，回去 `/main` 下访问资源，这时候就拿不到资源
+
 - vite 默认打包出来是 ESM 格式，目前 qiankun 需要拿到子应用的声明周期，采用的是 umd 格式
 
 ## 为什么不用 iframe
