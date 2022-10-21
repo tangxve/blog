@@ -6,6 +6,12 @@
 
 ## todo
 
+- 改造微前端遇到的问题
+  - CJS 引用 ESM 方法的问题
+  - 需要把 package.json 的 "type": "module"
+  - 如果是 module 类型，vue.config.js 修改cjs
+  - 但是 低版本 vue-cli 不支持支持 vue.config.cjs 格式（可以通过升级 vue-cli 解决问题，搞版本的 支持 cjs）
+  - 考虑修改的成本放弃
 - canvas 工具方法完善
 - [electron 开发 日历app](src/electron.md)
 - [前端性能优化与解决方案](src/前端性能优化与解决方案.md)
