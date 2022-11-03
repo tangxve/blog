@@ -4,9 +4,9 @@ webstrom 内置的插件尚未对 tailwind 最新版本, 降级处理
 
 ## 环境
 
-项目：vue3 + vite + ts + node16 + tailwind3.2
-软件：webstrom
-插件：[官方提供 tailwind](https://www.jetbrains.com/help/webstorm/tailwind-css.html)
+- 项目：`vue v3` + `vite v3` + `node v16` + `tailwind v3.2.1`
+- 软件：`webstrom 2022.2`
+- 插件：[官方提供 tailwind](https://www.jetbrains.com/help/webstorm/tailwind-css.html)
 
 ## 问题
 
