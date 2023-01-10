@@ -6,6 +6,10 @@
 
 ## todo
 
+- vue3 + ts 的问题
+  - 模板是个失败的设计，很多问题都是由模板衍生而来
+  - props 和 ts 结合仍有问题（有写类型还是不能提醒，和 webstrom 也有关系）
+  - 模板中只能编写 js，但 vue-tsc 会使用 tsc 检查，这会导致一些奇怪的问题很难解决
 - 改造微前端遇到的问题
   - CJS 引用 ESM 方法的问题
   - 需要把 package.json 的 "type": "module"
