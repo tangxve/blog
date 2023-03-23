@@ -30,7 +30,7 @@ export const generatePreview = async function (flipped = true) {
 
   const avatarStyleCounts = Object.keys(AvatarStyleCount).map(async (type) => {
     const svgRaw = (
-      await require(`!!raw-loader!/docs/.vuepress/public/avatar/preview/${type}/${config[type]}.svg`)
+      await require(`!!raw-loader!//Users/tangxue/code/blog/docs.old/.vuepress/public/avatar/preview/${type}/${config[type]}.svg`)
     ).default
 
     return `\n<g id="notion-avatar-${type}" ${

@@ -4,25 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "test_promise": "promises-aplus-tests docs/fe/mianshi/js/promise/promise",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d dist -m deploy",
-    "deploy:build": "vuepress build docs && npm run deploy"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "author": "tang xue <tangxue1118@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.4.0",
-    "gh-pages": "^3.1.0",
-    "prettier": "^2.0.2",
-    "promises-aplus-tests": "^2.1.2",
-    "vuepress-plugin-zooming": "^1.1.7"
-  },
-  "dependencies": {
-    "html2canvas": "^1.4.1",
-    "raw-loader": "^4.0.2",
-    "vuepress": "^1.8.2"
+    "vitepress": "1.0.0-alpha.61"
   }
 }
