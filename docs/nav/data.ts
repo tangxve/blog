@@ -36,33 +36,14 @@ export const NAV_DATA: NavData[] = [
     ]
   },
   {
-    title: 'AI 导航',
-    items: [
-      {
-        icon: '/icons/chatgpt.png',
-        title: 'ChatGPT（最强）',
-        link: 'https://chat.openai.com/chat'
-      },
-      {
-        icon: 'https://www.notion.so/images/logo-ios.png',
-        title: 'Notion AI（笔记）',
-        link: 'https://www.notion.so'
-      },
-      {
-        icon: 'https://www.midjourney.com/apple-touch-icon.png',
-        title: 'Midjourney（绘画）',
-        link: 'https://www.midjourney.com'
-      },
-      {
-        icon: 'https://global-uploads.webflow.com/59deb588800ae30001ec19c9/5d4891e0e260e3c1bc37b100_beautiful%20ai%20favicon%20%20blue%20square.png',
-        title: 'Beautiful.ai（PPT）',
-        link: 'https://www.beautiful.ai'
-      }
-    ]
-  },
-  {
     title: 'Vue 生态',
     items: [
+      {
+        icon: 'https://cn.vuejs.org/logo.svg',
+        title: 'Vue 2',
+        desc: '渐进式 JavaScript 框架',
+        link: 'https://v2.cn.vuejs.org'
+      },
       {
         icon: 'https://cn.vuejs.org/logo.svg',
         title: 'Vue 3',
@@ -70,10 +51,16 @@ export const NAV_DATA: NavData[] = [
         link: 'https://cn.vuejs.org'
       },
       {
-        icon: 'https://cn.vuejs.org/logo.svg',
-        title: 'Vue 2',
-        desc: '渐进式 JavaScript 框架',
-        link: 'https://v2.cn.vuejs.org'
+        icon: 'https://element-plus.org/images/element-plus-logo-small.svg',
+        title: 'Element',
+        desc: 'Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库',
+        link: 'https://element.eleme.cn/#/zh-CN/component/installation'
+      },
+      {
+        icon: 'https://element-plus.org/images/element-plus-logo-small.svg',
+        title: 'Element Plus',
+        desc: '基于 Vue 3，面向设计师和开发者的组件库',
+        link: 'https://element-plus.org'
       },
       {
         icon: 'https://cn.vuejs.org/logo.svg',
@@ -98,24 +85,6 @@ export const NAV_DATA: NavData[] = [
         title: 'VueUse',
         desc: 'Vue Composition API 的常用工具集',
         link: 'https://vueuse.org'
-      },
-      {
-        icon: 'https://element-plus.org/images/element-plus-logo-small.svg',
-        title: 'Element Plus',
-        desc: '基于 Vue 3，面向设计师和开发者的组件库',
-        link: 'https://element-plus.org'
-      },
-      {
-        icon: 'https://www.antdv.com/assets/logo.1ef800a8.svg',
-        title: 'Ant Design Vue',
-        desc: 'Ant Design 的 Vue 实现，开发和服务于企业级后台产品',
-        link: 'https://antdv.com'
-      },
-      {
-        icon: 'https://fastly.jsdelivr.net/npm/@vant/assets/logo.png',
-        title: 'Vant',
-        desc: '轻量、可定制的移动端 Vue 组件库',
-        link: 'https://vant-ui.github.io/vant'
       },
     ]
   },
@@ -193,6 +162,31 @@ export const NAV_DATA: NavData[] = [
         title: 'ahooks',
         desc: '一套高质量可靠的 React Hooks 库',
         link: 'https://ahooks.js.org/zh-CN'
+      }
+    ]
+  },
+  {
+    title: 'AI 导航',
+    items: [
+      {
+        icon: '/icons/chatgpt.png',
+        title: 'ChatGPT（最强）',
+        link: 'https://chat.openai.com/chat'
+      },
+      {
+        icon: 'https://www.notion.so/images/logo-ios.png',
+        title: 'Notion AI（笔记）',
+        link: 'https://www.notion.so'
+      },
+      {
+        icon: 'https://www.midjourney.com/apple-touch-icon.png',
+        title: 'Midjourney（绘画）',
+        link: 'https://www.midjourney.com'
+      },
+      {
+        icon: 'https://global-uploads.webflow.com/59deb588800ae30001ec19c9/5d4891e0e260e3c1bc37b100_beautiful%20ai%20favicon%20%20blue%20square.png',
+        title: 'Beautiful.ai（PPT）',
+        link: 'https://www.beautiful.ai'
       }
     ]
   },
