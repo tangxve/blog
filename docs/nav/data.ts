@@ -33,6 +33,12 @@ export const NAV_DATA: NavData[] = [
         desc: '',
         link: 'chrome-extension://pkgccpejnmalmdinmhkkfafefagiiiad/json-format/index.html'
       },
+      {
+        icon: '',
+        title: 'Excalidraw', // TODO: 添加图标
+        desc: '手绘流程图',
+        link: 'https://excalidraw.com/'
+      },
     ]
   },
   {
@@ -107,7 +113,7 @@ export const NAV_DATA: NavData[] = [
         icon: 'https://nextjs.org/static/favicon/safari-pinned-tab.svg',
         title: 'Next.js',
         desc: '一个用于 Web 的 React 框架',
-        link: 'https://nextjs.org'
+        link: 'https://www.nextjs.cn/'
       },
       {
         icon: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
