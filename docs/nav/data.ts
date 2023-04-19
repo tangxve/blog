@@ -172,31 +172,6 @@ export const NAV_DATA: NavData[] = [
     ]
   },
   {
-    title: 'AI 导航',
-    items: [
-      {
-        icon: '/icons/chatgpt.png',
-        title: 'ChatGPT（最强）',
-        link: 'https://chat.openai.com/chat'
-      },
-      {
-        icon: 'https://www.notion.so/images/logo-ios.png',
-        title: 'Notion AI（笔记）',
-        link: 'https://www.notion.so'
-      },
-      {
-        icon: 'https://www.midjourney.com/apple-touch-icon.png',
-        title: 'Midjourney（绘画）',
-        link: 'https://www.midjourney.com'
-      },
-      {
-        icon: 'https://global-uploads.webflow.com/59deb588800ae30001ec19c9/5d4891e0e260e3c1bc37b100_beautiful%20ai%20favicon%20%20blue%20square.png',
-        title: 'Beautiful.ai（PPT）',
-        link: 'https://www.beautiful.ai'
-      }
-    ]
-  },
-  {
     title: 'CSS 相关',
     items: [
       {
@@ -216,6 +191,12 @@ export const NAV_DATA: NavData[] = [
         title: 'TailwindCSS 中文网',
         desc: '一个功能类优先的 CSS 框架',
         link: 'https://www.tailwindcss.cn'
+      },
+      {
+        icon: 'https://raw.githubusercontent.com/saadeghi/files/main/daisyui/logo-4.svg',
+        title: 'DaisyUI 组件',
+        desc: '基于 Tailwind CSS 的 UI 组件库',
+        link: 'https://daisyui.com/'
       }
     ]
   },
@@ -251,6 +232,31 @@ export const NAV_DATA: NavData[] = [
         title: 'Nest.js 中文文档',
         desc: '用于构建高效且可伸缩的服务端应用程序的渐进式 Node.js 框架',
         link: 'https://docs.nestjs.cn'
+      }
+    ]
+  },
+  {
+    title: 'AI 导航',
+    items: [
+      {
+        icon: '/icons/chatgpt.png',
+        title: 'ChatGPT（最强）',
+        link: 'https://chat.openai.com/chat'
+      },
+      {
+        icon: 'https://www.notion.so/images/logo-ios.png',
+        title: 'Notion AI（笔记）',
+        link: 'https://www.notion.so'
+      },
+      {
+        icon: 'https://www.midjourney.com/apple-touch-icon.png',
+        title: 'Midjourney（绘画）',
+        link: 'https://www.midjourney.com'
+      },
+      {
+        icon: 'https://global-uploads.webflow.com/59deb588800ae30001ec19c9/5d4891e0e260e3c1bc37b100_beautiful%20ai%20favicon%20%20blue%20square.png',
+        title: 'Beautiful.ai（PPT）',
+        link: 'https://www.beautiful.ai'
       }
     ]
   },
