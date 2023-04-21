@@ -4,18 +4,18 @@ outline: [2, 3, 4]
 ---
 
 <script setup>
-import NavLinks from './nav/NavLinks.vue'
+import NavLinks from './nav/NavLinks.vue';
 
-import { NAV_DATA } from './nav/data'
+import { NAV_DATA } from './nav/data';
 </script>
 <style src="./nav/index.scss"></style>
 
 
-# 彩虹桥 Bifrost
+# Bifrost 彩虹桥
 
-在北欧神话中是连结阿斯加德（Asgard）和 米德加尔特（中庭/Midgard）的巨大彩虹桥，意即“摇晃的天国道路”。
+彩虹桥（Bifrost，Bifröst，古北欧语：Bilröst）在北欧神话中是连结阿斯加德（Asgard）和 米德加尔特（中庭/Midgard）的巨大彩虹桥，意即“摇晃的天国道路”。
 
-<NavLinks v-for="{title, items} in NAV_DATA" :title="title" :items="items"/>
+<NavLinks v-for="{title, items} in NAV_DATA" :title="title" :items="items"></NavLinks>
 
 ::: tip
 该导航由 [maomao](https://github.com/maomao1996) 开发，如有引用、借鉴的请保留版权声明
