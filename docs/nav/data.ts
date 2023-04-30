@@ -193,7 +193,7 @@ export const NAV_DATA: NavData[] = [
         link: 'https://www.tailwindcss.cn'
       },
       {
-        icon: 'https://raw.githubusercontent.com/saadeghi/files/main/daisyui/logo-4.svg',
+        icon: 'https://github.githubassets.com/images/icons/emoji/unicode/1f33c.png',
         title: 'DaisyUI 组件',
         desc: '基于 Tailwind CSS 的 UI 组件库',
         link: 'https://daisyui.com/'
