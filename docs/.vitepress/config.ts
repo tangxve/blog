@@ -6,6 +6,8 @@ export default defineConfig({
   description: 'A VitePress Site',
   lastUpdated: true,
   cleanUrls: true,
+  outDir: '../dist',
+  base: '/blog',
 
   /* markdown 配置 */
   markdown: {
