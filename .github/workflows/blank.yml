@@ -33,6 +33,6 @@ jobs:
           # GitHub 密钥
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           # GitHub Pages 读取的分支
-          BRANCH: master
+          BRANCH: gh-pages
           # 静态文件所在目录
           FOLDER: dist
