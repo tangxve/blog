@@ -6,7 +6,7 @@ export default defineConfig({
   base: '/blog/',
 
   title: '知食',
-  description: 'A VitePress Site',
+  description: 'A VitePress Site1',
   lastUpdated: true,
   cleanUrls: true,
 
