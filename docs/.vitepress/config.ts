@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   outDir: '../dist',
-  base: '/docs/',
+  base: '/blog/',
 
   title: '知食',
   description: 'A VitePress Site1',
