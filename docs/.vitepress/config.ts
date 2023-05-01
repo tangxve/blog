@@ -2,12 +2,13 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  outDir: '../dist',
+  base: '/blog/',
+
   title: '知食',
   description: 'A VitePress Site',
   lastUpdated: true,
   cleanUrls: true,
-  outDir: '../dist',
-  base: '/blog',
 
   /* markdown 配置 */
   markdown: {
