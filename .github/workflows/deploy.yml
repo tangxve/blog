@@ -31,7 +31,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           # GitHub 密钥
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           # GitHub Pages 读取的分支
           BRANCH: master
           # 静态文件所在目录
