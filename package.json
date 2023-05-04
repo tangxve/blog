@@ -18,6 +18,7 @@
     "vue": "^3.2.47"
   },
   "dependencies": {
-    "@types/node": "^18.16.3"
+    "@types/node": "^18.16.3",
+    "cross-env": "^7.0.3"
   }
 }
