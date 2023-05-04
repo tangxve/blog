@@ -16,7 +16,7 @@ yarn-error.log*
 record.md*
 
 # Editor directories and files
-.idea
+.idea/
 .vscode
 *.suo
 *.ntvs*
