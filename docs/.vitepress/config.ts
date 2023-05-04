@@ -1,9 +1,10 @@
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
+
 export default defineConfig({
   outDir: '../dist',
-  base: '/blog/',
+  base: process.env.APP_BASE_PATH || '/',
 
   title: '知食',
   description: 'A VitePress Site1',

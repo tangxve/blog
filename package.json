@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
+    "build:github": "cross-env APP_BASE_PATH=/blog/ vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "author": "tang xue <tangxue1118@gmail.com>",
@@ -15,5 +16,8 @@
     "sass": "^1.61.0",
     "vitepress": "1.0.0-alpha.61",
     "vue": "^3.2.47"
+  },
+  "dependencies": {
+    "@types/node": "^18.16.3"
   }
 }
