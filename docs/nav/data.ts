@@ -148,35 +148,6 @@ export const NAV_DATA: NavData[] = [
     ]
   },
   {
-    title: 'CSS 相关',
-    items: [
-      {
-        icon: 'https://postcss.org/assets/logo-3e39b0aa.svg',
-        title: 'PostCSS',
-        desc: '一个用 JavaScript 转换 CSS 的工具',
-        link: 'https://postcss.org'
-      },
-      {
-        icon: 'https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg',
-        title: 'Sass',
-        desc: '一个成熟，稳定，功能强大的专业级 CSS 扩展语言',
-        link: 'https://sass-lang.com'
-      },
-      {
-        icon: 'https://www.tailwindcss.cn/apple-touch-icon.png',
-        title: 'TailwindCSS 中文网',
-        desc: '一个功能类优先的 CSS 框架',
-        link: 'https://www.tailwindcss.cn'
-      },
-      {
-        icon: 'https://github.githubassets.com/images/icons/emoji/unicode/1f33c.png',
-        title: 'DaisyUI 组件',
-        desc: '基于 Tailwind CSS 的 UI 组件库',
-        link: 'https://daisyui.com/'
-      }
-    ]
-  },
-  {
     title: 'Node 相关',
     items: [
       {
@@ -208,6 +179,41 @@ export const NAV_DATA: NavData[] = [
         title: 'Nest.js 中文文档',
         desc: '用于构建高效且可伸缩的服务端应用程序的渐进式 Node.js 框架',
         link: 'https://docs.nestjs.cn'
+      },
+      {
+        icon: 'https://trpc.io/img/logo.svg',
+        title: 'tRPC',
+        desc: '轻松实现端到端类型安全 API',
+        link: 'https://kuizuo.cn/typescript-full-stack-technology-trpc/'
+      },
+    ]
+  },
+  {
+    title: 'CSS 相关',
+    items: [
+      {
+        icon: 'https://postcss.org/assets/logo-3e39b0aa.svg',
+        title: 'PostCSS',
+        desc: '一个用 JavaScript 转换 CSS 的工具',
+        link: 'https://postcss.org'
+      },
+      {
+        icon: 'https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg',
+        title: 'Sass',
+        desc: '一个成熟，稳定，功能强大的专业级 CSS 扩展语言',
+        link: 'https://sass-lang.com'
+      },
+      {
+        icon: 'https://www.tailwindcss.cn/apple-touch-icon.png',
+        title: 'TailwindCSS 中文网',
+        desc: '一个功能类优先的 CSS 框架',
+        link: 'https://www.tailwindcss.cn'
+      },
+      {
+        icon: 'https://github.githubassets.com/images/icons/emoji/unicode/1f33c.png',
+        title: 'DaisyUI 组件',
+        desc: '基于 Tailwind CSS 的 UI 组件库',
+        link: 'https://daisyui.com/'
       }
     ]
   },
