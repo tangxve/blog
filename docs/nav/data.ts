@@ -16,6 +16,24 @@ export const NAV_DATA: NavData[] = [
         link: 'https://readhub.cn/'
       },
       {
+        icon: 'https://www.google.com/gmail/about/static-2.0/images/logo-gmail.png',
+        title: 'Google 邮箱',
+        desc: '谷歌 邮箱',
+        link: 'https://mail.google.com'
+      },
+      {
+        icon: 'https://mail.163.com/favicon.ico',
+        title: '163 网易 邮箱',
+        desc: '163 网易 邮箱',
+        link: 'https://mail.163.com'
+      },
+      {
+        icon: 'https://mail.qq.com/zh_CN/htmledition/images/favicon/qqmail_favicon_48h.png',
+        title: 'QQ 邮箱',
+        desc: 'qq 邮箱',
+        link: 'https://mail.qq.com'
+      },
+      {
         icon: 'https://tinypng.com/images/apple-touch-icon.png',
         title: 'TinyPNG',
         desc: '在线图片压缩工具',
