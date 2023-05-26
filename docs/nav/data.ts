@@ -87,6 +87,12 @@ export const NAV_DATA: NavData[] = [
         link: 'https://element-plus.org'
       },
       {
+        icon: 'https://www.naiveui.com/assets/naivelogo-93278402.svg',
+        title: 'Naïve UI',
+        desc: '一个 Vue 3 组件库比较完整，主题可调，使用 TypeScript，快！有点意思',
+        link: 'https://www.naiveui.com/zh-CN/dark'
+      },
+      {
         icon: 'https://cn.vuejs.org/logo.svg',
         title: 'Vue Router',
         desc: 'Vue.js 的官方路由\n为 Vue.js 提供富有表现力、可配置的、方便的路由',
