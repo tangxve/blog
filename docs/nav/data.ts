@@ -1,13 +1,13 @@
-import type { NavLink } from './type'
+import type { NavLinkType } from './type'
 
 type NavData = {
   title: string
-  items: NavLink[]
+  items: NavLinkType[]
 }
 
 export const NAV_DATA: NavData[] = [
   {
-    title: '常用工具',
+    title: '工具',
     items: [
       {
         icon: 'https://readhub.cn/icons/favicon-32x32.png',
@@ -168,7 +168,13 @@ export const NAV_DATA: NavData[] = [
         title: 'create t3 app',
         desc: '让你以最快的方式启动一个独立、全栈、类型安全 NextJS 应用。',
         link: 'https://create.t3.gg/zh-hans/introduction'
-      }
+      },
+      {
+        icon: 'https://www.framer.com/images/favicons/favicon.png',
+        title: 'motion',
+        desc: '强大的 Web 动画库，适用于各种类型的 Web 应用程序',
+        link: 'https://github.com/framer/motion'
+      },
     ]
   },
   {

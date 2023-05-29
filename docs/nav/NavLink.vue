@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, defineEmits } from 'vue'
 import { withBase } from 'vitepress'
 import { slugify } from '@mdit-vue/shared'
 
@@ -10,6 +10,10 @@ const props = defineProps<{
   title?: NavLink['title']
   desc?: NavLink['desc']
   link: NavLink['link']
+}>()
+
+const emits = defineEmits<{
+  handleClick: (e: MouseEvent) => void
 }>()
 
 const formatTitle = computed(() => {
@@ -23,10 +27,17 @@ const svg = computed(() => {
   if (typeof props.icon === 'object') return props.icon.svg
   return ''
 })
+
+const handleClick = (e: MouseEvent) => {
+  e.preventDefault()
+  window.open(props.link, '_blank')
+
+  emits('handleClick')
+}
 </script>
 
 <template>
-  <a v-if="link" class="m-nav-link" :href="link" target="_blank" rel="noreferrer">
+  <a v-if="link" class="m-nav-link" @click="handleClick" target="_blank" rel="noreferrer">
     <article class="box">
       <div class="box-header">
         <div v-if="svg" class="icon" v-html="svg"></div>
@@ -56,6 +67,7 @@ const svg = computed(() => {
   height: 100%;
   background-color: var(--vp-c-bg-soft);
   transition: all 0.25s;
+
   &:hover {
     box-shadow: var(--vp-shadow-2);
     border-color: var(--vp-c-brand);
@@ -69,6 +81,7 @@ const svg = computed(() => {
     padding: var(--m-nav-box-gap);
     height: 100%;
     color: var(--vp-c-text-1);
+
     &-header {
       display: flex;
       align-items: center;
@@ -86,10 +99,12 @@ const svg = computed(() => {
     font-size: var(--m-nav-icon-size);
     background-color: var(--vp-c-bg-soft-down);
     transition: background-color 0.25s;
+
     :deep(svg) {
       width: var(--m-nav-icon-size);
       fill: currentColor;
     }
+
     :deep(img) {
       border-radius: 4px;
       width: var(--m-nav-icon-size);
