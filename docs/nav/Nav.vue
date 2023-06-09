@@ -57,4 +57,3 @@ const updateRecentLinks = (item: NavLinkType) => {
 </template>
 
 <style src="./index.scss"></style>
-<style scoped lang="scss"></style>
