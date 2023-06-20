@@ -10,6 +10,12 @@ export const NAV_DATA: NavData[] = [
     title: '工具',
     items: [
       {
+        icon: 'https://p1-hera.feishucdn.com/tos-cn-i-jbbdkfciu3/84a9f036fe2b44f99b899fff4beeb963~tplv-jbbdkfciu3-image:100:100.image',
+        title: '飞书文档',
+        desc: '飞书文档',
+        link: 'https://www.feishu.cn/drive/home/'
+      },
+      {
         icon: 'https://readhub.cn/icons/favicon-32x32.png',
         title: 'Readhub',
         desc: 'Readhub',
