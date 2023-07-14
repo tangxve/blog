@@ -11,6 +11,12 @@ export const NAV_DATA: NavData[] = [
     items: [
       {
         icon: 'https://p1-hera.feishucdn.com/tos-cn-i-jbbdkfciu3/84a9f036fe2b44f99b899fff4beeb963~tplv-jbbdkfciu3-image:100:100.image',
+        title: '人均 GDP（现价美元）',
+        desc: '各个国家的人均 GDP（现价美元）',
+        link: 'https://data.worldbank.org.cn/indicator/NY.GDP.PCAP.CD?locations=CN-US&name_desc=false'
+      },
+      {
+        icon: 'https://p1-hera.feishucdn.com/tos-cn-i-jbbdkfciu3/84a9f036fe2b44f99b899fff4beeb963~tplv-jbbdkfciu3-image:100:100.image',
         title: '飞书文档',
         desc: '飞书文档',
         link: 'https://www.feishu.cn/drive/home/'
