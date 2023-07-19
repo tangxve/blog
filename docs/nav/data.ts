@@ -10,7 +10,7 @@ export const NAV_DATA: NavData[] = [
     title: '工具',
     items: [
       {
-        icon: 'https://p1-hera.feishucdn.com/tos-cn-i-jbbdkfciu3/84a9f036fe2b44f99b899fff4beeb963~tplv-jbbdkfciu3-image:100:100.image',
+        icon: 'https://data.worldbank.org.cn/favicon.ico?v=1.1',
         title: '人均 GDP（现价美元）',
         desc: '各个国家的人均 GDP（现价美元）',
         link: 'https://data.worldbank.org.cn/indicator/NY.GDP.PCAP.CD?locations=CN-US&name_desc=false'
