@@ -10,6 +10,12 @@ export const NAV_DATA: NavData[] = [
     title: '工具',
     items: [
       {
+        icon: 'https://satellitemap.space/favicon.ico',
+        title: '卫星覆盖图',
+        desc: 'Starlink 卫星覆盖图',
+        link: 'https://satellitemap.space/'
+      },
+      {
         icon: 'https://data.worldbank.org.cn/favicon.ico?v=1.1',
         title: '人均 GDP（现价美元）',
         desc: '各个国家的人均 GDP（现价美元）',
