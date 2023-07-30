@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 
-import { nav } from './configs'
+import { nav, sidebar } from './configs'
 
 export default defineConfig({
   outDir: '../dist',
@@ -19,7 +19,7 @@ export default defineConfig({
   /* 主题配置 */
   themeConfig: {
     nav,
-    sidebar: {},
+    sidebar,
     socialLinks: [
       { icon: 'github', link: 'https://github.com/tangxve' }
     ]
