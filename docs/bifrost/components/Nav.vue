@@ -2,7 +2,7 @@
 import { reactive, ref } from 'vue'
 import NavLink from './NavLink.vue'
 import NavLinks from './NavLinks.vue'
-import { NAV_DATA } from './data'
+import { NAV_DATA } from '../data'
 import type { NavLinkType } from './type'
 
 const LOCAL_KEY = '__recentLinks__'
@@ -56,4 +56,4 @@ const updateRecentLinks = (item: NavLinkType) => {
   </NavLinks>
 </template>
 
-<style src="./index.scss"></style>
+<style src="../index.scss"></style>

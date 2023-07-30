@@ -1,4 +1,4 @@
-import type { NavLinkType } from './type'
+import type { NavLinkType } from './components/type'
 
 type NavData = {
   title: string

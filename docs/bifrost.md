@@ -4,7 +4,7 @@ outline: [ 2, 3, 4 ]
 ---
 
 <script setup>
-import Bifrost from './nav/Nav.vue';
+import Bifrost from './bifrost/components/Nav.vue';
 </script>
 
 # Bifrost 彩虹桥
