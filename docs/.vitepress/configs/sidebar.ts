@@ -20,5 +20,11 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '微信公众号开发', link: '/notes/01' },
       ]
     },
+  ],
+  '/fe/': [
+    {
+      text: '前端相关',
+      link: '/fe/'
+    },
   ]
 }
