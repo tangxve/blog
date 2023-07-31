@@ -67,6 +67,7 @@ const handleClick = (e: MouseEvent) => {
   height: 100%;
   background-color: var(--vp-c-bg-soft);
   transition: all 0.25s;
+  cursor: pointer;
 
   &:hover {
     box-shadow: var(--vp-shadow-2);
