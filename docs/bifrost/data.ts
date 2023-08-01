@@ -11,6 +11,12 @@ export const NAV_DATA: NavData[] = [
     items: [
       {
         icon: 'https://satellitemap.space/favicon.ico',
+        title: '中国-最新加密货币和商业新闻',
+        desc: ' 中国-最新加密货币和商业新闻',
+        link: 'https://www.business2community.com/zh-cn'
+      },
+      {
+        icon: 'https://satellitemap.space/favicon.ico',
         title: '卫星覆盖图',
         desc: 'Starlink 卫星覆盖图',
         link: 'https://satellitemap.space/'
