@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,N as l}from"./chunks/framework.aa86f8b3.js";const A=JSON.parse('{"title":"微信网页开发","description":"","frontmatter":{},"headers":[],"relativePath":"notes/01.md","lastUpdated":1690782321000}'),p={name:"notes/01.md"},e=l("",42),o=[e];function r(c,t,i,F,y,D){return a(),n("div",null,o)}const C=s(p,[["render",r]]);export{A as __pageData,C as default};
