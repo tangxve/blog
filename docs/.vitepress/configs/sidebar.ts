@@ -10,14 +10,14 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       text: '2021 年',
       collapsed: false,
       items: [
-        { text: 'git 相关的', link: '/notes/02' },
+        { text: 'git 相关的', link: '/notes/2' },
       ]
     },
     {
       text: '2020 年',
       collapsed: false,
       items: [
-        { text: '微信公众号开发', link: '/notes/01' },
+        { text: '微信公众号开发', link: '/notes/1' },
       ]
     },
   ],

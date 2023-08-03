@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
@@ -18,7 +19,10 @@
     "vue": "^3.3.4"
   },
   "dependencies": {
+    "@octokit/rest": "^20.0.1",
     "@types/node": "^18.16.3",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "fs-extra": "^11.1.1",
+    "node-fetch": "^3.3.2"
   }
 }
