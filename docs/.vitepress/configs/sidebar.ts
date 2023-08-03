@@ -10,6 +10,9 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       text: '2021 年',
       collapsed: false,
       items: [
+        { text: 'Mac 前端开发环境', link: '/notes/5' },
+        { text: '微信支付开发对接流程', link: '/notes/4' },
+        { text: 'vue2 + ts 路由钩子函数不生效', link: '/notes/3' },
         { text: 'git 相关的', link: '/notes/2' },
       ]
     },
