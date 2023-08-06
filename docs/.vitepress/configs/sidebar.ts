@@ -10,6 +10,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       text: '2022 年',
       collapsed: false,
       items: [
+        { text: 'zsh 更新问题', link: '/notes/8' },
         { text: '富文本内容展示问题', link: '/notes/7' },
         { text: 'canvas 工具方法', link: '/notes/6' },
       ]
