@@ -140,6 +140,12 @@ export const NAV_DATA: NavData[] = [
         desc: 'Vue Composition API 的常用工具集',
         link: 'https://vueuse.org'
       },
+      {
+        icon: 'https://cn.vitejs.dev/logo.svg',
+        title: 'VitePress',
+        desc: 'VitePress 是一个轻量级文档工具',
+        link: 'https://vitepress.dev/'
+      },
     ]
   },
   {
@@ -198,6 +204,53 @@ export const NAV_DATA: NavData[] = [
         title: 'motion',
         desc: '强大的 Web 动画库，适用于各种类型的 Web 应用程序',
         link: 'https://github.com/framer/motion'
+      },
+    ]
+  },
+  {
+    title: '编译&构建&打包',
+    items: [
+      {
+        icon: 'https://cn.vitejs.dev/logo.svg',
+        title: 'Vite 中文文档',
+        desc: '下一代前端工具链',
+        link: 'https://cn.vitejs.dev'
+      },
+      {
+        icon: 'https://esbuild.github.io/favicon.svg',
+        title: 'esbuild',
+        desc: 'An extremely fast bundler for the web',
+        link: 'https://esbuild.github.io'
+      },
+      {
+        icon: 'https://swc.rs/favicon/apple-touch-icon.png',
+        title: 'SWC',
+        desc: 'Rust-based platform for the Web',
+        link: 'https://swc.rs'
+      },
+      {
+        icon: 'https://turbo.build/images/favicon-dark/apple-touch-icon.png',
+        title: 'Turbo',
+        desc: 'Turbo is an incremental bundler and build system optimized for JavaScript and TypeScript, written in Rust',
+        link: 'https://turbo.build'
+      },
+      {
+        icon: 'https://www.webpackjs.com/icon_180x180.png',
+        title: 'Webpack 中文网',
+        desc: '一个用于现代 JavaScript 应用程序的静态模块打包工具',
+        link: 'https://www.webpackjs.com'
+      },
+      {
+        icon: 'https://www.rollupjs.com/img/favicon.png',
+        title: 'Rollup',
+        desc: 'Rollup 是一个 JavaScript 模块打包器',
+        link: 'https://www.rollupjs.com'
+      },
+      {
+        icon: 'https://www.babeljs.cn/img/favicon.png',
+        title: 'Babel',
+        desc: 'Babel 是一个 JavaScript 编译器',
+        link: 'https://www.babeljs.cn'
       },
     ]
   },
@@ -329,53 +382,6 @@ export const NAV_DATA: NavData[] = [
         title: 'Chart.js',
         desc: '一个简单而灵活的 JavaScript 图表库',
         link: 'https://www.chartjs.org'
-      },
-    ]
-  },
-  {
-    title: '编译&构建&打包',
-    items: [
-      {
-        icon: 'https://cn.vitejs.dev/logo.svg',
-        title: 'Vite 中文文档',
-        desc: '下一代前端工具链',
-        link: 'https://cn.vitejs.dev'
-      },
-      {
-        icon: 'https://esbuild.github.io/favicon.svg',
-        title: 'esbuild',
-        desc: 'An extremely fast bundler for the web',
-        link: 'https://esbuild.github.io'
-      },
-      {
-        icon: 'https://swc.rs/favicon/apple-touch-icon.png',
-        title: 'SWC',
-        desc: 'Rust-based platform for the Web',
-        link: 'https://swc.rs'
-      },
-      {
-        icon: 'https://turbo.build/images/favicon-dark/apple-touch-icon.png',
-        title: 'Turbo',
-        desc: 'Turbo is an incremental bundler and build system optimized for JavaScript and TypeScript, written in Rust',
-        link: 'https://turbo.build'
-      },
-      {
-        icon: 'https://www.webpackjs.com/icon_180x180.png',
-        title: 'Webpack 中文网',
-        desc: '一个用于现代 JavaScript 应用程序的静态模块打包工具',
-        link: 'https://www.webpackjs.com'
-      },
-      {
-        icon: 'https://www.rollupjs.com/img/favicon.png',
-        title: 'Rollup',
-        desc: 'Rollup 是一个 JavaScript 模块打包器',
-        link: 'https://www.rollupjs.com'
-      },
-      {
-        icon: 'https://www.babeljs.cn/img/favicon.png',
-        title: 'Babel',
-        desc: 'Babel 是一个 JavaScript 编译器',
-        link: 'https://www.babeljs.cn'
       },
     ]
   },

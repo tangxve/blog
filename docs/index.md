@@ -11,7 +11,7 @@ hero:
       text: Markdown Examples
       link: /markdown-examples
     - theme: alt
-      text: 🗒 日常笔记
+      text: 📝 日常笔记
       link: /notes/
     - theme: alt
       text: 🌈 彩虹桥
