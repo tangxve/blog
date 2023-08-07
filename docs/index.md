@@ -11,8 +11,11 @@ hero:
       text: Markdown Examples
       link: /markdown-examples
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: 🗒 日常笔记
+      link: /notes/
+    - theme: alt
+      text: 🌈 彩虹桥
+      link: /bifrost
 
 features:
   - title: Feature A
