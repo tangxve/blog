@@ -141,7 +141,7 @@ export const NAV_DATA: NavData[] = [
         link: 'https://vueuse.org'
       },
       {
-        icon: 'https://cn.vitejs.dev/logo.svg',
+        icon: 'https://vitepress.dev/vitepress-logo-mini.svg',
         title: 'VitePress',
         desc: 'VitePress 是一个轻量级文档工具',
         link: 'https://vitepress.dev/'
