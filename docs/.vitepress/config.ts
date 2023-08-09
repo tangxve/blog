@@ -6,7 +6,7 @@ export default defineConfig({
   outDir: '../dist',
   base: process.env.APP_BASE_PATH || '/',
 
-  title: '知食',
+  title: '🧀 知食',
   description: 'A VitePress Site1',
   lastUpdated: true,
   cleanUrls: true,
