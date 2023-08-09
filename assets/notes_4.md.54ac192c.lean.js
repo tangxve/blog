@@ -1,1 +1,0 @@
-import{_ as e,c as a,o,N as s}from"./chunks/framework.3751e28a.js";const x=JSON.parse('{"title":"微信支付相关","description":"","frontmatter":{},"headers":[],"relativePath":"notes/4.md","lastUpdated":1691547600000}'),t={name:"notes/4.md"},p=s("",30),n=[p];function r(c,l,i,d,h,m){return o(),a("div",null,n)}const _=e(t,[["render",r]]);export{x as __pageData,_ as default};
