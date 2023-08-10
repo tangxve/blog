@@ -3,11 +3,10 @@
 记录一些笔记和踩坑的过程
 
 > [new 笔记](https://github.com/tangxve/notes/issues/new)
->
 
-## 2022年
 
-## todo
+
+::: details Todo List
 
 - vue3 + ts 的问题
     - 模板是个失败的设计，很多问题都是由模板衍生而来
@@ -19,10 +18,14 @@
     - 如果是 module 类型，vue.config.js 修改cjs
     - 但是 低版本 vue-cli 不支持支持 vue.config.cjs 格式（可以通过升级 vue-cli 解决问题，搞版本的 支持 cjs）
     - 考虑修改的成本放弃
+    -
+
+:::
+
 
 ## 2022年
 
-1. 2022-11-03：[webstrom 不支持 tailwind 提醒]()
+1. 2022-11-03：[webstrom 不支持 tailwind 提醒](./12.md)
 2. 2022-05-06：[fullPage 插件 afterLoad 钩子执行时机](./11.md)
 3. 2022-04-07：[quill-editor 编辑自动获取焦点和页面滚动](./10.md)
 4. 2022-03-21：[项目中依赖同一个库多个版本](./9.md)

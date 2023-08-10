@@ -10,6 +10,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       text: '2022 年',
       collapsed: false,
       items: [
+        { text: 'webstrom 不支持 tailwind 提醒', link: '/notes/12' },
         { text: 'fullPage 插件 afterLoad 钩子执行时机', link: '/notes/11' },
         { text: 'quillEditor 自动获取焦点问题', link: '/notes/10' },
         { text: '项目中依赖同一个库多个版本', link: '/notes/9' },

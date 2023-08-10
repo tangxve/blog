@@ -12,9 +12,9 @@ webstrom 内置的插件尚未对 tailwind 最新版本, 降级处理
 
 编辑器没有提醒，但是渲染是生效的，下图：
 
-<img src="./img/wt-1.png"  width="600">
+<img src="img/12-1.png"  width="1546">
 
-<img src="./img/wt-2.png"  width="600">
+<img src="img/12-2.png"  width="684">
 
 通过添加日志发现报错：
 
@@ -32,7 +32,7 @@ webstrom 内置的插件尚未对 tailwind 最新版本, 降级处理
 
 降级到 v3.1 版本正常使用
 
-<img src="./img/wt-3.png" width="600">
+<img src="img/12-3.png" width="600">
 
 
 
