@@ -1,15 +1,16 @@
 import { defineConfig } from 'vitepress'
 
-import { nav, sidebar } from './configs'
+import { nav, sidebar, head } from './configs'
 
 export default defineConfig({
   outDir: '../dist',
   base: process.env.APP_BASE_PATH || '/',
 
-  title: '🧀 知食',
-  description: 'A VitePress Site1',
+  title: '知食',
+  description: 'A VitePress Site',
   lastUpdated: true,
   cleanUrls: true,
+  head,
 
   /* markdown 配置 */
   markdown: {
@@ -18,6 +19,7 @@ export default defineConfig({
 
   /* 主题配置 */
   themeConfig: {
+    logo: '/logo.png',
     nav,
     sidebar,
     socialLinks: [
