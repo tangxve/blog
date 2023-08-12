@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,N as l}from"./chunks/framework.3751e28a.js";const A=JSON.parse('{"title":"数据类型的判断原理","description":"","frontmatter":{},"headers":[],"relativePath":"fe/js/2.md","lastUpdated":1691845117000}'),p={name:"fe/js/2.md"},e=l("",20),o=[e];function t(r,c,i,y,F,D){return a(),n("div",null,o)}const b=s(p,[["render",t]]);export{A as __pageData,b as default};
