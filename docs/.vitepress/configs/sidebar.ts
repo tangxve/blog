@@ -39,75 +39,76 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
   ],
   '/fe/': [
     {
-      text: '目录',
+      text: '📚 目录',
       link: '/fe/'
     },
     {
       text: 'Javascript 基础',
       collapsed: true,
       items: [
-        { text: '数据类型', link: '/fe/javascript/1-数据类型' },
+        { text: '数据类型', link: '/fe/js/1' },
+        { text: '类型判断原理', link: '/fe/js/2' },
       ]
     },
-    {
-      text: 'ES6 / ES7 相关',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: 'HTML / CSS',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: 'Vue / React',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: 'TypeScript',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: 'Node 相关',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: '工程化 vite / webpack',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: '浏览器相关',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: '网络相关',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: '性能优化',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: '前端监控',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: '安全相关',
-      collapsed: true,
-      items: []
-    },
-    {
-      text: '多人协作',
-      collapsed: true,
-      items: []
-    }
+    // {
+    //   text: 'ES6 / ES7 相关',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: 'HTML / CSS',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: 'Vue / React',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: 'TypeScript',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: 'Node 相关',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: '工程化 vite / webpack',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: '浏览器相关',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: '网络相关',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: '性能优化',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: '前端监控',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: '安全相关',
+    //   collapsed: true,
+    //   items: []
+    // },
+    // {
+    //   text: '多人协作',
+    //   collapsed: true,
+    //   items: []
+    // }
   ]
 }
