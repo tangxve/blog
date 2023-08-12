@@ -45,7 +45,9 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     {
       text: 'Javascript 基础',
       collapsed: true,
-      items: []
+      items: [
+        { text: '数据类型', link: '/fe/javascript/1-数据类型' },
+      ]
     },
     {
       text: 'ES6 / ES7 相关',
