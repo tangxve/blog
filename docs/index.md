@@ -5,11 +5,11 @@ layout: home
 hero:
   name: "知食分子🍕"
   text: "A VitePress Site"
-  tagline: My great project tagline
+  tagline: 芝士是进(bian)步(pang)的阶梯 🍩 🍖 🍤 🍣 🍲
   actions:
-    - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+    - theme: alt
+      text: 📟 前端相关
+      link: /fe/
     - theme: alt
       text: 📝 日常笔记
       link: /notes/
