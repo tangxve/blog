@@ -52,6 +52,13 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '闭包', link: '/fe/js/4-闭包' },
       ]
     },
+    {
+      text: '编程题 Coding',
+      collapsed: true,
+      items: [
+        { text: '函数柯理化', link: '/fe/coding/1-函数柯理化' },
+      ]
+    },
     // {
     //   text: 'ES6 / ES7 相关',
     //   collapsed: true,
