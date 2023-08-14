@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev docs",
+    "dev": "vitepress dev docs --port 1220",
     "build": "vitepress build docs",
     "build:github": "cross-env APP_BASE_PATH=/blog/ vitepress build docs",
     "docs:preview": "vitepress preview docs"

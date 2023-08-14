@@ -7,6 +7,13 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       link: '/notes/'
     },
     {
+      text: '2023 年',
+      collapsed: false,
+      items: [
+        { text: 'Chrome 密码填充启用生物识别身份验证', link: '/notes/13' },
+      ]
+    },
+    {
       text: '2022 年',
       collapsed: false,
       items: [
