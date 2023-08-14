@@ -1,0 +1,1 @@
+import{_ as a,c as e,o as l,N as i}from"./chunks/framework.3751e28a.js";const m=JSON.parse('{"title":"日常笔记","description":"","frontmatter":{},"headers":[],"relativePath":"notes/index.md","lastUpdated":1692012114000}'),t={name:"notes/index.md"},o=i("",12),r=[o];function s(h,n,c,u,d,_){return l(),e("div",null,r)}const p=a(t,[["render",s]]);export{m as __pageData,p as default};
