@@ -9,6 +9,6 @@ export const head: HeadConfig[] = [
   ['link', { rel: 'apple-touch-icon', href: '/favicon.ico' }],
   ['link', { rel: 'mask-icon', href: '/favicon.ico', color: '#3eaf7c' }],
   ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
-  ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.ico'}],
+  // ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.ico'}],
   ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
 ]
