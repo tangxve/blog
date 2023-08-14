@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,N as l}from"./chunks/framework.3751e28a.js";const h=JSON.parse('{"title":"om my zsh 更新问题","description":"","frontmatter":{},"headers":[],"relativePath":"notes/8.md","lastUpdated":1692012534000}'),o={name:"notes/8.md"},e=l("",16),p=[e];function t(r,c,i,C,y,d){return n(),a("div",null,p)}const D=s(o,[["render",t]]);export{h as __pageData,D as default};
