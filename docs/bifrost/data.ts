@@ -291,7 +291,7 @@ export const NAV_DATA: NavData[] = [
         icon: 'https://trpc.io/img/logo.svg',
         title: 'tRPC',
         desc: '轻松实现端到端类型安全 API',
-        link: 'https://kuizuo.cn/typescript-full-stack-technology-trpc/'
+        link: 'https://kuizuo.cn/blog/typescript-full-stack-technology-trpc'
       },
     ]
   },
