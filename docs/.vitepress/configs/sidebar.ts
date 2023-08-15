@@ -58,6 +58,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '作用域', link: '/fe/js/3-作用域' },
         { text: '闭包', link: '/fe/js/4-闭包' },
         { text: '原型和原型链', link: '/fe/js/5-原型和原型链' },
+        { text: 'this原理以及用法', link: '/fe/js/6-this原理以及用法' },
       ]
     },
     {
@@ -66,6 +67,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       items: [
         { text: '函数柯理化', link: '/fe/coding/1-函数柯理化' },
         { text: '手写实现继承', link: '/fe/coding/2-手写实现继承' },
+        { text: '手写实现 new', link: '/fe/coding/3-手写实现new' },
       ]
     },
     // {
