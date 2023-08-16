@@ -10,7 +10,13 @@ export const NAV_DATA: NavData[] = [
     title: '工具',
     items: [
       {
-        icon: 'https://satellitemap.space/favicon.ico',
+        icon: 'https://readhub.cn/icons/favicon-32x32.png',
+        title: 'Readhub',
+        desc: 'Readhub',
+        link: 'https://readhub.cn/'
+      },
+      {
+        icon: '',
         title: '中国-最新加密货币和商业新闻',
         desc: ' 中国-最新加密货币和商业新闻',
         link: 'https://www.business2community.com/zh-cn'
@@ -34,11 +40,12 @@ export const NAV_DATA: NavData[] = [
         link: 'https://www.feishu.cn/drive/home/'
       },
       {
-        icon: 'https://readhub.cn/icons/favicon-32x32.png',
-        title: 'Readhub',
-        desc: 'Readhub',
-        link: 'https://readhub.cn/'
+        icon: '',
+        title: 'CPI 数据',
+        desc: '居民消费价格指数',
+        link: 'https://data.eastmoney.com/cjsj/cpi.html'
       },
+
       {
         icon: 'https://www.google.com/gmail/about/static-2.0/images/logo-gmail.png',
         title: 'Google 邮箱',
