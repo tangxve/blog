@@ -60,6 +60,9 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '原型和原型链', link: '/fe/js/5-原型和原型链' },
         { text: 'this 原理以及用法', link: '/fe/js/6-this原理以及用法' },
         { text: 'call / apply / bind', link: '/fe/js/7-call-apply-bind' },
+        { text: '箭头函数和普通函数', link: '/fe/js/8-箭头函数和普通函数' },
+        { text: 'event loop', link: '/fe/js/9-事件循环' },
+        { text: 'var let const 区别', link: '/fe/js/10-var-let-const区别' },
       ]
     },
     {
