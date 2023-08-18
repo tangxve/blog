@@ -63,6 +63,8 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '箭头函数和普通函数', link: '/fe/js/8-箭头函数和普通函数' },
         { text: 'event loop', link: '/fe/js/9-事件循环' },
         { text: 'var let const 区别', link: '/fe/js/10-var-let-const区别' },
+        { text: 'Promise', link: '/fe/js/11-Promise.md' },
+        { text: 'ESModule', link: '/fe/js/12-ESModule.md' },
       ]
     },
     {
