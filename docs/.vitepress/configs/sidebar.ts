@@ -65,6 +65,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: 'var let const 区别', link: '/fe/js/10-var-let-const区别' },
         { text: 'Promise', link: '/fe/js/11-Promise.md' },
         { text: 'ESModule', link: '/fe/js/12-ESModule.md' },
+        { text: '内存泄露', link: '/fe/js/13-内存泄露.md' },
       ]
     },
     {
