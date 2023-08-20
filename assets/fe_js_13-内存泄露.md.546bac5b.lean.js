@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,N as l}from"./chunks/framework.3751e28a.js";const C=JSON.parse('{"title":"内存泄露","description":"","frontmatter":{},"headers":[],"relativePath":"fe/js/13-内存泄露.md","lastUpdated":1692451664000}'),p={name:"fe/js/13-内存泄露.md"},e=l("",20),o=[e];function r(t,c,i,y,F,D){return n(),a("div",null,o)}const d=s(p,[["render",r]]);export{C as __pageData,d as default};
