@@ -76,6 +76,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '手写实现继承', link: '/fe/coding/2-手写实现继承' },
         { text: '手写实现 new', link: '/fe/coding/3-手写实现new' },
         { text: '实现 call apply bind', link: '/fe/coding/4-实现call-apply-bind' },
+        { text: '实现 深浅拷贝', link: '/fe/coding/5-实现深浅拷贝.md' },
       ]
     },
     // {
