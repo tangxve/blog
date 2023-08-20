@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,N as l}from"./chunks/framework.3751e28a.js";const C=JSON.parse('{"title":"项目中依赖同一个库多个版本问题","description":"","frontmatter":{},"headers":[],"relativePath":"notes/9.md","lastUpdated":1692521884000}'),p={name:"notes/9.md"},e=l("",34),o=[e];function t(r,c,i,D,y,F){return n(),a("div",null,o)}const m=s(p,[["render",t]]);export{C as __pageData,m as default};
