@@ -66,6 +66,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: 'Promise', link: '/fe/js/11-Promise.md' },
         { text: 'ESModule', link: '/fe/js/12-ESModule.md' },
         { text: '内存泄露', link: '/fe/js/13-内存泄露.md' },
+        { text: '垃圾回收', link: '/fe/js/14-垃圾回收.md' },
       ]
     },
     {
