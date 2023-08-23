@@ -91,6 +91,29 @@ export const NAV_DATA: NavData[] = [
     ]
   },
   {
+    title:'周刊和博客',
+    items:[
+      {
+        icon: '',
+        title: '前端精读',
+        desc: '前端精读',
+        link: 'https://github.com/ascoders/weekly'
+      },
+      {
+        icon: '',
+        title: '奇舞周刊',
+        desc: '奇舞周刊',
+        link: 'https://weekly.75.team/'
+      },
+      {
+        icon: '',
+        title: '阮一峰',
+        desc: '阮一峰',
+        link: 'https://github.com/ruanyf/weekly'
+      },
+    ]
+  },
+  {
     title: 'Vue 生态',
     items: [
       {
