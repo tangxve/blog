@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "知食分子🍕"
-#  text: "芝士是进(bian)步(pang)的阶梯 🍩 🍖 🍤 🍣 🍲"
-  tagline: 在某种程度上说，我们可以将咖啡看作是豆浆，必定也是从豆子榨汁而来。《☕️ 🥛》
+  name: "知食"
+  text: "是变胖的阶梯<br/>🍩 🍖 🍤 🍣 🍲 🍰 🍦 🍫"
+  tagline: 在某种程度上说，我们可以将咖啡看作是豆浆，必定也是从豆子榨汁而来。☕️ 🥛
   actions:
     - theme: alt
       text: 📟 前端相关
