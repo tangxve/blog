@@ -88,6 +88,12 @@ export const NAV_DATA: NavData[] = [
         desc: '手绘流程图',
         link: 'https://excalidraw.com/'
       },
+      {
+        icon: '',
+        title: '诸君！梦想在此',
+        desc: 'Queen Studios 官方网站和商店',
+        link: 'https://queenstudios.shop/zh-CN'
+      },
     ]
   },
   {
