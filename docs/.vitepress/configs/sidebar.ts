@@ -95,6 +95,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       collapsed: true,
       items: [
         { text: 'Vue 相关', link: '/fe/framework/vue.md' },
+        { text: 'React 相关', link: '/fe/framework/react.md' },
       ]
     },
     // {
