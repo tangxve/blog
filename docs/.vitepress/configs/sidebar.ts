@@ -51,7 +51,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     },
     {
       text: 'Javascript 基础',
-      collapsed: false,
+      collapsed: true,
       items: [
         { text: '数据类型', link: '/fe/js/1-数据类型' },
         { text: '类型判断原理', link: '/fe/js/2-类型判断原理' },
@@ -71,7 +71,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     },
     {
       text: '编程题 Coding',
-      collapsed: false,
+      collapsed: true,
       items: [
         { text: '函数柯理化', link: '/fe/coding/1-函数柯理化' },
         { text: '手写实现继承', link: '/fe/coding/2-手写实现继承' },
@@ -85,11 +85,13 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     //   collapsed: true,
     //   items: []
     // },
-    // {
-    //   text: 'HTML / CSS',
-    //   collapsed: true,
-    //   items: []
-    // },
+    {
+      text: 'HTML / CSS',
+      collapsed: true,
+      items: [
+        { text: 'CSS 相关', link: '/fe/html/css.md' },
+      ]
+    },
     {
       text: 'Vue / React',
       collapsed: true,
