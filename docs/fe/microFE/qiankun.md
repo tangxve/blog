@@ -1,6 +1,6 @@
 # 微前端 qiankun
 
-- [可能是你见过最完善的微前端解决方案](https://tech.antfin.com/community/articles/536)
+- [qiankun 3.0 Roadmap](https://github.com/umijs/qiankun/discussions/1378)
 - [qiankun 的技术实现与选择](https://juejin.cn/post/6846687602439897101#heading-12)
 - [qiankun 源码分析](https://juejin.cn/post/6844904115999342600)
 - [qiankun 技术圆桌](https://www.yuque.com/kuitos/gky7yw)
