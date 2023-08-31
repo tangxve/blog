@@ -100,6 +100,13 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: 'React 相关', link: '/fe/framework/react.md' },
       ]
     },
+    {
+      text: 'Micro FE',
+      collapsed: true,
+      items: [
+        { text: '乾坤', link: '/fe/microFE/qiankun.md' },
+      ]
+    },
     // {
     //   text: 'TypeScript',
     //   collapsed: true,
