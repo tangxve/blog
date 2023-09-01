@@ -209,7 +209,7 @@ export const NAV_DATA: NavData[] = [
         icon: 'https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png',
         title: 'Ant Design',
         desc: '一套企业级 UI 设计语言和 React 组件库',
-        link: 'https://ant.design'
+        link: 'https://ant-design.antgroup.com/index-cn'
       },
       {
         icon: 'https://docs.pmnd.rs/apple-touch-icon.png',
