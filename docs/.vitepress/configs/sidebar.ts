@@ -107,6 +107,13 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         { text: '乾坤', link: '/fe/microFE/qiankun.md' },
       ]
     },
+    {
+      text: '浏览器相关',
+      collapsed: true,
+      items: [
+        { text: '浏览器渲染过程', link: '/fe/browser/rendering.md' },
+      ]
+    },
     // {
     //   text: 'TypeScript',
     //   collapsed: true,
@@ -119,11 +126,6 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     // },
     // {
     //   text: '工程化 vite / webpack',
-    //   collapsed: true,
-    //   items: []
-    // },
-    // {
-    //   text: '浏览器相关',
     //   collapsed: true,
     //   items: []
     // },
