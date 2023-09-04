@@ -129,11 +129,13 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     //   collapsed: true,
     //   items: []
     // },
-    // {
-    //   text: '网络相关',
-    //   collapsed: true,
-    //   items: []
-    // },
+    {
+      text: '网络相关',
+      collapsed: true,
+      items: [
+        { text: 'http', link: '/fe/network/http.md' },
+      ]
+    },
     // {
     //   text: '性能优化',
     //   collapsed: true,
