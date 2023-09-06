@@ -10,7 +10,11 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       text: '2023 年',
       collapsed: false,
       items: [
-        { text: 'Chrome 密码填充启用生物识别身份验证', link: '/notes/13' },
+        { text: '高性能渲染十万条数据', link: '/notes/17' },
+        { text: 'WebStrom 问题', link: '/notes/16' },
+        { text: 'Homebrew', link: '/notes/15' },
+        { text: 'Chrome 浏览器相关', link: '/notes/14' },
+        { text: 'Chrome 密码填充启用生物识别身份验证', link: '/notes/13' }
       ]
     },
     {

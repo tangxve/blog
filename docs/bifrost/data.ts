@@ -323,10 +323,21 @@ export const NAV_DATA: NavData[] = [
         desc: '用于构建高效且可伸缩的服务端应用程序的渐进式 Node.js 框架',
         link: 'https://docs.nestjs.cn'
       },
+    ]
+  },
+  {
+    title: 'TypeScript 相关',
+    items: [
+      {
+        icon: 'https://zod.dev/logo.svg',
+        title: 'Zod',
+        desc: 'Zod 是一个以 TypeScript 为首的模式声明和验证库。可以做到静态和运行时的类型检查',
+        link: 'https://github.com/colinhacks/zod/blob/master/README_ZH.md'
+      },
       {
         icon: 'https://trpc.io/img/logo.svg',
         title: 'tRPC',
-        desc: '轻松实现端到端类型安全 API',
+        desc: '轻松实现端到端的类型安全 API',
         link: 'https://kuizuo.cn/blog/typescript-full-stack-technology-trpc'
       },
     ]
