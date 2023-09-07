@@ -10,6 +10,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
       text: '2023 年',
       collapsed: false,
       items: [
+        { text: '权限的数据设计思路', link: '/notes/18' },
         { text: '高性能渲染十万条数据', link: '/notes/17' },
         { text: 'WebStrom 问题', link: '/notes/16' },
         { text: 'Homebrew', link: '/notes/15' },
