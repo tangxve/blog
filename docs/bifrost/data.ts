@@ -117,6 +117,12 @@ export const NAV_DATA: NavData[] = [
         desc: '阮一峰',
         link: 'https://github.com/ruanyf/weekly'
       },
+      {
+        icon: '',
+        title: 'Rust',
+        desc: 'Rust 语言圣经',
+        link: 'https://course.rs/about-book.html'
+      },
     ]
   },
   {
