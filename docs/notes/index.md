@@ -18,7 +18,7 @@
     - 如果是 module 类型，vue.config.js 修改cjs
     - 但是 低版本 vue-cli 不支持支持 vue.config.cjs 格式（可以通过升级 vue-cli 解决问题，搞版本的 支持 cjs）
     - 考虑修改的成本放弃
-    -
+    -  (使用qiankun时，vue-devtools无法调试子项目)[https://github.com/umijs/qiankun/issues/601]
 
 :::
 
