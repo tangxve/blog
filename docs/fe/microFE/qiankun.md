@@ -20,9 +20,9 @@
 - 子应用A：publicPath：/A
 - 正常子应用的访问的静态资源是 `/A` 路径下，当被主应用加载后，回去 `/main` 下访问资源，这时候就拿不到资源
 
-- vite2 不支持 runtime publicPath，这项能力在 webpack 中由内置变量__webpack_public_path__提供，runtime publicPath是 qiankun 加载子应用的核心 (由 import-html-entry 模块提供) ，用于预加载及引入异步脚本 
+- `vite2` 不支持 runtime publicPath，这项能力在 webpack 中由内置变量`__webpack_public_path__`提供，runtime publicPath是 qiankun 加载子应用的核心 (由 [import-html-entry](https://www.npmjs.com/package/import-html-entry) 模块提供) ，用于预加载及引入异步脚本 
 - esm 会使 qiankun 的 js 沙箱失效，qiankun 内部的 js 沙箱使用将 window 对象进行了代理，以防止全局作用域被污染，但 esm 模块始终具有自己独立的顶级作用域，也就是说它访问到的 window 是全局作用域下的，而不是 qiankun 沙箱中提供的代理 window，虽然可以通过在生产环境打包为 umd 格式的方式来避免使用 esm，但有些本末倒置了
-- runtime publicPath在 vite3.2 版本中得到了支持，后续就可以通过 experimental.renderBuiltUrl 来达成此目的
+- runtime publicPath在 [vite3.2 版本中得到了支持](https://github.com/vitejs/vite/pull/8450)，后续就可以通过 `experimental.renderBuiltUrl` 来达成此目的
 
 
 ## 为什么不用 iframe
