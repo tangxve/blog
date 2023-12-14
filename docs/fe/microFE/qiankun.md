@@ -7,6 +7,9 @@
 
 
 ## qiankun 与 Vite 问题
+
+- [为什么 qiankun 不能和 vite 一起使用？](https://segmentfault.com/a/1190000042738311)
+
 - 开发模式：在开发环境下，如果我们使用 `vite` 来构建 `vue3` 子应用，基于 vite 的构建机制，会在子应用的 `html` 的入口文件的 script 标签上携带 `type=module`。
   而我们知道 `qiankun` 父应用引入子应用，本质上是将html做为入口文件，并通过 `import-html-entry` 这个库去加载子应用所需要的资源列表Js、css，然后通过 `eval` 直接执行，而基于 `vite` 构建的 js 中 `import、export` 并没有被转码，会导致直接报错（不允许在非 type=module 的 script 里面使用 import）
 
