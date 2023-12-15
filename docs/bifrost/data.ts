@@ -97,8 +97,8 @@ export const NAV_DATA: NavData[] = [
     ]
   },
   {
-    title:'周刊和博客',
-    items:[
+    title: '周刊和博客',
+    items: [
       {
         icon: '',
         title: '前端精读',
@@ -252,6 +252,12 @@ export const NAV_DATA: NavData[] = [
   {
     title: '编译&构建&打包',
     items: [
+      {
+        icon: 'https://www.rspack.dev/static/image/logo.b5ceba6d.png',
+        title: 'Rspack',
+        desc: '基于 Rust 的高性能 Web 构建工具',
+        link: 'https://www.rspack.dev/zh/'
+      },
       {
         icon: 'https://cn.vitejs.dev/logo.svg',
         title: 'Vite 中文文档',
