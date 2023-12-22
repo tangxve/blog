@@ -126,6 +126,41 @@ export const NAV_DATA: NavData[] = [
     ]
   },
   {
+    title: '终将都会“锈化”',
+    items: [
+      {
+        icon: 'https://raw.githubusercontent.com/oxc-project/oxc-assets/main/logo-round-min.png',
+        title: 'Oxc',
+        desc: '地表速度最快的 JS 解析器 —— Oxc',
+        link: 'https://oxc-project.github.io/docs/guide/usage/linter.html'
+      },
+      {
+        icon: 'https://raw.githubusercontent.com/oxc-project/oxc-assets/main/logo-round-min.png',
+        title: 'Oxlint',
+        desc: 'ESLint 被锈化（Oxc 团队的 ESLint 的替代品）',
+        link: 'https://oxc-project.github.io/docs/guide/usage/linter.html'
+      },
+      {
+        icon: 'https://www.rspack.dev/static/image/logo.b5ceba6d.png',
+        title: 'Rspack',
+        desc: 'webpack 被锈化（基于 Rust 的高性能 Web 构建工具）',
+        link: 'https://www.rspack.dev/zh/'
+      },
+      {
+        icon: 'https://swc.rs/favicon/apple-touch-icon.png',
+        title: 'SWC',
+        desc: 'Babel 被锈化',
+        link: 'https://swc.rs'
+      },
+      {
+        icon: 'https://turbo.build/images/favicon-dark/apple-touch-icon.png',
+        title: 'Turbo',
+        desc: '基于 SWC 的构建工具',
+        link: 'https://turbo.build'
+      },
+    ]
+  },
+  {
     title: 'Vue 生态',
     items: [
       {
@@ -253,12 +288,6 @@ export const NAV_DATA: NavData[] = [
     title: '编译&构建&打包',
     items: [
       {
-        icon: 'https://www.rspack.dev/static/image/logo.b5ceba6d.png',
-        title: 'Rspack',
-        desc: '基于 Rust 的高性能 Web 构建工具',
-        link: 'https://www.rspack.dev/zh/'
-      },
-      {
         icon: 'https://cn.vitejs.dev/logo.svg',
         title: 'Vite 中文文档',
         desc: '下一代前端工具链',
@@ -269,18 +298,6 @@ export const NAV_DATA: NavData[] = [
         title: 'esbuild',
         desc: 'An extremely fast bundler for the web',
         link: 'https://esbuild.github.io'
-      },
-      {
-        icon: 'https://swc.rs/favicon/apple-touch-icon.png',
-        title: 'SWC',
-        desc: 'Rust-based platform for the Web',
-        link: 'https://swc.rs'
-      },
-      {
-        icon: 'https://turbo.build/images/favicon-dark/apple-touch-icon.png',
-        title: 'Turbo',
-        desc: 'Turbo is an incremental bundler and build system optimized for JavaScript and TypeScript, written in Rust',
-        link: 'https://turbo.build'
       },
       {
         icon: 'https://www.webpackjs.com/icon_180x180.png',
