@@ -24,7 +24,7 @@ const updateRecentLinks = (item: NavLinkType) => {
   recentLinks.value.unshift(item)
 
   // 只保留最近的5个链接
-  recentLinks.value = [...recentLinks.value].slice(0, 5)
+  recentLinks.value = [...recentLinks.value].slice(0, 10)
   localStorage.setItem(LOCAL_KEY, JSON.stringify(recentLinks.value))
 }
 

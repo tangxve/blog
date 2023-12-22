@@ -126,8 +126,14 @@ export const NAV_DATA: NavData[] = [
     ]
   },
   {
-    title: '终将都会“锈化”',
+    title: '终将都会 "锈化"',
     items: [
+      {
+        icon: '',
+        title: 'Rust',
+        desc: 'Rust 语言圣经',
+        link: 'https://course.rs/about-book.html'
+      },
       {
         icon: 'https://raw.githubusercontent.com/oxc-project/oxc-assets/main/logo-round-min.png',
         title: 'Oxc',
