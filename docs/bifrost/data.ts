@@ -147,9 +147,15 @@ export const NAV_DATA: NavData[] = [
         link: 'https://oxc-project.github.io/docs/guide/usage/linter.html'
       },
       {
+        icon: 'https://biomejs.dev/_astro/biome-logo.cd0a0a87.svg',
+        title: 'biomejs',
+        desc: 'Prettier 被锈化',
+        link: 'https://biomejs.dev/'
+      },
+      {
         icon: 'https://www.rspack.dev/static/image/logo.b5ceba6d.png',
         title: 'Rspack',
-        desc: 'webpack 被锈化（基于 Rust 的高性能 Web 构建工具）',
+        desc: 'Webpack 被锈化（基于 Rust 的高性能 Web 构建工具）',
         link: 'https://www.rspack.dev/zh/'
       },
       {
