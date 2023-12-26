@@ -136,14 +136,8 @@ export const NAV_DATA: NavData[] = [
       },
       {
         icon: 'https://raw.githubusercontent.com/oxc-project/oxc-assets/main/logo-round-min.png',
-        title: 'Oxc',
-        desc: '地表速度最快的 JS 解析器 —— Oxc',
-        link: 'https://oxc-project.github.io/docs/guide/usage/linter.html'
-      },
-      {
-        icon: 'https://raw.githubusercontent.com/oxc-project/oxc-assets/main/logo-round-min.png',
         title: 'Oxlint',
-        desc: 'ESLint 被锈化（Oxc 团队的 ESLint 的替代品）',
+        desc: 'ESLint 被锈化',
         link: 'https://oxc-project.github.io/docs/guide/usage/linter.html'
       },
       {
@@ -155,7 +149,7 @@ export const NAV_DATA: NavData[] = [
       {
         icon: 'https://www.rspack.dev/static/image/logo.b5ceba6d.png',
         title: 'Rspack',
-        desc: 'Webpack 被锈化（基于 Rust 的高性能 Web 构建工具）',
+        desc: 'Webpack 被锈化',
         link: 'https://www.rspack.dev/zh/'
       },
       {
@@ -163,6 +157,12 @@ export const NAV_DATA: NavData[] = [
         title: 'SWC',
         desc: 'Babel 被锈化',
         link: 'https://swc.rs'
+      },
+      {
+        icon: 'https://raw.githubusercontent.com/oxc-project/oxc-assets/main/logo-round-min.png',
+        title: 'Oxc',
+        desc: '地表速度最快的 JS 解析器 —— Oxc',
+        link: 'https://oxc-project.github.io/docs/guide/usage/linter.html'
       },
       {
         icon: 'https://turbo.build/images/favicon-dark/apple-touch-icon.png',
