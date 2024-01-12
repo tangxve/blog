@@ -126,7 +126,7 @@ export const NAV_DATA: NavData[] = [
     ]
   },
   {
-    title: '终将都会 "锈化"',
+    title: '新时代的锈儿',
     items: [
       {
         icon: '',
