@@ -22,6 +22,12 @@
 
 :::
 
+::: details 一些好的文章
+
+- [Qwik 与 React Hydration 有何不同](https://mp.weixin.qq.com/s/NLkeTDFCUqw_2bV2a_V0wA)
+- [Vue 3.4 中的状态概念模型](https://mp.weixin.qq.com/s/Mr4tcP251D1BkQbHpCBWCQ)
+:::
+
 
 ## 2024年
 1. 2024-01-04 [修复 vue-cli 不支持支持 vue.config.cjs 格式](./19.md)
