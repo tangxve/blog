@@ -370,6 +370,12 @@ export const NAV_DATA: NavData[] = [
     title: 'TypeScript 相关',
     items: [
       {
+        icon: '',
+        title: '深入理解 TypeScript',
+        desc: '深入理解 TypeScript',
+        link: 'https://jkchao.github.io/typescript-book-chinese/'
+      },
+      {
         icon: 'https://zod.dev/logo.svg',
         title: 'Zod',
         desc: 'Zod 是一个以 TypeScript 为首的模式声明和验证库。可以做到静态和运行时的类型检查',
